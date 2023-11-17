@@ -55,7 +55,7 @@ function Register() {
           console.log(err);
           console.log(err.response.status);
           if (err.response.status === 400) {
-            alert('중복된 이메일입니다.');
+            alert('이미 가입한 회원입니다');
           }
         });
       console.log('test after api');
