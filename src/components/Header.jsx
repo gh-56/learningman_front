@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
-function Header({ title, dropdownTab, searchInput, right }) {
+function Header() {
   return (
     <nav className='navbar navbar-expand-lg bg-body-tertiary'>
       <div className='Header container-fluid'>
