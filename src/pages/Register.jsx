@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,10 +49,14 @@ function Register() {
           memberPassword: memberPassword,
         })
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
+          console.log(err.response.status);
+          if (err.response.status === 400) {
+            alert('이미 가입한 회원입니다');
+          }
         });
       console.log('test after api');
       navigate('/login');
