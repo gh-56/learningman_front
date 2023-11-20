@@ -17,6 +17,7 @@ function Login() {
         memberPassword: memberPassword,
       })
       .then((response) => {
+        console.log(response.data);
         setParams(response.data);
         console.log(params);
       })
