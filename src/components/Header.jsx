@@ -1,14 +1,14 @@
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { memberData } from "../App";
 
 function Header() {
-  const { memberName} = useContext(memberData);
-  //const { memberName } = context
-  //console.log(memberName);
-  //const MemberName = null;
+
+  const onClickLogout = () => {
+    window.localStorage.removeItem("members");
+    window.location.reload();
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="Header container-fluid">
@@ -27,7 +27,7 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {memberName == null ? (
+          {window.localStorage.getItem("members") === null ? (
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
@@ -63,7 +63,8 @@ function Header() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/logout"
+                  to="/"
+                  onClick={onClickLogout}
                 >
                   로그아웃
                 </Link>

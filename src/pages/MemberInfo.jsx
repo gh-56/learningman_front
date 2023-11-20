@@ -1,14 +1,14 @@
 import { memberData } from '../App';
-import React, { useEffect, useState, useContext } from 'react';
 
 function MemberInfo() {
-    const { memberName, memberEmail, memberPassword, memberRole } = useContext(memberData);
+  const members = window.localStorage.getItem("members")
+  const membersInfo = JSON.parse(members);
   return (
     <div>
-      <h1>{memberName}</h1>
-      <h1>{memberEmail}</h1>
-      <h1>{memberPassword}</h1>
-      <h1>{memberRole}</h1>
+      <h1>{membersInfo.memberName}</h1>
+      <h1>{membersInfo.memberEmail}</h1>
+      <h1>{membersInfo.memberPassword}</h1>
+      <h1>{membersInfo.memberRole}</h1>
     </div>
   )
 }
