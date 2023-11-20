@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 function Card() {
   const baseUrl = 'http://localhost:8080';
   const [file, setFile] = useState(null);
+  const [img, setImg] = useState(null);
+  // let img;
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -12,12 +14,8 @@ function Card() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Create a FormData object
     const formData = new FormData();
     formData.append('file', file);
-
-    // You can also append other fields to the FormData object if needed
-    // formData.append('fieldName', 'fieldValue');
 
     try {
       // Make a POST request with Axios
@@ -33,29 +31,32 @@ function Card() {
 
       // Handle the response as needed
       console.log(response);
+      setImg(response.data);
+      // img = response.data;
+      console.log('img :   ' + img);
     } catch (error) {
       console.error('2:', error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='file' onChange={handleFileChange} />
-      <button type='submit'>Upload</button>
-    </form>
-    /* <div>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type='file' onChange={handleFileChange} />
+        <button type='submit'>Upload</button>
+      </form>
       <div class='card'>
         <img
-          src='src/img/test_profile_img.jpg'
+          src={`http://localhost:3000${img}`}
           class='card-img-top'
-          alt='...'
+          alt={img}
         />
         <div class='card-body'>
           <h5 class='card-title'>Card title</h5>
           <p class='card-text'>Card Text.</p>
         </div>
       </div>
-    </div>  */
+    </div>
   );
 }
 
