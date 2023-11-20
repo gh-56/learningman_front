@@ -8,7 +8,6 @@ function Header() {
     window.localStorage.removeItem("members");
     window.location.reload();
   };
-
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="Header container-fluid">
