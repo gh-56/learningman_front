@@ -45,10 +45,9 @@ function Card() {
       </form>
       <div class='card'>
         <img
-          // src={`http://localhost:8080${img}`}
-          src={'img'}
+          src={`http://localhost:8080${img}`}
           class='card-img-top'
-          alt={img}
+          alt={'img'}
         />
         <div class='card-body'>
           <h5 class='card-title'>Card title</h5>
