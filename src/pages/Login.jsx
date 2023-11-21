@@ -1,33 +1,33 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
-  const baseUrl = "http://localhost:8080";
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const baseUrl = 'http://localhost:8080';
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const formSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post(baseUrl + "/members/login", {
+      .post(baseUrl + '/members/login', {
         memberEmail: email,
         memberPassword: password,
       })
       .then((userDetails) => {
         if (userDetails.data == null) {
-          alert("정보가 일치하지 않습니다");
+          alert('정보가 일치하지 않습니다');
           window.location.reload();
         } else {
           var member = {
             memberName: userDetails.data.username,
-            memberEmail: userDetails.data.password,
-            memberPassword: email,
+            memberEmail: email,
+            memberPassword: userDetails.data.password,
             memberRole: userDetails.data.authorities[0].authority,
           };
           localStorage.setItem('members', JSON.stringify(member));
-          navigate("/");
+          navigate('/');
           window.location.reload();
         }
       })
@@ -45,20 +45,20 @@ function Login() {
 
   return (
     <div>
-      <form onSubmit={formSubmit} method="GET">
+      <form onSubmit={formSubmit} method='GET'>
         <input
-          name="email"
-          type="text"
+          name='email'
+          type='text'
           value={email}
           onChange={onChangeHandlerEmail}
         />
         <input
-          name="password"
-          type="text"
+          name='password'
+          type='text'
           value={password}
           onChange={onChangeHandlerPassword}
         />
-        <button type="submit">제출</button>
+        <button type='submit'>제출</button>
       </form>
     </div>
   );

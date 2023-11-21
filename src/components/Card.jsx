@@ -18,7 +18,6 @@ function Card() {
     formData.append('file', file);
 
     try {
-      // Make a POST request with Axios
       const response = await axios.post(
         baseUrl + '/members/profile',
         formData,
@@ -29,7 +28,6 @@ function Card() {
         }
       );
 
-      // Handle the response as needed
       console.log(response);
       setImg(response.data);
       // img = response.data;
@@ -47,7 +45,8 @@ function Card() {
       </form>
       <div class='card'>
         <img
-          src={`http://localhost:3000${img}`}
+          // src={`http://localhost:8080${img}`}
+          src={'img'}
           class='card-img-top'
           alt={img}
         />
