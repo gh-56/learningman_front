@@ -13,6 +13,7 @@ function Register() {
   const navigate = useNavigate();
 
   const formSubmit = async (e) => {
+    e.preventDefault();
     if (
       memberName === null ||
       memberName === '' ||
@@ -22,7 +23,7 @@ function Register() {
       memberPassword === null ||
       memberPassword === ''
     ) {
-      e.preventDefault();
+      
       if (memberName === null || memberName === '') {
         setNameError('이름을 입력해주십시오');
       } else {
@@ -41,7 +42,6 @@ function Register() {
         setPasswordError(null);
       }
     } else {
-      e.preventDefault();
       await axios
         .post(baseUrl + '/members/register', {
           memberName: memberName,

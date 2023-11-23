@@ -7,11 +7,12 @@ import Home from "./Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MemberInfo from "./pages/MemberInfo";
 import React from "react";
+import { AuthProvider } from "./security/AuthContext";
 
 function App() {
-//
   return (
     <div>
+      <AuthProvider>
         <Router>
           <Header />
           <Routes>
@@ -22,6 +23,7 @@ function App() {
             <Route path="/memberinfo" element={<MemberInfo />} />
           </Routes>
         </Router>
+      </AuthProvider>
     </div>
   );
 }

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { AuthContext, useAuth } from "../security/AuthContext";
 
 function Header() {
+  //const { isAuthenticated, logout } = useAuth();
 
-  const onClickLogout = () => {
-    window.localStorage.removeItem("members");
-    window.location.reload();
-  };
+  const authContext = useContext(AuthContext);
+  console.log(authContext);
+  const isAuthenticated = true;
+  const logout = () => {}
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="Header container-fluid">
@@ -26,7 +28,7 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {window.localStorage.getItem("members") === null ? (
+          {!isAuthenticated ? (
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
@@ -62,8 +64,8 @@ function Header() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/"
-                  onClick={onClickLogout}
+                  to="/logout"
+                  onClick={logout}
                 >
                   로그아웃
                 </Link>
