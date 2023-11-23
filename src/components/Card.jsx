@@ -1,13 +1,16 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { profileInfoApi } from '../api/ApiClient';
 
 function Card() {
   const baseUrl = 'http://localhost:8080';
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
-  const [memberName, setMemberName] = useState('');
-  const [memberEmail, setMemberEmail] = useState('');
-  const [memberRole, setMemberRole] = useState('');
+  const [memberDto, setMemberDto] = useState(null);
+
+  // const [memberName, setMemberName] = useState('');
+  // const [memberEmail, setMemberEmail] = useState('');
+  // const [memberRole, setMemberRole] = useState('');
 
   // 파일 등록(변경)하기 => 파일 선택
   const handleFileChange = (event) => {
@@ -39,11 +42,22 @@ function Card() {
     }
   };
 
+  // 페이지가 로드 될때 API 요청하기
+  useEffect(() => {
+    async function callProfile() {
+      const response = await profileInfoApi();
+      console.log(response);
+
+      // 응답받은 데이터 상태값 저장
+      setMemberDto(response.data);
+    }
+    callProfile();
+  }, []);
   // 멤버 정보 중 이름, 이메일, 역할 불러오기
-  const handleMember = async () => {
+  /* const handleMember = async () => {
     try {
       const response = await axios
-        .get(baseUrl + '/members/profile/spring@spring.com')
+        .get(baseUrl + '/members/profile/{memberId}')
         .then((response) => {
           console.log(response.data);
           setMemberName(response.data.memberName);
@@ -53,7 +67,7 @@ function Card() {
     } catch (error) {
       console.error('handleMember_error:', error);
     }
-  };
+  }; */
 
   return (
     <div>
@@ -68,11 +82,11 @@ function Card() {
           alt={'img'}
         />
         <div className='card-body'>
-          <h5 className='card-title'>이름 : {memberName}</h5>
-          <p className='card-text'>이메일 : {memberEmail}</p>
-          <p className='card-text'>{memberRole}</p>
+          {/* <h5 className='card-title'>이름 : {memberDto.}</h5> */}
+          {/* <p className='card-text'>이메일 : {memberEmail}</p> */}
+          {/* <p className='card-text'>{memberRole}</p> */}
         </div>
-        <button onClick={handleMember}>멤버 정보 불러오기</button>
+        {/* <button onClick={handleMember}>멤버 정보 불러오기</button> */}
       </div>
     </div>
   );
