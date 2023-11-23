@@ -7,4 +7,4 @@ export const apiClient = axios.create({
 export const authenticateApi = (memberEmail, memberPassword) => 
     apiClient.post(`/authenticate`, {memberEmail, memberPassword});
 
-export const myPageApi = () => apiClient.get('/member/myPage');
+export const myPageApi = () => apiClient.get('/members/info');

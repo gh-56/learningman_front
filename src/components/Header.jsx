@@ -1,15 +1,21 @@
 import React, { useContext } from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../security/AuthContext";
 
 function Header() {
   const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const onClickHandler = (event)=>{
+    event.preventDefault();
+    navigate('/');
+  }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="Header container-fluid">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="/" onClick={onClickHandler}>
           학습 도우미
         </a>
         <button

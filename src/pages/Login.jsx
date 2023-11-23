@@ -10,6 +10,7 @@ function Login() {
   const formSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
+    navigate('/');
   };
 
   const onChangeHandlerEmail = (e) => {

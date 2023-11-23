@@ -5,7 +5,6 @@ function Card() {
   const baseUrl = 'http://localhost:8080';
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
-  // let img;
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
