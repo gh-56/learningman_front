@@ -1,15 +1,11 @@
 import React, { useContext } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { AuthContext, useAuth } from "../security/AuthContext";
+import { useAuth } from "../security/AuthContext";
 
 function Header() {
-  //const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
-  const authContext = useContext(AuthContext);
-  console.log(authContext);
-  const isAuthenticated = true;
-  const logout = () => {}
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="Header container-fluid">

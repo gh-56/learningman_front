@@ -6,11 +6,10 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const authContext = useAuth();
-  console.log(authContext)
+  const {login} = useAuth();
   const formSubmit = async (e) => {
     e.preventDefault();
-    //await login(email, password);
+    await login(email, password);
   };
 
   const onChangeHandlerEmail = (e) => {
