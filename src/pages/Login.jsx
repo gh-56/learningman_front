@@ -1,17 +1,18 @@
-import React, { useState, useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-import { useAuth } from '../security/AuthContext';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../security/AuthContext";
 
 function Login() {
-  // const baseUrl = 'http://localhost:8080';
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const { login } = useAuth();
-
   const formSubmit = async (e) => {
     e.preventDefault();
+    await login(email, password);
+    navigate("/");
+    // window.location.reload();
+  }
 
     const form = e.target;
     const formData = new FormData(form);
@@ -55,20 +56,21 @@ function Login() {
 
   return (
     <div>
-      <form onSubmit={formSubmit} method='POST'>
+
+      <form method="post" onSubmit={formSubmit}>
         <input
-          id='email'
-          name='email'
-          type='text'
-          placeholder='email을 입력하세요.'
+          name="email"
+          type="text"
+          value={email}
+          onChange={onChangeHandlerEmail}
         />
         <input
-          id='password'
-          name='password'
-          type='password'
-          placeholder='password를 입력하세요.'
+          name="password"
+          type="text"
+          value={password}
+          onChange={onChangeHandlerPassword}
         />
-        <button>제출</button>
+        <button type="submit">제출</button>
       </form>
     </div>
   );

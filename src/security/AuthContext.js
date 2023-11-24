@@ -1,10 +1,10 @@
+import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
 import { apiClient, authenticateApi } from '../api/ApiClient';
-
+import { setCookie, getCookie, removeCookie } from '../cookies/CookieFunction';
 // 인증 컨텍스트 생성
 const AuthContext = createContext();
-
-// 커스텀 훅으로 외부로 내보내기
+// 커스텀 훅 으로 외부로 내보내기
 export const useAuth = () => useContext(AuthContext);
 
 // 다른 컴포넌트에 공유할 상태 공급자
@@ -14,10 +14,11 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   // 전달2 : 로그인 함수
-  const login = async (username, password) => {
+  const login = async (memberEmail, memberPassword) => {
     try {
       // 서비스에 인증 요청 => JWT 토큰 응답 (비동기)
-      const response = await authenticateApi(username, password);
+      const response = await authenticateApi(memberEmail, memberPassword);
+
       console.log(response);
       // 정상 응답인 경우 토큰 값을 저장한다.
       if (response.status === 200) {
@@ -26,7 +27,13 @@ export const AuthProvider = ({ children }) => {
         console.log('인증 성공했습니다.');
         setIsAuthenticated(true);
         setToken(jwtToken);
-        console.log(jwtToken);
+
+        setCookie('tokenKey', jwtToken, {
+          path: '/',
+          secure: true,
+          maxAge: 3000
+        });
+
 
         // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
         apiClient.interceptors.request.use((config) => {
@@ -46,12 +53,13 @@ export const AuthProvider = ({ children }) => {
       console.log('에러가 발생하였습니다.');
     }
   };
-
   // 3. 로그아웃 함수 : 인증정보와 토큰 정보 해제
   const logout = () => {
     console.log('로그아웃 되었습니다.');
+    removeCookie('tokenKey')
     setIsAuthenticated(false);
     setToken(null);
+    axios.interceptors.request.clear();
   };
 
   return (

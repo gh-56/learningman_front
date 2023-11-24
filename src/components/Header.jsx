@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../security/AuthContext";
+import { setCookie, getCookie, removeCookie } from '../cookies/CookieFunction';
 
 function Header() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
-  const onClickLogout = () => {
-    window.localStorage.removeItem("members");
+  const onClickHandler = (event)=>{
+    event.preventDefault();
+    navigate('/');
     window.location.reload();
-  };
+  }
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="Header container-fluid">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="/" onClick={onClickHandler}>
           학습 도우미
         </a>
         <button
@@ -26,7 +32,7 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {window.localStorage.getItem("members") === null ? (
+          {getCookie('tokenKey') == null ? (
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
@@ -62,8 +68,8 @@ function Header() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/"
-                  onClick={onClickLogout}
+                  to="/logout"
+                  onClick={logout}
                 >
                   로그아웃
                 </Link>

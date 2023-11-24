@@ -1,12 +1,11 @@
 import axios from 'axios';
+import MemberInfo from '../pages/MemberInfo';
 import React, { useEffect, useState } from 'react';
-import { profileInfoApi } from '../api/ApiClient';
 
 function Card() {
   const baseUrl = 'http://localhost:8080';
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
-  const [memberDto, setMemberDto] = useState(null);
 
   // const [memberName, setMemberName] = useState('');
   // const [memberEmail, setMemberEmail] = useState('');
@@ -81,10 +80,8 @@ function Card() {
           className='card-img-top'
           alt={'img'}
         />
-        <div className='card-body'>
-          {/* <h5 className='card-title'>이름 : {memberDto.}</h5> */}
-          {/* <p className='card-text'>이메일 : {memberEmail}</p> */}
-          {/* <p className='card-text'>{memberRole}</p> */}
+        <div class='card-body'>
+          {/* <MemberInfo/> */}
         </div>
         {/* <button onClick={handleMember}>멤버 정보 불러오기</button> */}
       </div>
