@@ -13,6 +13,11 @@ function Header() {
     navigate('/');
     window.location.reload();
   }
+  const onClickHandlerLogout = (e) => {
+    logout();
+    navigate('/');
+    window.location.reload();
+  }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -68,8 +73,7 @@ function Header() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to="/logout"
-                  onClick={logout}
+                  onClick={onClickHandlerLogout}    
                 >
                   로그아웃
                 </Link>

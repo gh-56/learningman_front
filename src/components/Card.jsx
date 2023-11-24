@@ -43,6 +43,7 @@ function Card() {
         <input type='file' onChange={handleFileChange} />
         <button type='submit'>Upload</button>
       </form>
+
       <div className='card' style={{ width: '18rem' }}>
         <img
           src={`http://localhost:8080${img}`}
