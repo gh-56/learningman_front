@@ -11,7 +11,7 @@ function Login() {
     e.preventDefault();
     await login(email, password);
     navigate("/");
-    // window.location.reload();
+    window.location.reload();
   };
 
   const onChangeHandlerEmail = (e) => {

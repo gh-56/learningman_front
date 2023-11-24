@@ -43,13 +43,13 @@ function Card() {
         <input type='file' onChange={handleFileChange} />
         <button type='submit'>Upload</button>
       </form>
-      <div class='card'>
+      <div className='card'>
         <img
           src={`http://localhost:8080${img}`}
-          class='card-img-top'
+          className='card-img-top'
           alt={'img'}
         />
-        <div class='card-body'>
+        <div className='card-body'>
           {/* <MemberInfo/> */}
         </div>
       </div>
