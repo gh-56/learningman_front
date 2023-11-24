@@ -1,26 +1,24 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import MemberInfo from '../pages/MemberInfo';
+import React, { useEffect, useState } from 'react';
+import { apiClient } from '../api/ApiClient';
+import { getCookie } from '../cookies/CookieFunction';
 
 function Card() {
   const baseUrl = 'http://localhost:8080';
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
-  const [memberName, setMemberName] = useState('');
-  const [memberEmail, setMemberEmail] = useState('');
-  const [memberRole, setMemberRole] = useState('');
+  const [baseImg, setBaseImg] = useState(null);
 
   // 파일 등록(변경)하기 => 파일 선택
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
-
   // 등록한 파일을 post방식으로 요청하고 응답 받음
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
     formData.append('file', file);
-
     try {
       const response = await axios.post(
         baseUrl + '/members/profile/img',
@@ -31,29 +29,34 @@ function Card() {
           },
         }
       );
-
       console.log(response);
       setImg(response.data);
     } catch (error) {
       console.error('handleSubmit_error:', error);
     }
   };
-
-  // 멤버 정보 중 이름, 이메일, 역할 불러오기
-  const handleMember = async () => {
+  const baseProfileImg = async () => {
     try {
-      const response = await axios
-        .get(baseUrl + '/members/profile/spring@spring.com')
-        .then((response) => {
-          console.log(response.data);
-          setMemberName(response.data.memberName);
-          setMemberEmail(response.data.memberEmail);
-          setMemberRole(response.data.role);
-        });
+      apiClient.interceptors.request.use((config) => {
+        console.log('인터셉터하여 헤더에 토큰 정보 추가');
+        config.headers.Authorization = getCookie('tokenKey');
+        return config;
+      });
+      const response = await axios.get(baseUrl + '/members/profile/baseimg', {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('baseProfileImg: ', response.data);
+      setBaseImg(response.data);
     } catch (error) {
-      console.error('handleMember_error:', error);
+      console.error('baseProfileImg: ', error);
     }
   };
+
+  useEffect(() => {
+    baseProfileImg();
+  }, []);
 
   return (
     <div>
@@ -61,18 +64,25 @@ function Card() {
         <input type='file' onChange={handleFileChange} />
         <button type='submit'>Upload</button>
       </form>
+
       <div className='card' style={{ width: '18rem' }}>
-        <img
-          src={`http://localhost:8080${img}`}
-          className='card-img-top'
-          alt={'img'}
-        />
+        {img !== null ? (
+          <img
+            src={`http://localhost:8080${img}`}
+            className='card-img-top'
+            alt='프로필 이미지 없음'
+          />
+        ) : (
+          <img
+            src={`http://localhost:8080${baseImg}`}
+            className='card-img-top'
+            alt='기본 프로필 이미지 없음'
+          />
+        )}
         <div className='card-body'>
-          <h5 className='card-title'>이름 : {memberName}</h5>
-          <p className='card-text'>이메일 : {memberEmail}</p>
-          <p className='card-text'>{memberRole}</p>
+          <MemberInfo />
         </div>
-        <button onClick={handleMember}>멤버 정보 불러오기</button>
+        {/* <button onClick={handleMember}>멤버 정보 불러오기</button> */}
       </div>
     </div>
   );
