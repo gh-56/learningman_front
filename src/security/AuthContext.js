@@ -31,9 +31,8 @@ export const AuthProvider = ({ children }) => {
         setCookie('tokenKey', jwtToken, {
           path: '/',
           secure: true,
-          maxAge: 3000
+          maxAge: 3000,
         });
-
 
         // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
         apiClient.interceptors.request.use((config) => {
@@ -56,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   // 3. 로그아웃 함수 : 인증정보와 토큰 정보 해제
   const logout = () => {
     console.log('로그아웃 되었습니다.');
-    removeCookie('tokenKey')
+    removeCookie('tokenKey');
     setIsAuthenticated(false);
     setToken(null);
     axios.interceptors.request.clear();
