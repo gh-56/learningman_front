@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../security/AuthContext";
+import { setCookie, getCookie, removeCookie } from '../cookies/CookieFunction';
 
 function Header() {
-  const { isAuthenticated, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const onClickHandler = (event)=>{
     event.preventDefault();
     navigate('/');
+    window.location.reload();
   }
 
   return (
@@ -30,7 +32,7 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {!isAuthenticated ? (
+          {getCookie('tokenKey') == null ? (
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link

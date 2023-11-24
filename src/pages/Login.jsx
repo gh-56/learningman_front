@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../security/AuthContext";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const {login} = useAuth();
+  const { login } = useAuth();
   const formSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
-    navigate('/');
+    navigate("/");
+    // window.location.reload();
   };
 
   const onChangeHandlerEmail = (e) => {
@@ -22,20 +23,20 @@ function Login() {
 
   return (
     <div>
-      <form method='post' onSubmit={formSubmit}>
+      <form method="post" onSubmit={formSubmit}>
         <input
-          name='email'
-          type='text'
+          name="email"
+          type="text"
           value={email}
           onChange={onChangeHandlerEmail}
         />
         <input
-          name='password'
-          type='text'
+          name="password"
+          type="text"
           value={password}
           onChange={onChangeHandlerPassword}
         />
-        <button type='submit'>제출</button>
+        <button type="submit">제출</button>
       </form>
     </div>
   );

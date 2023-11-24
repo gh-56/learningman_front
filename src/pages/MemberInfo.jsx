@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { myPageApi } from "../api/ApiClient";
 
+
 function MemberInfo() {
   const [memberDto, setMemberDto] = useState(null);
 
   const callApi = async () =>{
     const response = await myPageApi();
     console.log(response);
-
     setMemberDto(response.data);
   };
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import MemberInfo from '../pages/MemberInfo';
 
 function Card() {
   const baseUrl = 'http://localhost:8080';
@@ -49,8 +50,7 @@ function Card() {
           alt={'img'}
         />
         <div class='card-body'>
-          <h5 class='card-title'>Card title</h5>
-          <p class='card-text'>Card Text.</p>
+          {/* <MemberInfo/> */}
         </div>
       </div>
     </div>
