@@ -3,6 +3,7 @@ import MemberInfo from '../pages/MemberInfo';
 import React, { useEffect, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
+import { memberProfileBaseImg } from '../api/ApiClient';
 
 function Card() {
   const baseUrl = 'http://localhost:8080';
@@ -36,18 +37,15 @@ function Card() {
     }
   };
   const baseProfileImg = async () => {
+    apiClient.interceptors.request.use((config) => {
+      console.log('인터셉터하여 헤더에 토큰 정보 추가');
+      config.headers.Authorization = getCookie('tokenKey');
+      return config;
+    });
     try {
-      apiClient.interceptors.request.use((config) => {
-        console.log('인터셉터하여 헤더에 토큰 정보 추가');
-        config.headers.Authorization = getCookie('tokenKey');
-        return config;
-      });
-      const response = await axios.get(baseUrl + '/members/profile/baseimg', {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('baseProfileImg: ', response.data);
+      const response = await memberProfileBaseImg();
+      console.log(response);
+
       setBaseImg(response.data);
     } catch (error) {
       console.error('baseProfileImg: ', error);
