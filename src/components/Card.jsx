@@ -3,13 +3,15 @@ import MemberInfo from '../pages/MemberInfo';
 import React, { useEffect, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
-import { memberProfileBaseImg } from '../api/ApiClient';
+import { memberProfileBaseImg, memberProfileChange } from '../api/ApiClient';
+import { useAuth } from '../security/AuthContext';
 
 function Card() {
   const baseUrl = 'http://localhost:8080';
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
   const [baseImg, setBaseImg] = useState(null);
+  const {token} = useAuth();
 
   // 파일 등록(변경)하기 => 파일 선택
   const handleFileChange = (event) => {
@@ -18,6 +20,8 @@ function Card() {
   // 등록한 파일을 post방식으로 요청하고 응답 받음
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(token)
+    
     const formData = new FormData();
     formData.append('file', file);
     try {
@@ -27,6 +31,7 @@ function Card() {
         {
           headers: {
             'Content-Type': 'multipart/form-data',
+           'Authorization': token
           },
         }
       );

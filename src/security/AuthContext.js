@@ -27,13 +27,11 @@ export const AuthProvider = ({ children }) => {
         console.log("인증 성공했습니다.");
         setIsAuthenticated(true);
         setToken(jwtToken);
-
         setCookie("tokenKey", jwtToken, {
           path: "/",
           secure: true,
           maxAge: 3000,
         });
-
         // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
         apiClient.interceptors.request.use((config) => {
           console.log("인터셉터하여 헤더에 토큰 정보 추가");
@@ -62,7 +60,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
