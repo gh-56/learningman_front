@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
 function Register() {
   const baseUrl = 'http://localhost:8080';
@@ -23,7 +24,6 @@ function Register() {
       memberPassword === null ||
       memberPassword === ''
     ) {
-      
       if (memberName === null || memberName === '') {
         setNameError('이름을 입력해주십시오');
       } else {
@@ -74,7 +74,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className='container'>
       <h1>회원가입 페이지</h1>
       <form onSubmit={formSubmit}>
         <label>이름</label>
@@ -105,6 +105,19 @@ function Register() {
           onChange={onChangeHandlerPassword}
         />
         {passwordError === null ? null : <p>{passwordError}</p>}
+        <br />
+        <ul>
+          <li>
+            <input type='radio' id='student-option' name='radioSelector' />
+            <label for='student-option'>학생</label>
+            <div className='check'></div>
+          </li>
+          <li>
+            <input type='radio' id='teacher-option' name='radioSelector' />
+            <label for='teacher-option'>선생님</label>
+            <div className='check'></div>
+          </li>
+        </ul>
 
         <br />
         <button type='submit'>회원가입</button>
