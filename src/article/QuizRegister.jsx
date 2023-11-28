@@ -30,27 +30,27 @@ function QuizRegister() {
   return (
     <div>
       <form onSubmit={formSubmit}>
-        <div class='mb-3'>
-          <label class='form-label'>단어(한국어)</label>
+        <div className='mb-3'>
+          <label className='form-label'>단어(한국어)</label>
           <input
             name='title'
             type='text'
-            class='form-control'
+            className='form-control'
             value={title}
             onChange={onChangeHandlerTitle}
           />
         </div>
-        <div class='mb-3'>
-          <label class='form-label'>단어(영어)</label>
+        <div className='mb-3'>
+          <label className='form-label'>단어(영어)</label>
           <input
             name='content'
             type='text'
-            class='form-control'
+            className='form-control'
             value={content}
             onChange={onChangeHandlerContent}
           />
         </div>
-        <button type='submit' class='btn btn-primary'>
+        <button type='submit' className='btn btn-primary'>
           단어 넣기
         </button>
         {/* <a href='/articles'>단어 목록</a> */}
