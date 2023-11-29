@@ -18,11 +18,17 @@ function TeacherMain() {
     const response = await studentInfo();
     console.log(response.data);
 
+    for (let index = 0; index < response.data.length; index++) {
+        if(response.data[index].memberProfileImg === null){
+            response.data[index].memberProfileImg = "null"
+        }
+    }
+
     setStudent(
       response.data.map((value) => (
         <ul>
           <div className="card" style={{ width: "18rem" }}>
-            {value.memberProfileImg.imgUrl !== null ? (
+            {value.memberProfileImg !== "null" ? (
               <div>
                 <img
                   src={`http://localhost:8080${value.memberProfileImg.imgUrl}`}
