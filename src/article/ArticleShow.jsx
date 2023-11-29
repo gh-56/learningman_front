@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { apiClient } from '../api/ApiClient';
 
-function QuizShow() {
-  const baseUrl = 'http://localhost:8080';
+function ArticleShow() {
   const [quizList, setQuizList] = useState([]);
 
   const show = async () => {
     try {
-      const response = await axios.get(baseUrl + '/api/articles');
+      const response = await apiClient.get('/api/articles');
       console.log(response.data);
       setQuizList(response.data);
     } catch (error) {
@@ -31,8 +32,9 @@ function QuizShow() {
         <tbody>
           {quizList.map((list) => (
             <tr key={list.id}>
-              {/* <th>{list.id}</th> */}
-              <td>{list.title}</td>
+              <td>
+                <Link to={`/articles/${list.id}`}>{list.title} </Link>
+              </td>
               <td>{list.content}</td>
             </tr>
           ))}
@@ -42,4 +44,4 @@ function QuizShow() {
   );
 }
 
-export default QuizShow;
+export default ArticleShow;

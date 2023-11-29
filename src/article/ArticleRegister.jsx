@@ -1,15 +1,14 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { apiClient } from '../api/ApiClient';
 
-function QuizRegister() {
-  const baseUrl = 'http://localhost:8080';
+function ArticleRegister() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post(baseUrl + '/api/articles', {
+    await apiClient
+      .post('/api/articles', {
         title: title,
         content: content,
       })
@@ -59,4 +58,4 @@ function QuizRegister() {
   );
 }
 
-export default QuizRegister;
+export default ArticleRegister;

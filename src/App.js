@@ -8,8 +8,9 @@ import MemberInfo from './pages/MemberInfo';
 import React from 'react';
 import { AuthProvider } from './security/AuthContext';
 import HomePage from './pages/HomePage';
-import QuizRegister from './article/QuizRegister';
-import QuizShow from './article/QuizShow';
+import ArticleRegister from './article/ArticleRegister';
+import ArticleShow from './article/ArticleShow';
+import ArticleDetail from './article/ArticleDetail';
 
 function App() {
   return (
@@ -28,12 +29,13 @@ function App() {
               element={
                 <div>
                   <h2>문제 직접 등록</h2>
-                  <QuizRegister />
+                  <ArticleRegister />
 
-                  <QuizShow />
+                  <ArticleShow />
                 </div>
               }
             />
+            <Route path='/articles/:id' element={<ArticleDetail />} />
           </Routes>
         </Router>
       </AuthProvider>
