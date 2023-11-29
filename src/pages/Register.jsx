@@ -1,7 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Register.css';
 
 function Register() {
   const baseUrl = 'http://localhost:8080';
@@ -11,7 +10,13 @@ function Register() {
   const [nameError, setNameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [role, setRole] = useState('STUDENT');
   const navigate = useNavigate();
+
+  const handleClickRadioButton = (e) => {
+    console.log(e.target.value);
+    setRole(e.target.value);
+  };
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +52,7 @@ function Register() {
           memberName: memberName,
           memberEmail: memberEmail,
           memberPassword: memberPassword,
+          role: role,
         })
         .then((res) => {
           console.log(res.data);
@@ -74,7 +80,7 @@ function Register() {
   };
 
   return (
-    <div className='container'>
+    <div>
       <h1>회원가입 페이지</h1>
       <form onSubmit={formSubmit}>
         <label>이름</label>
@@ -105,19 +111,35 @@ function Register() {
           onChange={onChangeHandlerPassword}
         />
         {passwordError === null ? null : <p>{passwordError}</p>}
+
         <br />
-        <ul>
-          <li>
-            <input type='radio' id='student-option' name='radioSelector' />
-            <label for='student-option'>학생</label>
-            <div className='check'></div>
-          </li>
-          <li>
-            <input type='radio' id='teacher-option' name='radioSelector' />
-            <label for='teacher-option'>선생님</label>
-            <div className='check'></div>
-          </li>
-        </ul>
+        <label>
+          <input
+            type='radio'
+            value='STUDENT'
+            checked={role === 'STUDENT'}
+            onChange={handleClickRadioButton}
+          />
+          학생
+        </label>
+        <label>
+          <input
+            type='radio'
+            value='TEACHER'
+            checked={role === 'TEACHER'}
+            onChange={handleClickRadioButton}
+          />
+          선생님
+        </label>
+        <label>
+          <input
+            type='radio'
+            value='ADMIN'
+            checked={role === 'ADMIN'}
+            onChange={handleClickRadioButton}
+          />
+          관리자
+        </label>
 
         <br />
         <button type='submit'>회원가입</button>
