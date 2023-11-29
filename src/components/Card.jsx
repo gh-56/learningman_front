@@ -1,18 +1,32 @@
 import axios from "axios";
 import MemberInfo from "../pages/MemberInfo";
 import React, { useEffect, useState } from "react";
-import { apiClient } from "../api/ApiClient";
+import { apiClient, myPageApi } from "../api/ApiClient";
 import { getCookie } from "../cookies/CookieFunction";
 import { memberProfileBaseImg, memberProfileChange } from "../api/ApiClient";
 import { useAuth } from "../security/AuthContext";
 import basicImg from "../baseImg/basicImg.jpg";
+import TeacherMain from "../pages/TeacherMain";
+import Student from "../pages/Student";
 
 function Card() {
   const baseUrl = "http://localhost:8080";
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
   const [baseImg, setBaseImg] = useState(null);
-console.log(getCookie('tokenKey'));
+  const [role, setRole] = useState(null);
+
+  const callApi = async () => {
+    // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
+    apiClient.interceptors.request.use((config) => {
+      console.log('인터셉터하여 헤더에 토큰 정보 추가');
+      config.headers.Authorization = getCookie('tokenKey');
+      return config;
+    });
+
+    const response = await myPageApi();
+    setRole(response.data.role);
+  };
 
   // 파일 등록(변경)하기 => 파일 선택
   const handleFileChange = (event) => {
@@ -35,7 +49,6 @@ console.log(getCookie('tokenKey'));
           },
         }
       );
-      console.log(response);
       setImg(response.data);
     } catch (error) {
       console.error("handleSubmit_error:", error);
@@ -49,8 +62,6 @@ console.log(getCookie('tokenKey'));
     });
     try {
       const response = await memberProfileBaseImg();
-      console.log(response);
-
       setBaseImg(response.data);
     } catch (error) {
       console.error("baseProfileImg: ", error);
@@ -59,6 +70,7 @@ console.log(getCookie('tokenKey'));
 
   useEffect(() => {
     baseProfileImg();
+    callApi();
   }, []);
 
   return (
@@ -93,6 +105,7 @@ console.log(getCookie('tokenKey'));
         </div>
         {/* <button onClick={handleMember}>멤버 정보 불러오기</button> */}
       </div>
+      {role === "STUDENT" ? null : <TeacherMain/>}
     </div>
   );
 }

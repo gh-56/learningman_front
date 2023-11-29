@@ -12,3 +12,7 @@ export const myPageApi = () => apiClient.get('/members/info');
 export const memberProfileBaseImg = () => apiClient.get('/members/profile/baseimg');
 
 export const memberProfileChange = (formData) => apiClient.post('/members/profile/img', {formData});
+
+export const studentInfo = () => apiClient.post('/teacher/main')
+
+export const studentProfileBaseImg = () => apiClient.get('/teacher/studentImg')
