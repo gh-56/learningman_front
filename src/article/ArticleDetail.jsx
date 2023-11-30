@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CommentNew from './CommentNew';
 import { apiClient } from '../api/ApiClient';
+import CommentShow from './CommentShow';
 
 function ArticleDetail() {
   const { id } = useParams();
@@ -38,6 +39,7 @@ function ArticleDetail() {
         </tbody>
       </table>
       <CommentNew />
+      <CommentShow />
     </div>
   );
 }
