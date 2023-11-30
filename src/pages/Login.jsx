@@ -31,7 +31,7 @@ function Login() {
         />
         <input
           name="password"
-          type="text"
+          type="password"
           value={password}
           onChange={onChangeHandlerPassword}
         />

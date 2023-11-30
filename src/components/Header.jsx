@@ -11,7 +11,7 @@ function Header() {
   const onClickHandler = (event)=>{
     event.preventDefault();
     navigate('/');
-    window.location.reload();
+    // window.location.reload();
   }
   const onClickHandlerLogout = (e) => {
     logout();
@@ -66,7 +66,7 @@ function Header() {
                   aria-current="page"
                   to="/memberinfo"
                 >
-                  회원정보
+                  내 정보 수정
                 </Link>
               </li>
               <li className="nav-item">

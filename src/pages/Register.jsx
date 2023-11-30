@@ -106,7 +106,7 @@ function Register() {
         <label>비밀번호</label>
         <input
           name="password"
-          type="text"
+          type="password"
           value={memberPassword}
           onChange={onChangeHandlerPassword}
         />

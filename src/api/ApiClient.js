@@ -16,3 +16,5 @@ export const memberProfileChange = (formData) => apiClient.post('/members/profil
 export const studentInfo = () => apiClient.post('/teacher/main')
 
 export const studentProfileBaseImg = () => apiClient.get('/teacher/studentImg')
+
+export const infoChange = () => apiClient.post('/members/update')
