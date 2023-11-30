@@ -1,9 +1,11 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
-import { apiClient, authenticateApi } from "../api/ApiClient";
+import { apiClient, authenticateApi, myPageApi } from "../api/ApiClient";
 import { setCookie, getCookie, removeCookie } from "../cookies/CookieFunction";
+
 // 인증 컨텍스트 생성
 const AuthContext = createContext();
+
 // 커스텀 훅 으로 외부로 내보내기
 export const useAuth = () => useContext(AuthContext);
 
@@ -12,6 +14,7 @@ export const AuthProvider = ({ children }) => {
   // 상태 1. 인증여부
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(null);
+  const [role, setRole] = useState(null);
 
   // 전달2 : 로그인 함수
   const login = async (memberEmail, memberPassword) => {
@@ -38,6 +41,12 @@ export const AuthProvider = ({ children }) => {
           config.headers.Authorization = jwtToken;
           return config;
         });
+
+        const info = await myPageApi();
+        setRole(info.data.role);
+        console.log(role);
+        console.log(info.data.role);
+
         return true;
       } else {
         console.log("인증 실패했습니다.");
@@ -60,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, token, getCookie, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, token, role, getCookie, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

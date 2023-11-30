@@ -1,56 +1,40 @@
 import axios from "axios";
 import MemberInfo from "../pages/MemberInfo";
 import React, { useEffect, useState } from "react";
-import { apiClient } from "../api/ApiClient";
+import { apiClient, myPageApi } from "../api/ApiClient";
 import { getCookie } from "../cookies/CookieFunction";
 import { memberProfileBaseImg, memberProfileChange } from "../api/ApiClient";
-import { useAuth } from "../security/AuthContext";
 import basicImg from "../baseImg/basicImg.jpg";
+import { useAuth } from "../security/AuthContext";
+import TeacherMain from "../pages/TeacherMain";
 
 function Card() {
-  const baseUrl = "http://localhost:8080";
-  const [file, setFile] = useState(null);
-  const [img, setImg] = useState(null);
   const [baseImg, setBaseImg] = useState(null);
-console.log(getCookie('tokenKey'));
+  const { role } = useAuth();
+  const [memberDto, setMemberDto] = useState(null);
 
-  // 파일 등록(변경)하기 => 파일 선택
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-  // 등록한 파일을 post방식으로 요청하고 응답 받음
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const callApi = async () => {
+    // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
+    apiClient.interceptors.request.use((config) => {
+      console.log('인터셉터하여 헤더에 토큰 정보 추가');
+      config.headers.Authorization = getCookie('tokenKey');
+      return config;
+    });
+    const response = await myPageApi();
+    console.log(response);
 
-    const formData = new FormData();
-    formData.append("file", file);
-    try {
-      const response = await axios.post(
-        baseUrl + "/members/profile/img",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: getCookie('tokenKey'),
-          },
-        }
-      );
-      console.log(response);
-      setImg(response.data);
-    } catch (error) {
-      console.error("handleSubmit_error:", error);
-    }
+    setMemberDto(response.data);
   };
+
   const baseProfileImg = async () => {
     apiClient.interceptors.request.use((config) => {
       console.log("인터셉터하여 헤더에 토큰 정보 추가");
       config.headers.Authorization = getCookie("tokenKey");
       return config;
     });
+
     try {
       const response = await memberProfileBaseImg();
-      console.log(response);
-
       setBaseImg(response.data);
     } catch (error) {
       console.error("baseProfileImg: ", error);
@@ -59,23 +43,13 @@ console.log(getCookie('tokenKey'));
 
   useEffect(() => {
     baseProfileImg();
+    callApi();
   }, []);
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
-      </form>
-
       <div className="card" style={{ width: "18rem" }}>
-        {img !== null ? (
-          <img
-            src={`http://localhost:8080${img}`}
-            className="card-img-top"
-            alt="바뀐 프로필 이미지 없음"
-          />
-        ) : baseImg !== null ? (
+        {baseImg !== null ? (
           <img
             src={`http://localhost:8080${baseImg}`}
             className="card-img-top"
@@ -89,10 +63,16 @@ console.log(getCookie('tokenKey'));
           />
         )}
         <div className="card-body">
-          <MemberInfo />
+        {memberDto && (
+        <div>
+          <h2>내 정보</h2>
+          <div>이름 : {memberDto.memberName}</div>
+          <div>이메일 : {memberDto.memberEmail}</div>
         </div>
-        {/* <button onClick={handleMember}>멤버 정보 불러오기</button> */}
+      )}
+        </div>
       </div>
+          {role === "TEACHER" ? <TeacherMain/> : null}
     </div>
   );
 }
