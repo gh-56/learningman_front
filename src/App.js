@@ -8,6 +8,7 @@ import MemberInfo from './pages/MemberInfo';
 import React from 'react';
 import { AuthProvider } from './security/AuthContext';
 import HomePage from './pages/HomePage';
+import QuizSelect from './pages/QuizSelect';
 
 import QuizComp from './components/QuizComp';
 import TeacherMain from './pages/TeacherMain';
@@ -27,21 +28,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/memberinfo' element={<MemberInfo />} />
-
-            <Route path='/quiz' element={<QuizComp />} />
-            <Route path='/teacher' element={<TeacherMain />} />
-            <Route
-              path='/articles'
-              element={
-                <div>
-                  <h2>문제 직접 등록</h2>
-                  <ArticleRegister />
-
-                  <ArticleShow />
-                </div>
-              }
-            />
-            <Route path='/articles/:id' element={<ArticleDetail />} />
+            <Route path='/quizselect' element={<QuizSelect />} />
           </Routes>
         </Router>
       </AuthProvider>
