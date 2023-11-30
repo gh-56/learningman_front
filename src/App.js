@@ -9,6 +9,7 @@ import MemberInfo from './pages/MemberInfo';
 import React from 'react';
 import { AuthProvider } from './security/AuthContext';
 import HomePage from './pages/HomePage';
+import QuizSelect from './pages/QuizSelect';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/memberinfo' element={<MemberInfo />} />
+            <Route path='/quizselect' element={<QuizSelect />} />
           </Routes>
         </Router>
       </AuthProvider>
