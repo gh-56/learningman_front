@@ -18,7 +18,8 @@ function QuizSelect() {
     setSelectedChapter(e.target.value);
   };
 
-  const bookInfo = async (e) => {
+  // 책 리스트 불러오기
+  const bookInfo = async () => {
     // e.preventDefault();
     try {
       const response = await axios.get(baseUrl + '/book');
@@ -35,7 +36,35 @@ function QuizSelect() {
 
   const newBookArray = Array.from(bookData);
   console.log(newBookArray);
+
   console.log('selectedBook : ' + selectedBook);
+
+  // 책 선택 시 챕터 리스트 불러오기
+  useEffect(() => {
+    if (selectedBook) {
+      chapterInfo(selectedBook);
+    }
+  });
+  const chapterInfo = async () => {
+    try {
+      await axios
+        .post(baseUrl + '/book/chapter', {
+          selectedBook: selectedBook,
+        })
+        .then((chapterResponse) => {
+          console.log(chapterResponse.data);
+          setChapterData(chapterResponse.data);
+        });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  console.log('bookData : ' + bookData);
+
+  const newChapterArray = Array.from(chapterData);
+  console.log('newChapterArray : ' + newChapterArray);
+  console.log('selectedChapter : ' + selectedChapter);
+
   return (
     <div>
       숙제 설정하기
@@ -46,8 +75,8 @@ function QuizSelect() {
           value={selectedBook}
           onChange={onChangeHandlerBook}
         >
-          {newBookArray.map((book, idx) => (
-            <option key={idx} value={book}>
+          {newBookArray.map((book, bidx) => (
+            <option key={bidx} value={book}>
               {book}
             </option>
           ))}
@@ -60,9 +89,9 @@ function QuizSelect() {
           value={selectedChapter}
           onChange={onChangeHandlerChapter}
         >
-          {newBookArray.map((book, idx) => (
-            <option key={idx} value={book}>
-              {book}
+          {newChapterArray.map((chapter, cidx) => (
+            <option key={cidx} value={chapter}>
+              {chapter}
             </option>
           ))}
         </select>
