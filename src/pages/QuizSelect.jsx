@@ -1,6 +1,8 @@
 import { async } from 'q';
 import axios, { AxiosError } from 'axios';
 import React, { useEffect, useContext, useState } from 'react';
+import { apiClient } from '../api/ApiClient';
+import { getCookie } from '../cookies/CookieFunction';
 
 // Teacher Only
 
@@ -21,6 +23,11 @@ function QuizSelect() {
   // 책 리스트 불러오기
   const bookInfo = async () => {
     // e.preventDefault();
+    apiClient.interceptors.request.use((config) => {
+      console.log('인터셉터하여 헤더에 토큰 정보 추가');
+      config.headers.Authorization = getCookie('tokenKey');
+      return config;
+    });
     try {
       const response = await axios.get(baseUrl + '/book');
       console.log(response.data);

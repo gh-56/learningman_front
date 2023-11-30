@@ -82,6 +82,15 @@ function Header() {
                 <Link
                   className='nav-link active'
                   aria-current='page'
+                  to='/quizselect'
+                >
+                  퀴즈
+                </Link>
+              </li>
+              <li className='nav-item'>
+                <Link
+                  className='nav-link active'
+                  aria-current='page'
                   onClick={onClickHandlerLogout}
                 >
                   로그아웃

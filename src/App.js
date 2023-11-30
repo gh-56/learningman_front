@@ -29,6 +29,20 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/memberinfo' element={<MemberInfo />} />
             <Route path='/quizselect' element={<QuizSelect />} />
+            <Route path='/quiz' element={<QuizComp />} />
+            <Route path='/teacher' element={<TeacherMain />} />
+            <Route
+              path='/articles'
+              element={
+                <div>
+                  <h2>문제 직접 등록</h2>
+                  <ArticleRegister />
+
+                  <ArticleShow />
+                </div>
+              }
+            />
+            <Route path='/articles/:id' element={<ArticleDetail />} />
           </Routes>
         </Router>
       </AuthProvider>
