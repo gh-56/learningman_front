@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from '../api/ApiClient';
@@ -9,7 +8,7 @@ function ArticleShow() {
   const show = async () => {
     try {
       const response = await apiClient.get('/api/articles');
-      console.log(response.data);
+      console.log('quizList : ', response.data);
       setQuizList(response.data);
     } catch (error) {
       console.error('show error : ', error);

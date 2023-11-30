@@ -11,7 +11,7 @@ function ArticleDetail() {
   const details = async () => {
     try {
       const response = await apiClient.get(`/api/articles/${id}`);
-      console.log(response.data);
+      console.log('quizData : ', response.data);
       setQuizData(response.data);
     } catch (error) {
       console.error('details error : ', error);
@@ -38,8 +38,8 @@ function ArticleDetail() {
           </tr>
         </tbody>
       </table>
-      <CommentNew />
       <CommentShow />
+      <CommentNew />
     </div>
   );
 }

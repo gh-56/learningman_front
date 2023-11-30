@@ -21,7 +21,7 @@ function CommentNew() {
         articleId: id,
       })
       .then((response) => {
-        console.log(response.data);
+        console.log('comment : ', response.data);
       })
       .catch((error) => {
         console.log(error);
