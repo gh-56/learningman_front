@@ -4,17 +4,16 @@ import React, { useEffect, useState } from "react";
 import { apiClient, myPageApi } from "../api/ApiClient";
 import { getCookie } from "../cookies/CookieFunction";
 import { memberProfileBaseImg, memberProfileChange } from "../api/ApiClient";
-import { useAuth } from "../security/AuthContext";
 import basicImg from "../baseImg/basicImg.jpg";
+import { useAuth } from "../security/AuthContext";
 import TeacherMain from "../pages/TeacherMain";
-import Student from "../pages/Student";
 
 function Card() {
   const baseUrl = "http://localhost:8080";
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
   const [baseImg, setBaseImg] = useState(null);
-  const [role, setRole] = useState(null);
+  const { role } = useAuth();
 
   const callApi = async () => {
     // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
@@ -23,9 +22,6 @@ function Card() {
       config.headers.Authorization = getCookie('tokenKey');
       return config;
     });
-
-    const response = await myPageApi();
-    setRole(response.data.role);
   };
 
   // 파일 등록(변경)하기 => 파일 선택
@@ -35,7 +31,6 @@ function Card() {
   // 등록한 파일을 post방식으로 요청하고 응답 받음
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
     formData.append("file", file);
     try {
@@ -60,6 +55,7 @@ function Card() {
       config.headers.Authorization = getCookie("tokenKey");
       return config;
     });
+
     try {
       const response = await memberProfileBaseImg();
       setBaseImg(response.data);
@@ -105,7 +101,7 @@ function Card() {
         </div>
         {/* <button onClick={handleMember}>멤버 정보 불러오기</button> */}
       </div>
-      {role === "STUDENT" ? null : <TeacherMain/>}
+          {role === "TEACHER" ? <TeacherMain/> : null}
     </div>
   );
 }

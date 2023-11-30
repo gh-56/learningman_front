@@ -10,6 +10,7 @@ import React from 'react';
 import { AuthProvider } from './security/AuthContext';
 import HomePage from './pages/HomePage';
 import QuizComp from './components/QuizComp';
+import TeacherMain from './pages/TeacherMain';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/memberinfo' element={<MemberInfo />} />
             <Route path='/quiz' element={<QuizComp />} />
+            <Route path='/teacher' element={<TeacherMain />} />
           </Routes>
         </Router>
       </AuthProvider>
