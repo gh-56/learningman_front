@@ -15,9 +15,13 @@ function QuizSelect() {
 
   const onChangeHandlerBook = (e) => {
     setSelectedBook(e.target.value);
+    chapterInfo(selectedBook);
   };
   const onChangeHandlerChapter = (e) => {
     setSelectedChapter(e.target.value);
+  };
+  const onClickBookSelect = (e) => {
+    chapterInfo();
   };
 
   // 책 리스트 불러오기
@@ -30,7 +34,7 @@ function QuizSelect() {
     });
     try {
       const response = await axios.get(baseUrl + '/book');
-      console.log(response.data);
+      console.log('/book에서 받은 데이터: ', response.data);
       setBookData(response.data);
     } catch (error) {
       console.error('details error : ', error);
@@ -42,24 +46,32 @@ function QuizSelect() {
   console.log('bookData : ' + bookData);
 
   const newBookArray = Array.from(bookData);
-  console.log(newBookArray);
+  console.log('newBookArray: ', newBookArray);
 
   console.log('selectedBook : ' + selectedBook);
 
   // 책 선택 시 챕터 리스트 불러오기
-  useEffect(() => {
+  /*   useEffect(() => {
     if (selectedBook) {
       chapterInfo(selectedBook);
     }
-  });
+  }); */
   const chapterInfo = async () => {
     try {
       await axios
-        .post(baseUrl + '/book/chapter', {
-          selectedBook: selectedBook,
-        })
+        .post(
+          baseUrl + '/book/chapter',
+          {
+            selectedBook: selectedBook,
+          },
+          {
+            headers: {
+              Authorization: getCookie('tokenKey'),
+            },
+          }
+        )
         .then((chapterResponse) => {
-          console.log(chapterResponse.data);
+          console.log('/book/chapter에서 온 데이터: ', chapterResponse);
           setChapterData(chapterResponse.data);
         });
     } catch (error) {
@@ -69,8 +81,9 @@ function QuizSelect() {
   console.log('bookData : ' + bookData);
 
   const newChapterArray = Array.from(chapterData);
-  console.log('newChapterArray : ' + newChapterArray);
-  console.log('selectedChapter : ' + selectedChapter);
+  console.log('chapterData : ', chapterData);
+  console.log('newChapterArray : ', newChapterArray);
+  console.log('selectedChapter : ', selectedChapter);
 
   return (
     <div>
@@ -88,6 +101,7 @@ function QuizSelect() {
             </option>
           ))}
         </select>
+        <button onClick={onClickBookSelect}>선택</button>
       </div>
       <div>
         <label htmlFor='selectChapter'>단원 선택:</label>
