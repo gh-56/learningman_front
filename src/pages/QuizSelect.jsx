@@ -15,13 +15,9 @@ function QuizSelect() {
 
   const onChangeHandlerBook = (e) => {
     setSelectedBook(e.target.value);
-    chapterInfo(selectedBook);
   };
   const onChangeHandlerChapter = (e) => {
     setSelectedChapter(e.target.value);
-  };
-  const onClickBookSelect = (e) => {
-    chapterInfo();
   };
 
   // 책 리스트 불러오기
@@ -36,6 +32,7 @@ function QuizSelect() {
       const response = await axios.get(baseUrl + '/book');
       console.log('/book에서 받은 데이터: ', response.data);
       setBookData(response.data);
+      setSelectedBook(response.data[0]);
     } catch (error) {
       console.error('details error : ', error);
     }
@@ -51,39 +48,41 @@ function QuizSelect() {
   console.log('selectedBook : ' + selectedBook);
 
   // 책 선택 시 챕터 리스트 불러오기
-  /*   useEffect(() => {
-    if (selectedBook) {
-      chapterInfo(selectedBook);
-    }
-  }); */
-  const chapterInfo = async () => {
-    try {
-      await axios
-        .post(
-          baseUrl + '/book/chapter',
-          {
-            selectedBook: selectedBook,
-          },
-          {
-            headers: {
-              Authorization: getCookie('tokenKey'),
+  useEffect(() => {
+    const chapterInfo = async () => {
+      try {
+        await axios
+          .post(
+            baseUrl + '/book/chapter',
+            {
+              selectedBook: selectedBook,
             },
-          }
-        )
-        .then((chapterResponse) => {
-          console.log('/book/chapter에서 온 데이터: ', chapterResponse);
-          setChapterData(chapterResponse.data);
-        });
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+            {
+              headers: {
+                Authorization: getCookie('tokenKey'),
+              },
+            }
+          )
+          .then((chapterResponse) => {
+            console.log('/book/chapter에서 온 데이터: ', chapterResponse.data);
+            setChapterData(chapterResponse.data);
+            setSelectedChapter(chapterResponse.data[0]);
+          });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    chapterInfo();
+  }, [selectedBook]);
   console.log('bookData : ' + bookData);
 
   const newChapterArray = Array.from(chapterData);
   console.log('chapterData : ', chapterData);
   console.log('newChapterArray : ', newChapterArray);
   console.log('selectedChapter : ', selectedChapter);
+
+  // homework 테이블에 선택된 단어장과 챕터 저장
+  const onClickSelect = (e) => {};
 
   return (
     <div>
@@ -101,7 +100,6 @@ function QuizSelect() {
             </option>
           ))}
         </select>
-        <button onClick={onClickBookSelect}>선택</button>
       </div>
       <div>
         <label htmlFor='selectChapter'>단원 선택:</label>
@@ -117,6 +115,7 @@ function QuizSelect() {
           ))}
         </select>
       </div>
+      <button onClick={onClickSelect}>선택</button>
     </div>
   );
 }
