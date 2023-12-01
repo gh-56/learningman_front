@@ -84,6 +84,23 @@ function QuizSelect() {
   // homework 테이블에 선택된 단어장과 챕터 저장
   const onClickSelect = (e) => {};
 
+  const [selectedDeadline, setSelectedDeadline] = useState('nextDay');
+  const calculateDate = () => {
+    const currentDate = new Date();
+    switch (selectedDeadline) {
+      case 'nextDay':
+        return new Date(currentDate.setDate(currentDate.getDate() + 1));
+      case 'nextWeek':
+        return new Date(currentDate.setDate(currentDate.getDate() + 7));
+      case 'nextMonth':
+        return new Date(currentDate.setMonth(currentDate.getMonth() + 1));
+      default:
+        return currentDate;
+    }
+  };
+  const handleRadioChange = (e) => {
+    setSelectedDeadline(e.target.value);
+  };
   return (
     <div>
       숙제 설정하기
@@ -116,6 +133,36 @@ function QuizSelect() {
         </select>
       </div>
       <button onClick={onClickSelect}>선택</button>
+      <div>
+        <label>
+          <input
+            type='radio'
+            value='nextDay'
+            checked={selectedDeadline === 'nextDay'}
+            onChange={handleRadioChange}
+          />
+          다음 날
+        </label>
+        <label>
+          <input
+            type='radio'
+            value='nextWeek'
+            checked={selectedDeadline === 'nextWeek'}
+            onChange={handleRadioChange}
+          />
+          다음 주
+        </label>
+        <label>
+          <input
+            type='radio'
+            value='nextMonth'
+            checked={selectedDeadline === 'nextMonth'}
+            onChange={handleRadioChange}
+          />
+          다음 달
+        </label>
+        <p>선택한 기간: {calculateDate().toLocaleDateString()}</p>
+      </div>
     </div>
   );
 }
