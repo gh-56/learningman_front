@@ -144,6 +144,7 @@ function QuizSelect() {
             value='nextDay'
             checked={selectedDeadline === 'nextDay'}
             onChange={handleRadioChange}
+            className='select-date-radio'
           />
           다음 날
         </div>
@@ -153,6 +154,7 @@ function QuizSelect() {
             value='nextWeek'
             checked={selectedDeadline === 'nextWeek'}
             onChange={handleRadioChange}
+            className='select-date-radio'
           />
           다음 주
         </div>
@@ -162,10 +164,13 @@ function QuizSelect() {
             value='nextMonth'
             checked={selectedDeadline === 'nextMonth'}
             onChange={handleRadioChange}
+            className='select-date-radio'
           />
           다음 달
         </div>
-        <p>선택한 기간: {calculateDate().toLocaleDateString()}</p>
+        <p className='selected-date'>
+          선택한 기간: <strong>{calculateDate().toLocaleDateString()}</strong>
+        </p>
       </div>
     </div>
   );
