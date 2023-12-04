@@ -82,9 +82,31 @@ function QuizSelect() {
   console.log('selectedChapter : ', selectedChapter);
 
   // homework 테이블에 선택된 단어장과 챕터 저장
-  const onClickSelect = (e) => {};
+  const onClickSelect = async() => {
+    await axios
+    .post(
+      baseUrl + '/quiz/setting',
+      {
+        deadlineDate : calculateDate(),
+        homeworkBook : selectedBook,
+        homeworkChapter : selectedChapter,
+      },
+      {
+        headers: {
+          Authorization: getCookie('tokenKey'),
+        },
+      }
+    )
+    .then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log();
+    });
+
+  };
 
   const [selectedDeadline, setSelectedDeadline] = useState('nextDay');
+
   const calculateDate = () => {
     const currentDate = new Date();
     switch (selectedDeadline) {
@@ -98,9 +120,11 @@ function QuizSelect() {
         return currentDate;
     }
   };
+
   const handleRadioChange = (e) => {
     setSelectedDeadline(e.target.value);
   };
+
   return (
     <div>
       숙제 설정하기
@@ -132,7 +156,6 @@ function QuizSelect() {
           ))}
         </select>
       </div>
-      <button onClick={onClickSelect}>선택</button>
       <div>
         <label>
           <input
@@ -163,6 +186,7 @@ function QuizSelect() {
         </label>
         <p>선택한 기간: {calculateDate().toLocaleDateString()}</p>
       </div>
+      <button onClick={onClickSelect}>선택</button>
     </div>
   );
 }

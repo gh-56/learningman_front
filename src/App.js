@@ -9,12 +9,12 @@ import React from 'react';
 import { AuthProvider } from './security/AuthContext';
 import HomePage from './pages/HomePage';
 import QuizSelect from './pages/QuizSelect';
-
 import QuizComp from './components/QuizComp';
 import TeacherMain from './pages/TeacherMain';
 import ArticleRegister from './article/ArticleRegister';
 import ArticleShow from './article/ArticleShow';
 import ArticleDetail from './article/ArticleDetail';
+import QuizTest from './pages/QuizTest';
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
             <Route path='/quizselect' element={<QuizSelect />} />
             <Route path='/quiz' element={<QuizComp />} />
             <Route path='/teacher' element={<TeacherMain />} />
+            <Route path='/quiztest' element={<QuizTest />} />
             <Route
               path='/articles'
               element={
