@@ -3,6 +3,7 @@ import axios, { AxiosError } from 'axios';
 import React, { useEffect, useContext, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
+import './QuizSelect.css';
 
 // Teacher Only
 
@@ -102,39 +103,42 @@ function QuizSelect() {
     setSelectedDeadline(e.target.value);
   };
   return (
-    <div>
-      숙제 설정하기
-      <div>
-        <label htmlFor='selectBook'>교재 선택:</label>
-        <select
-          id='selectBook'
-          value={selectedBook}
-          onChange={onChangeHandlerBook}
-        >
-          {newBookArray.map((book, bidx) => (
-            <option key={bidx} value={book}>
-              {book}
-            </option>
-          ))}
-        </select>
+    <div className='quiz-container'>
+      <div className='quiz-item'>
+        <div className='quiz-select'>
+          <label htmlFor='selectBook'>교재 선택:</label>
+          <select
+            id='selectBook'
+            value={selectedBook}
+            onChange={onChangeHandlerBook}
+          >
+            {newBookArray.map((book, bidx) => (
+              <option key={bidx} value={book}>
+                {book}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className='quiz-select'>
+          <label htmlFor='selectChapter'>단원 선택:</label>
+          <select
+            id='selectChapter'
+            value={selectedChapter}
+            onChange={onChangeHandlerChapter}
+          >
+            {newChapterArray.map((chapter, cidx) => (
+              <option key={cidx} value={chapter}>
+                {chapter}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button onClick={onClickSelect} className='quiz-select-button'>
+          선택
+        </button>
       </div>
-      <div>
-        <label htmlFor='selectChapter'>단원 선택:</label>
-        <select
-          id='selectChapter'
-          value={selectedChapter}
-          onChange={onChangeHandlerChapter}
-        >
-          {newChapterArray.map((chapter, cidx) => (
-            <option key={cidx} value={chapter}>
-              {chapter}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button onClick={onClickSelect}>선택</button>
-      <div>
-        <label>
+      <div className='quiz-item'>
+        <div>
           <input
             type='radio'
             value='nextDay'
@@ -142,8 +146,8 @@ function QuizSelect() {
             onChange={handleRadioChange}
           />
           다음 날
-        </label>
-        <label>
+        </div>
+        <div>
           <input
             type='radio'
             value='nextWeek'
@@ -151,8 +155,8 @@ function QuizSelect() {
             onChange={handleRadioChange}
           />
           다음 주
-        </label>
-        <label>
+        </div>
+        <div>
           <input
             type='radio'
             value='nextMonth'
@@ -160,7 +164,7 @@ function QuizSelect() {
             onChange={handleRadioChange}
           />
           다음 달
-        </label>
+        </div>
         <p>선택한 기간: {calculateDate().toLocaleDateString()}</p>
       </div>
     </div>

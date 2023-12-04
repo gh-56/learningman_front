@@ -1,0 +1,32 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900);
+
+div.cards {
+  margin: 80px;
+  max-width: 960px;
+  display: grid;
+}
+
+div.card {
+  background-color: #ffffff;
+  display: inline-block;
+  margin: 8px;
+  max-width: 300px;
+  perspective: 1000;
+  position: relative;
+  text-align: left;
+  transition: all 0.3s 0s ease-in;
+  width: 300px;
+  z-index: 1;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+
+  .card-img-top {
+    max-width: 300px;
+  }
+  .card-h2 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    margin: 0;
+    padding: 0;
+  }
+}

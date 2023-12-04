@@ -1,0 +1,36 @@
+.card-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-element {
+  width: 18rem;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid rgba(182, 180, 180, 0.5);
+  border-radius: 10%;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+
+  .card-img-top {
+    width: 150px;
+    height: 150px;
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50%;
+    bottom: 50%;
+    opacity: 1;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    /* -webkit-transform: translate(50%, 0%); */
+    transform: translate(30%, 0%);
+  }
+  .card-h2-list {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .card-email-list {
+    text-align: center;
+  }
+}
