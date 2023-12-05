@@ -3,7 +3,8 @@ import axios, { AxiosError } from 'axios';
 import React, { useEffect, useContext, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import './QuizSelect.css';
 
 // Teacher Only
 
@@ -84,28 +85,28 @@ function QuizSelect() {
   console.log('selectedChapter : ', selectedChapter);
 
   // homework 테이블에 선택된 단어장과 챕터 저장
-  const onClickSelect = async() => {
+  const onClickSelect = async () => {
     await axios
-    .post(
-      baseUrl + '/quiz/setting',
-      {
-        deadlineDate : calculateDate(),
-        homeworkBook : selectedBook,
-        homeworkChapter : selectedChapter,
-      },
-      {
-        headers: {
-          Authorization: getCookie('tokenKey'),
+      .post(
+        baseUrl + '/quiz/setting',
+        {
+          deadlineDate: calculateDate(),
+          homeworkBook: selectedBook,
+          homeworkChapter: selectedChapter,
         },
-      }
-    )
-    .then((response) => {
-      console.log(response);
-      navigate('/');
-    }).catch((error) => {
-      console.log();
-    });
-
+        {
+          headers: {
+            Authorization: getCookie('tokenKey'),
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log();
+      });
   };
 
   const [selectedDeadline, setSelectedDeadline] = useState('nextDay');
@@ -129,65 +130,74 @@ function QuizSelect() {
   };
 
   return (
-    <div>
-      숙제 설정하기
-      <div>
-        <label htmlFor='selectBook'>교재 선택:</label>
-        <select
-          id='selectBook'
-          value={selectedBook}
-          onChange={onChangeHandlerBook}
-        >
-          {newBookArray.map((book, bidx) => (
-            <option key={bidx} value={book}>
-              {book}
-            </option>
-          ))}
-        </select>
+    <div className='quiz-container'>
+      <div className='quiz-item'>
+        <div className='quiz-select'>
+          <label htmlFor='selectBook'>교재 선택:</label>
+          <select
+            id='selectBook'
+            value={selectedBook}
+            onChange={onChangeHandlerBook}
+          >
+            {newBookArray.map((book, bidx) => (
+              <option key={bidx} value={book}>
+                {book}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className='quiz-select'>
+          <label htmlFor='selectChapter'>단원 선택:</label>
+          <select
+            id='selectChapter'
+            value={selectedChapter}
+            onChange={onChangeHandlerChapter}
+          >
+            {newChapterArray.map((chapter, cidx) => (
+              <option key={cidx} value={chapter}>
+                {chapter}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button onClick={onClickSelect} className='quiz-select-button'>
+          선택
+        </button>
       </div>
-      <div>
-        <label htmlFor='selectChapter'>단원 선택:</label>
-        <select
-          id='selectChapter'
-          value={selectedChapter}
-          onChange={onChangeHandlerChapter}
-        >
-          {newChapterArray.map((chapter, cidx) => (
-            <option key={cidx} value={chapter}>
-              {chapter}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label>
+      <div className='quiz-item'>
+        <div>
           <input
             type='radio'
             value='nextDay'
             checked={selectedDeadline === 'nextDay'}
             onChange={handleRadioChange}
+            className='select-date-radio'
           />
           다음 날
-        </label>
-        <label>
+        </div>
+        <div>
           <input
             type='radio'
             value='nextWeek'
             checked={selectedDeadline === 'nextWeek'}
             onChange={handleRadioChange}
+            className='select-date-radio'
           />
           다음 주
-        </label>
-        <label>
+        </div>
+        <div>
           <input
             type='radio'
             value='nextMonth'
             checked={selectedDeadline === 'nextMonth'}
             onChange={handleRadioChange}
+            className='select-date-radio'
           />
           다음 달
-        </label>
-        <p>선택한 기간: {calculateDate().toLocaleDateString()}</p>
+        </div>
+        <p className='selected-date'>
+          선택한 기간: <strong>{calculateDate().toLocaleDateString()}</strong>
+        </p>
       </div>
       <button onClick={onClickSelect}>선택</button>
     </div>

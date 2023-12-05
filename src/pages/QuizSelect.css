@@ -1,0 +1,53 @@
+.quiz-container {
+  display: flex;
+  max-width: 900px;
+  min-width: 600px;
+  /* border: 2px solid rgba(182, 180, 180, 0.5); */
+  /* box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3); */
+  padding: 0;
+  margin: 30px;
+}
+
+#selectBook {
+  background-color: #ffffff;
+  width: 300px;
+  height: 40px;
+  border-radius: 5%;
+  border: 2px solid #a3a1a1;
+  margin: 10px;
+}
+
+#selectChapter {
+  background-color: #ffffff;
+  width: 300px;
+  height: 40px;
+  border-radius: 5%;
+  border: 2px solid #a3a1a1;
+  margin: 10px;
+}
+
+.quiz-select-button {
+  width: 100px;
+  height: 50px;
+  float: right;
+  margin-top: 15px;
+  border-radius: 10%;
+  background-color: #000000;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+.quiz-item {
+  border: 2px solid rgba(182, 180, 180, 0.5);
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  margin: 15px;
+}
+
+.select-date-radio {
+  margin: 25px 25px 0 0;
+}
+
+.selected-date {
+  margin-top: 30px;
+}

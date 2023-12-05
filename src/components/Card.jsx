@@ -1,12 +1,13 @@
-import axios from "axios";
-import MemberInfo from "../pages/MemberInfo";
-import React, { useEffect, useState } from "react";
-import { apiClient, myPageApi } from "../api/ApiClient";
-import { getCookie } from "../cookies/CookieFunction";
-import { memberProfileBaseImg, memberProfileChange } from "../api/ApiClient";
-import basicImg from "../baseImg/basicImg.jpg";
-import { useAuth } from "../security/AuthContext";
-import TeacherMain from "../pages/TeacherMain";
+import axios from 'axios';
+import MemberInfo from '../pages/MemberInfo';
+import React, { useEffect, useState } from 'react';
+import { apiClient, myPageApi } from '../api/ApiClient';
+import { getCookie } from '../cookies/CookieFunction';
+import { memberProfileBaseImg, memberProfileChange } from '../api/ApiClient';
+import basicImg from '../baseImg/basicImg.jpg';
+import { useAuth } from '../security/AuthContext';
+import TeacherMain from '../pages/TeacherMain';
+import './Card.css';
 
 function Card() {
   const [baseImg, setBaseImg] = useState(null);
@@ -28,8 +29,8 @@ function Card() {
 
   const baseProfileImg = async () => {
     apiClient.interceptors.request.use((config) => {
-      console.log("인터셉터하여 헤더에 토큰 정보 추가");
-      config.headers.Authorization = getCookie("tokenKey");
+      console.log('인터셉터하여 헤더에 토큰 정보 추가');
+      config.headers.Authorization = getCookie('tokenKey');
       return config;
     });
 
@@ -37,7 +38,7 @@ function Card() {
       const response = await memberProfileBaseImg();
       setBaseImg(response.data);
     } catch (error) {
-      console.error("baseProfileImg: ", error);
+      console.error('baseProfileImg: ', error);
     }
   };
 
@@ -47,32 +48,32 @@ function Card() {
   }, []);
 
   return (
-    <div>
-      <div className="card" style={{ width: "18rem" }}>
+    <div className='cards'>
+      <div className='card'>
         {baseImg !== null ? (
           <img
             src={`http://localhost:8080${baseImg}`}
-            className="card-img-top"
-            alt="현재 프로필 이미지 없음"
+            className='card-img-top'
+            alt='현재 프로필 이미지 없음'
           />
         ) : (
           <img
             src={basicImg}
-            className="card-img-top"
-            alt="기본 프로필 이미지 없음"
+            className='card-img-top'
+            alt='기본 프로필 이미지 없음'
           />
         )}
-        <div className="card-body">
-        {memberDto && (
-        <div>
-          <h2>내 정보</h2>
-          <div>이름 : {memberDto.memberName}</div>
-          <div>이메일 : {memberDto.memberEmail}</div>
-        </div>
-      )}
+        <div className='card-body'>
+          {memberDto && (
+            <div>
+              <h2 className='card-h2'>{memberDto.memberName}</h2>
+              {/* <div>이름 : </div> */}
+              <div>이메일 : {memberDto.memberEmail}</div>
+            </div>
+          )}
         </div>
       </div>
-          {role === "TEACHER" ? <TeacherMain/> : null}
+      {role === 'TEACHER' ? <TeacherMain /> : null}
     </div>
   );
 }
