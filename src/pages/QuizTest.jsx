@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { apiClient } from "../api/ApiClient";
-import { getCookie } from "../cookies/CookieFunction";
-import axios, { AxiosError } from "axios";
-import { useAuth } from "../security/AuthContext";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { apiClient } from '../api/ApiClient';
+import { getCookie } from '../cookies/CookieFunction';
+import axios, { AxiosError } from 'axios';
+import { useAuth } from '../security/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import './QuizTest.css';
 
 function QuizTest() {
   const [quizList, setQuizList] = useState(null);
@@ -20,28 +21,28 @@ function QuizTest() {
   const [score, setScore] = useState(0);
   const { isDone } = useAuth();
   const { memberScore } = useAuth();
-  const {setIsDone} = useAuth();
-  const {setMemberScore} = useAuth();
+  const { setIsDone } = useAuth();
+  const { setMemberScore } = useAuth();
 
   const navigate = useNavigate();
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = 'http://localhost:8080';
 
   const quizInfo = async () => {
     console.log(isDone);
     console.log(memberScore);
     try {
-      const response = await axios.get(baseUrl + "/quiz/test", {
+      const response = await axios.get(baseUrl + '/quiz/test', {
         headers: {
-          Authorization: getCookie("tokenKey"),
+          Authorization: getCookie('tokenKey'),
         },
       });
-      console.log("/quiz/test에서 받은 데이터: ", response.data);
+      console.log('/quiz/test에서 받은 데이터: ', response.data);
       setQuizList(response.data);
-      setQuiz(response.data[0][0]);
-      setCorrect(response.data[0][1]);
+      setQuiz(response.data[0][1]);
+      setCorrect(response.data[0][0]);
       setAllPoint(response.data.length);
     } catch (error) {
-      console.error("details error : ", error);
+      console.error('details error : ', error);
     }
   };
 
@@ -70,8 +71,8 @@ function QuizTest() {
     if (trueFalse) {
       setPointCount(pointCount + 1);
     }
-    setQuiz(quizList[index][0]);
-    setCorrect(quizList[index][1]);
+    setQuiz(quizList[index][1]);
+    setCorrect(quizList[index][0]);
     setAnswer(null);
     setOnTest(true);
   };
@@ -79,13 +80,13 @@ function QuizTest() {
   const toHomeHandler = async () => {
     if (isDone === false) {
       const response = await axios.post(
-        baseUrl + "/quiz/end",
+        baseUrl + '/quiz/end',
         {
           score: score,
         },
         {
           headers: {
-            Authorization: getCookie("tokenKey"),
+            Authorization: getCookie('tokenKey'),
           },
         }
       );
@@ -93,7 +94,7 @@ function QuizTest() {
       setMemberScore(score);
       console.log(response);
     }
-    navigate("/");
+    navigate('/');
   };
 
   useEffect(() => {
@@ -101,8 +102,9 @@ function QuizTest() {
   }, []);
 
   return (
-    <div>
-      <h1>이번주 과제</h1>
+    <div className='quizTest'>
+      <h1>현재 과제</h1>
+      <hr />
       {isDone === true ? (
         <div>
           <h3>당신의 점수는 {memberScore}점 입니다</h3>
@@ -110,17 +112,23 @@ function QuizTest() {
         </div>
       ) : onTest === true ? (
         <div>
-          <h3>{quiz}</h3>
+          <h3>
+            문제{count}: {quiz}
+          </h3>
           <input
-            type="text"
+            type='text'
             value={answer}
             onChange={onChangeAnswer}
-            placeholder="정답 입력"
+            placeholder='정답 입력'
+            className='quiztest-input'
           />
-          <h4>
+          <br />
+          <button onClick={onClickSubmit} className='quiztest-submit-btn'>
+            제출
+          </button>
+          <h4 className='quiz-count'>
             {count}/{allPoint}
           </h4>
-          <button onClick={onClickSubmit}>정답</button>
           <p>{correct}</p>
         </div>
       ) : trueFalse === true ? (
@@ -131,10 +139,14 @@ function QuizTest() {
           {endTest ? (
             <div>
               <div>총 점수는 {score} 입니다</div>
-              <button onClick={toHomeHandler}>홈으로</button>
+              <button className='quiztest-submit-btn' onClick={toHomeHandler}>
+                홈으로
+              </button>
             </div>
           ) : (
-            <button onClick={nextQuizHandler}>다음 문제</button>
+            <button className='quiztest-submit-btn' onClick={nextQuizHandler}>
+              다음 문제
+            </button>
           )}
         </div>
       ) : (
@@ -146,10 +158,14 @@ function QuizTest() {
           {endTest ? (
             <div>
               <div>총 점수는 {score} 입니다</div>
-              <button onClick={toHomeHandler}>홈으로</button>
+              <button className='quiztest-submit-btn' onClick={toHomeHandler}>
+                홈으로
+              </button>
             </div>
           ) : (
-            <button onClick={nextQuizHandler}>다음 문제</button>
+            <button className='quiztest-submit-btn' onClick={nextQuizHandler}>
+              다음 문제
+            </button>
           )}
         </div>
       )}

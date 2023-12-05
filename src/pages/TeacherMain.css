@@ -1,6 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900);
 .card-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1000px;
 }
 
 .card-element {
@@ -32,5 +35,23 @@
   }
   .card-email-list {
     text-align: center;
+  }
+  .resultF {
+    background-color: rgba(255, 0, 0, 0.89);
+    border-radius: 15px 15px;
+    color: rgba(255, 0, 0, 0.89);
+  }
+  .resultP {
+    background-color: green;
+    border-radius: 15px 15px;
+
+    color: green;
+  }
+
+  .score {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
   }
 }

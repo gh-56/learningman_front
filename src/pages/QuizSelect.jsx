@@ -130,76 +130,77 @@ function QuizSelect() {
   };
 
   return (
-    <div className='quiz-container'>
-      <div className='quiz-item'>
-        <div className='quiz-select'>
-          <label htmlFor='selectBook'>교재 선택:</label>
-          <select
-            id='selectBook'
-            value={selectedBook}
-            onChange={onChangeHandlerBook}
-          >
-            {newBookArray.map((book, bidx) => (
-              <option key={bidx} value={book}>
-                {book}
-              </option>
-            ))}
-          </select>
+    <div>
+      <div className='quiz-container'>
+        <div className='quiz-item'>
+          <div className='quiz-select'>
+            <label htmlFor='selectBook'>교재 선택:</label>
+            <select
+              id='selectBook'
+              value={selectedBook}
+              onChange={onChangeHandlerBook}
+            >
+              {newBookArray.map((book, bidx) => (
+                <option key={bidx} value={book}>
+                  {book}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className='quiz-select'>
+            <label htmlFor='selectChapter'>단원 선택:</label>
+            <select
+              id='selectChapter'
+              value={selectedChapter}
+              onChange={onChangeHandlerChapter}
+            >
+              {newChapterArray.map((chapter, cidx) => (
+                <option key={cidx} value={chapter}>
+                  {chapter}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div className='quiz-select'>
-          <label htmlFor='selectChapter'>단원 선택:</label>
-          <select
-            id='selectChapter'
-            value={selectedChapter}
-            onChange={onChangeHandlerChapter}
-          >
-            {newChapterArray.map((chapter, cidx) => (
-              <option key={cidx} value={chapter}>
-                {chapter}
-              </option>
-            ))}
-          </select>
+        <div className='quiz-item'>
+          <div>
+            <input
+              type='radio'
+              value='nextDay'
+              checked={selectedDeadline === 'nextDay'}
+              onChange={handleRadioChange}
+              className='select-date-radio'
+            />
+            다음 날
+          </div>
+          <div>
+            <input
+              type='radio'
+              value='nextWeek'
+              checked={selectedDeadline === 'nextWeek'}
+              onChange={handleRadioChange}
+              className='select-date-radio'
+            />
+            다음 주
+          </div>
+          <div>
+            <input
+              type='radio'
+              value='nextMonth'
+              checked={selectedDeadline === 'nextMonth'}
+              onChange={handleRadioChange}
+              className='select-date-radio'
+            />
+            다음 달
+          </div>
+          <p className='selected-date'>
+            선택한 기간: <strong>{calculateDate().toLocaleDateString()}</strong>
+          </p>
         </div>
-        <button onClick={onClickSelect} className='quiz-select-button'>
-          선택
-        </button>
       </div>
-      <div className='quiz-item'>
-        <div>
-          <input
-            type='radio'
-            value='nextDay'
-            checked={selectedDeadline === 'nextDay'}
-            onChange={handleRadioChange}
-            className='select-date-radio'
-          />
-          다음 날
-        </div>
-        <div>
-          <input
-            type='radio'
-            value='nextWeek'
-            checked={selectedDeadline === 'nextWeek'}
-            onChange={handleRadioChange}
-            className='select-date-radio'
-          />
-          다음 주
-        </div>
-        <div>
-          <input
-            type='radio'
-            value='nextMonth'
-            checked={selectedDeadline === 'nextMonth'}
-            onChange={handleRadioChange}
-            className='select-date-radio'
-          />
-          다음 달
-        </div>
-        <p className='selected-date'>
-          선택한 기간: <strong>{calculateDate().toLocaleDateString()}</strong>
-        </p>
-      </div>
-      <button onClick={onClickSelect}>선택</button>
+      <button onClick={onClickSelect} className='quiz-select-button'>
+        선택
+      </button>
     </div>
   );
 }

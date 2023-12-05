@@ -11,7 +11,7 @@ import './Card.css';
 
 function Card() {
   const [baseImg, setBaseImg] = useState(null);
-  const { role } = useAuth();
+  const { role, setRole } = useAuth();
   const [memberDto, setMemberDto] = useState(null);
 
   const callApi = async () => {
@@ -23,7 +23,7 @@ function Card() {
     });
     const response = await myPageApi();
     console.log(response);
-
+    setRole(response.data.role);
     setMemberDto(response.data);
   };
 

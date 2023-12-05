@@ -41,15 +41,14 @@ function TeacherMain() {
               alt='기본 프로필 이미지 없음'
             />
           )}
-          <h3>학생 정보</h3>
           <h2 className='card-h2-list'>{value.memberName}</h2>
           <div className='card-email-list'>{value.memberEmail}</div>
           {value.homework === null ? null : value.done === false ? (
-            <h3>F</h3>
+            <div className='resultF'>F</div>
           ) : (
             <div>
-              <h3>P</h3>
-              <h3>점수 : {value.quizScore}</h3>
+              <div className='resultP'>P</div>
+              <h3 className='score'>점수 : {value.quizScore}점</h3>
             </div>
           )}
         </div>

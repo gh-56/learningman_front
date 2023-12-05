@@ -5,7 +5,7 @@ import { setCookie, getCookie, removeCookie } from '../cookies/CookieFunction';
 import Login from './Login';
 
 function HomePage() {
-  return <div>{getCookie('tokenKey') == null ? null : <Card />}</div>;
+  return <>{getCookie('tokenKey') == null ? <Login /> : <Card />}</>;
 }
 
 export default HomePage;

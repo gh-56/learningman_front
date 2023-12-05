@@ -157,18 +157,7 @@ function MemberInfo() {
         <div className='memberinfo-container'>
           <div className='memberinfo-item' style={{ width: '19rem' }}>
             <h3>프로필 이미지 변경</h3>
-            <form onSubmit={handleImgSubmit}>
-              <div className='file-select'>
-                <input
-                  className='file-select-button'
-                  type='file'
-                  onChange={handleFileChange}
-                />
-                <button className='file-submit-button' type='submit'>
-                  변경
-                </button>
-              </div>
-            </form>
+            <hr />
             {img !== null ? (
               <img
                 src={`http://localhost:8080${img}`}
@@ -188,50 +177,85 @@ function MemberInfo() {
                 alt='기본 프로필 이미지 없음'
               />
             )}
+            <form onSubmit={handleImgSubmit}>
+              <div className='file-select'>
+                <input
+                  className='file-select-button'
+                  type='file'
+                  onChange={handleFileChange}
+                />
+                <button className='submit-button' type='submit'>
+                  변경
+                </button>
+              </div>
+            </form>
           </div>
           <div className='memberinfo-item'>
             <h3>내 정보 수정</h3>
+            <h5>(정보 수정은 다시 로그인이 필요합니다)</h5>
+            <hr />
             <form onSubmit={handleInfoSubmit}>
-              <h5>정보 수정은 다시 로그인이 필요합니다</h5>
               {updateState === false ? (
                 <div>
-                  <div>이름 : {memberDto.memberName}</div>
-                  <div>이메일 : {memberDto.memberEmail}</div>
-                  <div>비밀번호 : ***** </div>
-                  <button onClick={updateInfoClickHandler}>수정하기</button>
+                  <div className='memberinfo-edit'>
+                    이름 : {memberDto.memberName}
+                  </div>
+                  <div className='memberinfo-edit'>
+                    이메일 : {memberDto.memberEmail}
+                  </div>
+                  <div className='memberinfo-edit'>비밀번호 : ***** </div>
+                  <button
+                    className='submit-button'
+                    onClick={updateInfoClickHandler}
+                  >
+                    수정하기
+                  </button>
                 </div>
               ) : (
                 <div>
-                  <label>이름</label>
-                  <input
-                    name='name'
-                    type='text'
-                    value={memberName}
-                    placeholder={memberDto.memberName}
-                    onChange={onChangeHandlerName}
-                  />
-                  <br />
-                  <label>이메일</label>
-                  <input
-                    name='email'
-                    type='text'
-                    value={memberEmail}
-                    placeholder={memberDto.memberEmail}
-                    onChange={onChangeHandlerEmail}
-                  />
-                  {emailError === null ? null : <p>{emailError}</p>}
-                  <br />
-                  <label>비밀번호</label>
-                  <input
-                    name='password'
-                    type='password'
-                    value={memberPassword}
-                    placeholder='*****'
-                    onChange={onChangeHandlerPassword}
-                  />
-                  <br />
-                  <button type='submit'>완료</button>
-                  <button onClick={cancelClickHandler}>취소</button>
+                  <div className='memberinfo-div'>
+                    <label className='memberinfo-label'>이름</label>
+                    <input
+                      name='name'
+                      type='text'
+                      value={memberName}
+                      placeholder={memberDto.memberName}
+                      onChange={onChangeHandlerName}
+                      className='memberinfo-edit-input'
+                    />
+                    <br />
+                    <label className='memberinfo-label'>이메일 </label>
+                    <input
+                      name='email'
+                      type='text'
+                      value={memberEmail}
+                      placeholder={memberDto.memberEmail}
+                      onChange={onChangeHandlerEmail}
+                      className='memberinfo-edit-input'
+                    />
+
+                    {emailError === null ? null : <p>{emailError}</p>}
+                    <br />
+                    <label className='memberinfo-label'>비밀번호</label>
+                    <input
+                      name='password'
+                      type='password'
+                      value={memberPassword}
+                      placeholder='*****'
+                      onChange={onChangeHandlerPassword}
+                      className='memberinfo-edit-input'
+                    />
+                    <br />
+                  </div>
+                  <button className='submit-button' type='submit'>
+                    완료
+                  </button>
+                  <button
+                    className='submit-button'
+                    onClick={cancelClickHandler}
+                  >
+                    취소
+                  </button>
                 </div>
               )}
             </form>

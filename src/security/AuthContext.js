@@ -58,6 +58,7 @@ export const AuthProvider = ({ children }) => {
         return false;
       }
     } catch (error) {
+      alert('아이디 혹은 비밀번호를 다시 확인해주세요');
       console.log(error);
       console.log('에러가 발생하였습니다.');
     }
@@ -73,7 +74,19 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, token, role, isDone, memberScore, setMemberScore, setIsDone,getCookie, login, logout }}
+      value={{
+        isAuthenticated,
+        token,
+        role,
+        isDone,
+        memberScore,
+        setMemberScore,
+        setIsDone,
+        getCookie,
+        login,
+        logout,
+        setRole,
+      }}
     >
       {children}
     </AuthContext.Provider>

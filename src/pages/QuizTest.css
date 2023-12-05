@@ -1,0 +1,28 @@
+.quizTest {
+  border: 2px solid rgba(182, 180, 180, 0.5);
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  margin: 15px;
+  min-width: 500px;
+}
+
+.quiztest-submit-btn {
+  width: 100px;
+  height: 50px;
+  margin-top: 15px;
+  border-radius: 5%;
+  background-color: #000000;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+.quiztest-input {
+  border: 2px solid;
+  margin-top: 20px;
+  width: 400px;
+  height: 50px;
+}
+
+.quiz-count {
+  text-align: right;
+}
