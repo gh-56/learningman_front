@@ -1,0 +1,32 @@
+.memberinfo-container {
+  display: flex;
+}
+.memberinfo-item {
+  margin: 0px 60px;
+  border: 2px solid rgba(182, 180, 180, 0.5);
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+.file-select {
+  display: block;
+  /* border: 2px solid #afb1b3; */
+  color: #34495e;
+  cursor: pointer;
+  height: 90px;
+  line-height: 40px;
+  text-align: left;
+  background: #ffffff;
+  overflow: hidden;
+  position: relative;
+}
+
+.file-submit-button {
+  width: 55px;
+  height: 50px;
+  margin-top: 15px;
+  border-radius: 5%;
+  background-color: #000000;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
