@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(null);
   const [role, setRole] = useState(null);
+  const [isDone, setIsDone] = useState(false);
+  const [memberScore, setMemberScore] = useState(null);
 
   // 전달2 : 로그인 함수
   const login = async (memberEmail, memberPassword) => {
@@ -44,9 +46,10 @@ export const AuthProvider = ({ children }) => {
 
         const info = await myPageApi();
         setRole(info.data.role);
-        console.log(role);
-        console.log(info.data.role);
-
+        setIsDone(info.data.done);
+        console.log(info.data.done);
+        setMemberScore(info.data.quizScore);
+        console.log(info.data.quizScore);
         return true;
       } else {
         console.log('인증 실패했습니다.');
@@ -70,7 +73,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, token, role, getCookie, login, logout }}
+      value={{ isAuthenticated, token, role, isDone, memberScore, setMemberScore, setIsDone,getCookie, login, logout }}
     >
       {children}
     </AuthContext.Provider>

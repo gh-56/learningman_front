@@ -19,9 +19,9 @@ function TeacherMain() {
     console.log(response.data);
 
     for (let index = 0; index < response.data.length; index++) {
-        if(response.data[index].memberProfileImg === null){
-            response.data[index].memberProfileImg = "null"
-        }
+      if (response.data[index].memberProfileImg === null) {
+        response.data[index].memberProfileImg = "null";
+      }
     }
 
     setStudent(
@@ -46,6 +46,14 @@ function TeacherMain() {
             <h3>학생 정보</h3>
             <div>이름 : {value.memberName}</div>
             <div>이메일 : {value.memberEmail}</div>
+            {value.homework === null ? null : value.done === false ? (
+              <h3>F</h3>
+            ) : (
+              <div>
+              <h3>P</h3>
+              <h3>점수 : {value.quizScore}</h3>
+              </div>
+            )}
           </div>
           <br />
         </ul>

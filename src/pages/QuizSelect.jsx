@@ -3,6 +3,7 @@ import axios, { AxiosError } from 'axios';
 import React, { useEffect, useContext, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
+import { useNavigate } from "react-router-dom";
 
 // Teacher Only
 
@@ -12,6 +13,7 @@ function QuizSelect() {
   const [selectedBook, setSelectedBook] = useState('');
   const [chapterData, setChapterData] = useState('');
   const [selectedChapter, setSelectedChapter] = useState('');
+  const navigate = useNavigate();
 
   const onChangeHandlerBook = (e) => {
     setSelectedBook(e.target.value);
@@ -99,6 +101,7 @@ function QuizSelect() {
     )
     .then((response) => {
       console.log(response);
+      navigate('/');
     }).catch((error) => {
       console.log();
     });
