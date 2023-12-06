@@ -3,7 +3,6 @@ import './App.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Header from './components/Header';
-import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MemberInfo from './pages/MemberInfo';
 import React from 'react';
@@ -26,7 +25,6 @@ function App() {
           <div className='app-container'>
             <Routes>
               <Route path='/' element={<HomePage />} />
-              <Route path='/home' element={<Home />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/memberinfo' element={<MemberInfo />} />

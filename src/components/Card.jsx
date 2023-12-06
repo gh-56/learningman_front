@@ -12,7 +12,7 @@ import StudentMain from '../pages/StudentMain';
 
 function Card() {
   const [baseImg, setBaseImg] = useState(null);
-  const { role } = useAuth();
+  const { role, setRole } = useAuth();
   const [memberDto, setMemberDto] = useState(null);
 
   const callApi = async () => {
@@ -26,7 +26,7 @@ function Card() {
     const response = await myPageApi();
 
     console.log(response);
-
+    setRole(response.data.role);
     setMemberDto(response.data);
   };
 
@@ -55,7 +55,7 @@ function Card() {
       <div className='card'>
         {baseImg !== null ? (
           <img
-            src={`http://43.200.5.111:8080${baseImg}`}
+            src={`http://localhost:8080${baseImg}`}
             className='card-img-top'
             alt='현재 프로필 이미지 없음'
           />
