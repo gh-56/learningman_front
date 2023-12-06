@@ -80,12 +80,12 @@ export const AuthProvider = ({ children }) => {
         role,
         isDone,
         memberScore,
+        setRole,
         setMemberScore,
         setIsDone,
         getCookie,
         login,
         logout,
-        setRole,
       }}
     >
       {children}

@@ -23,7 +23,7 @@ function QuizTest() {
   const { memberScore } = useAuth();
   const { setIsDone } = useAuth();
   const { setMemberScore } = useAuth();
-
+  const [wrongIndexList, setWrondIndexList] = useState([]);
   const navigate = useNavigate();
   const baseUrl = 'http://43.200.5.111:8080';
 
@@ -50,6 +50,7 @@ function QuizTest() {
     if (answer === correct) {
       setTrueFalse(true);
     } else {
+      setWrondIndexList([...wrongIndexList, index]);
       setTrueFalse(false);
     }
     if (count === allPoint) {
@@ -68,6 +69,7 @@ function QuizTest() {
   };
 
   const nextQuizHandler = () => {
+    console.log(wrongIndexList);
     if (trueFalse) {
       setPointCount(pointCount + 1);
     }
@@ -83,6 +85,7 @@ function QuizTest() {
         baseUrl + '/quiz/end',
         {
           score: score,
+          wrondIndexList: wrongIndexList,
         },
         {
           headers: {

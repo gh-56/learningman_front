@@ -8,10 +8,11 @@ import basicImg from '../baseImg/basicImg.jpg';
 import { useAuth } from '../security/AuthContext';
 import TeacherMain from '../pages/TeacherMain';
 import './Card.css';
+import StudentMain from '../pages/StudentMain';
 
 function Card() {
   const [baseImg, setBaseImg] = useState(null);
-  const { role, setRole } = useAuth();
+  const { role } = useAuth();
   const [memberDto, setMemberDto] = useState(null);
 
   const callApi = async () => {
@@ -21,9 +22,11 @@ function Card() {
       config.headers.Authorization = getCookie('tokenKey');
       return config;
     });
+
     const response = await myPageApi();
+
     console.log(response);
-    setRole(response.data.role);
+
     setMemberDto(response.data);
   };
 
@@ -73,7 +76,7 @@ function Card() {
           )}
         </div>
       </div>
-      {role === 'TEACHER' ? <TeacherMain /> : null}
+      {role === 'TEACHER' ? <TeacherMain /> : <StudentMain />}
     </div>
   );
 }
