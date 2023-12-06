@@ -4,6 +4,7 @@ import { getCookie } from '../cookies/CookieFunction';
 import { apiClient } from '../api/ApiClient';
 import basicImg from '../baseImg/basicImg.jpg';
 import './TeacherMain.css';
+import serverConfig from '../config/serverConfig';
 
 function TeacherMain() {
   const [student, setStudent] = useState(null);
@@ -30,7 +31,9 @@ function TeacherMain() {
         <div className='card-element'>
           {value.memberProfileImg !== 'null' ? (
             <img
-              src={`http://43.200.5.111:8080${value.memberProfileImg.imgUrl}`}
+              src={
+                serverConfig.serverUrl + `:8080${value.memberProfileImg.imgUrl}`
+              }
               className='card-img-top'
               alt='현재 프로필 이미지 없음'
             />

@@ -9,6 +9,7 @@ import { useAuth } from '../security/AuthContext';
 import TeacherMain from '../pages/TeacherMain';
 import './Card.css';
 import StudentMain from '../pages/StudentMain';
+import serverConfig from '../config/serverConfig';
 
 function Card() {
   const [baseImg, setBaseImg] = useState(null);
@@ -55,7 +56,7 @@ function Card() {
       <div className='card'>
         {baseImg !== null ? (
           <img
-            src={`http://43.200.5.111:8080${baseImg}`}
+            src={serverConfig.serverUrl + `:8080${baseImg}`}
             className='card-img-top'
             alt='현재 프로필 이미지 없음'
           />

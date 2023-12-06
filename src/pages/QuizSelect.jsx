@@ -5,11 +5,12 @@ import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
 import { useNavigate } from 'react-router-dom';
 import './QuizSelect.css';
+import serverConfig from '../config/serverConfig';
 
 // Teacher Only
 
 function QuizSelect() {
-  const baseUrl = 'http://43.200.5.111:8080';
+  const baseUrl = serverConfig.serverUrl + ':8080';
   const [bookData, setBookData] = useState('');
   const [selectedBook, setSelectedBook] = useState('');
   const [chapterData, setChapterData] = useState('');

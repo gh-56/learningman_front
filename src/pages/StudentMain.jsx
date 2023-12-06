@@ -4,9 +4,10 @@ import { getCookie } from '../cookies/CookieFunction';
 import axios, { AxiosError } from 'axios';
 import { useAuth } from '../security/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import serverConfig from '../config/serverConfig';
 
 function StudentMain() {
-  const baseUrl = 'http://43.200.5.111:8080';
+  const baseUrl = serverConfig.serverUrl + ':8080';
 
   const [wrongQuizList, setWrongQuizList] = useState(null);
 
