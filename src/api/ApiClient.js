@@ -1,7 +1,8 @@
 import axios from 'axios';
+import serverConfig from '../config/serverConfig';
 
 export const apiClient = axios.create({
-  baseURL: 'http://43.200.5.111:8080',
+  baseURL: serverConfig.serverUrl + ':8080',
 });
 
 export const authenticateApi = (memberEmail, memberPassword) =>

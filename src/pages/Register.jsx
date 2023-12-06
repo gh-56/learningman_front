@@ -2,9 +2,10 @@ import axios, { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Register.css';
+import serverConfig from '../config/serverConfig';
 
 function Register() {
-  const baseUrl = 'http://43.200.5.111:8080';
+  const baseUrl = serverConfig.serverUrl + ':8080';
   const [memberName, setMemberName] = useState('');
   const [memberEmail, setMemberEmail] = useState('');
   const [memberPassword, setMemberPassword] = useState('');

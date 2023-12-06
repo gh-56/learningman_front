@@ -7,9 +7,10 @@ import basicImg from '../baseImg/basicImg.jpg';
 import { memberProfileBaseImg, memberProfileChange } from '../api/ApiClient';
 import { useNavigate } from 'react-router-dom';
 import './MemberInfo.css';
+import serverConfig from '../config/serverConfig';
 
 function MemberInfo() {
-  const baseUrl = 'http://43.200.5.111:8080';
+  const baseUrl = serverConfig.serverUrl + ':8080';
   const [memberDto, setMemberDto] = useState(null);
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
@@ -160,13 +161,13 @@ function MemberInfo() {
             <hr />
             {img !== null ? (
               <img
-                src={`http://43.200.5.111:8080${img}`}
+                src={serverConfig.serverUrl + `:8080${img}`}
                 className='card-img-top'
                 alt='현재 프로필 이미지 없음'
               />
             ) : baseImg !== null ? (
               <img
-                src={`http://43.200.5.111:8080${baseImg}`}
+                src={serverConfig.serverUrl + `111:8080${baseImg}`}
                 className='card-img-top'
                 alt='현재 프로필 이미지 없음'
               />

@@ -5,6 +5,7 @@ import axios, { AxiosError } from 'axios';
 import { useAuth } from '../security/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './QuizTest.css';
+import serverConfig from '../config/serverConfig';
 
 function QuizTest() {
   const [quizList, setQuizList] = useState(null);
@@ -25,7 +26,7 @@ function QuizTest() {
   const { setMemberScore } = useAuth();
 
   const navigate = useNavigate();
-  const baseUrl = 'http://43.200.5.111:8080';
+  const baseUrl = serverConfig.serverUrl + ':8080';
 
   const quizInfo = async () => {
     console.log(isDone);

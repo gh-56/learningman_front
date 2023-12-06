@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
+import serverConfig from './config/serverConfig';
 
 function Home() {
   const [message, setMessage] = useState(null);
   const [arr, setArr] = useState([]);
 
   const callApi = () => {
-    const url = 'http://43.200.5.111:8080/hello';
+    const url = serverConfig.serverUrl + ':8080/hello';
     fetch(url)
       .then((response) => response.text())
       .then((text) => {
@@ -19,12 +20,12 @@ function Home() {
 
   // axios 사용
   const callApiAxios = () => {
-    const url = 'http://43.200.5.111:8080/hello';
+    const url = serverConfig.serverUrl + ':8080/hello';
     axios.get(url).then((response) => setMessage(response.data));
   };
 
   const callApi2 = () => {
-    const url = 'http://43.200.5.111:8080/hello2';
+    const url = serverConfig.serverUrl + ':8080/hello2';
     fetch(url)
       .then((response) => response.text())
       .then((text) => {
@@ -35,7 +36,7 @@ function Home() {
   };
 
   const callApi3 = () => {
-    const url = 'http://43.200.5.111:8080/hello3';
+    const url = serverConfig.serverUrl + ':8080/hello3';
     fetch(url)
       .then((response) => response.text())
       .then((text) => {
@@ -46,7 +47,7 @@ function Home() {
   };
 
   const callApi3Arr = () => {
-    const url = 'http://43.200.5.111:8080/hello3';
+    const url = serverConfig.serverUrl + ':8080/hello3';
     fetch(url)
       .then((response) => response.json())
       .then((json) => {
