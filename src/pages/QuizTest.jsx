@@ -129,7 +129,7 @@ function QuizTest() {
           <h4 className='quiz-count'>
             {count}/{allPoint}
           </h4>
-          <p>{correct}</p>
+          {/* <p>{correct}</p> */}
         </div>
       ) : trueFalse === true ? (
         <div>
