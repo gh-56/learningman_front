@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }) => {
         setToken(jwtToken);
         setCookie('tokenKey', jwtToken, {
           path: '/',
-          secure: true,
           maxAge: 3000,
         });
         // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
