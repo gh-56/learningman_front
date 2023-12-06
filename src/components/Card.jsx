@@ -8,6 +8,7 @@ import basicImg from '../baseImg/basicImg.jpg';
 import { useAuth } from '../security/AuthContext';
 import TeacherMain from '../pages/TeacherMain';
 import './Card.css';
+import StudentMain from '../pages/StudentMain';
 
 function Card() {
   const [baseImg, setBaseImg] = useState(null);
@@ -76,7 +77,7 @@ function Card() {
           )}
         </div>
       </div>
-      {role === 'TEACHER' ? <TeacherMain /> : null}
+      {role === 'TEACHER' ? <TeacherMain /> : <StudentMain />}
     </div>
   );
 }
