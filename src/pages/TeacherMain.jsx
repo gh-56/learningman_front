@@ -30,7 +30,7 @@ function TeacherMain() {
         <div className='card-element'>
           {value.memberProfileImg !== 'null' ? (
             <img
-              src={`http://localhost:8080${value.memberProfileImg.imgUrl}`}
+              src={`http://43.200.5.111:8080${value.memberProfileImg.imgUrl}`}
               className='card-img-top'
               alt='현재 프로필 이미지 없음'
             />

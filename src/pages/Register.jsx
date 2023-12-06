@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 function Register() {
-  const baseUrl = 'http://localhost:8080';
+  const baseUrl = 'http://43.200.5.111:8080';
   const [memberName, setMemberName] = useState('');
   const [memberEmail, setMemberEmail] = useState('');
   const [memberPassword, setMemberPassword] = useState('');

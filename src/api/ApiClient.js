@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const apiClient = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'http://43.200.5.111:8080',
 });
 
 export const authenticateApi = (memberEmail, memberPassword) =>
@@ -9,12 +9,14 @@ export const authenticateApi = (memberEmail, memberPassword) =>
 
 export const myPageApi = () => apiClient.get('/members/info');
 
-export const memberProfileBaseImg = () => apiClient.get('/members/profile/baseimg');
+export const memberProfileBaseImg = () =>
+  apiClient.get('/members/profile/baseimg');
 
-export const memberProfileChange = (formData) => apiClient.post('/members/profile/img', {formData});
+export const memberProfileChange = (formData) =>
+  apiClient.post('/members/profile/img', { formData });
 
-export const studentInfo = () => apiClient.post('/teacher/main')
+export const studentInfo = () => apiClient.post('/teacher/main');
 
-export const studentProfileBaseImg = () => apiClient.get('/teacher/studentImg')
+export const studentProfileBaseImg = () => apiClient.get('/teacher/studentImg');
 
-export const infoChange = () => apiClient.post('/members/update')
+export const infoChange = () => apiClient.post('/members/update');

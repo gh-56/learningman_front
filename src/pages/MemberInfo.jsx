@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import './MemberInfo.css';
 
 function MemberInfo() {
-  const baseUrl = 'http://localhost:8080';
+  const baseUrl = 'http://43.200.5.111:8080';
   const [memberDto, setMemberDto] = useState(null);
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
@@ -160,13 +160,13 @@ function MemberInfo() {
             <hr />
             {img !== null ? (
               <img
-                src={`http://localhost:8080${img}`}
+                src={`http://43.200.5.111:8080${img}`}
                 className='card-img-top'
                 alt='현재 프로필 이미지 없음'
               />
             ) : baseImg !== null ? (
               <img
-                src={`http://localhost:8080${baseImg}`}
+                src={`http://43.200.5.111:8080${baseImg}`}
                 className='card-img-top'
                 alt='현재 프로필 이미지 없음'
               />

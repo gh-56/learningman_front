@@ -52,7 +52,7 @@ function Card() {
       <div className='card'>
         {baseImg !== null ? (
           <img
-            src={`http://localhost:8080${baseImg}`}
+            src={`http://43.200.5.111:8080${baseImg}`}
             className='card-img-top'
             alt='현재 프로필 이미지 없음'
           />

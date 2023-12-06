@@ -9,7 +9,7 @@ import './QuizSelect.css';
 // Teacher Only
 
 function QuizSelect() {
-  const baseUrl = 'http://localhost:8080';
+  const baseUrl = 'http://43.200.5.111:8080';
   const [bookData, setBookData] = useState('');
   const [selectedBook, setSelectedBook] = useState('');
   const [chapterData, setChapterData] = useState('');

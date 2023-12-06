@@ -25,7 +25,7 @@ function QuizTest() {
   const { setMemberScore } = useAuth();
 
   const navigate = useNavigate();
-  const baseUrl = 'http://localhost:8080';
+  const baseUrl = 'http://43.200.5.111:8080';
 
   const quizInfo = async () => {
     console.log(isDone);
