@@ -52,32 +52,40 @@ function Card() {
   }, []);
 
   return (
-    <div className='cards'>
-      <div className='card'>
-        {baseImg !== null ? (
-          <img
-            src={serverConfig.serverUrl + `:8080${baseImg}`}
-            className='card-img-top'
-            alt='현재 프로필 이미지 없음'
-          />
-        ) : (
-          <img
-            src={basicImg}
-            className='card-img-top'
-            alt='기본 프로필 이미지 없음'
-          />
-        )}
-        <div className='card-body'>
-          {memberDto && (
-            <div>
-              <h2 className='card-h2'>{memberDto.memberName}</h2>
-              {/* <div>이름 : </div> */}
-              <div>이메일 : {memberDto.memberEmail}</div>
-            </div>
+    <div>
+      <div className='cards'>
+        <div className='card'>
+          {baseImg !== null ? (
+            <img
+              src={serverConfig.serverUrl + `:8080${baseImg}`}
+              className='card-img-top'
+              alt='현재 프로필 이미지 없음'
+            />
+          ) : (
+            <img
+              src={basicImg}
+              className='card-img-top'
+              alt='기본 프로필 이미지 없음'
+            />
           )}
+          <div className='card-body'>
+            {memberDto && (
+              <div>
+                <h2 className='card-h2'>{memberDto.memberName}</h2>
+                {/* <div>이름 : </div> */}
+                <div>이메일 : {memberDto.memberEmail}</div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      {role === 'TEACHER' ? <TeacherMain /> : <StudentMain />}
+      {role === 'TEACHER' ? (
+        <TeacherMain />
+      ) : (
+        <div>
+          <StudentMain />
+        </div>
+      )}
     </div>
   );
 }
