@@ -1,13 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { studentInfo } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
 import { apiClient } from '../api/ApiClient';
 import basicImg from '../baseImg/basicImg.jpg';
 import './TeacherMain.css';
-import serverConfig from '../config/serverConfig';
+import './ModalBack.css';
+import StudentQuizModal from '../components/StudentQuizModal';
 
 function TeacherMain() {
   const [student, setStudent] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [studentWrongIndexList, setStudentWrongIndexList] = useState([]);
+  const modalRef = useRef(null);
+
+  // 모달창 노출
+  const showModal = (info) => {
+    setStudentWrongIndexList(info.wrongIndexList);
+    setModalOpen(true);
+  };
 
   const callApi = async () => {
     // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
@@ -18,7 +28,6 @@ function TeacherMain() {
     });
 
     const response = await studentInfo();
-    console.log(response.data);
 
     for (let index = 0; index < response.data.length; index++) {
       if (response.data[index].memberProfileImg === null) {
@@ -28,7 +37,7 @@ function TeacherMain() {
 
     setStudent(
       response.data.map((value) => (
-        <div className='card-element'>
+        <div className='card-element' onClick={() => showModal(value)}>
           {value.memberProfileImg !== 'null' ? (
             <img
               src={
@@ -59,6 +68,13 @@ function TeacherMain() {
     );
   };
 
+  const modalOutSideClick = (e) => {
+    console.log(e);
+    if (modalOpen) {
+      setModalOpen(false);
+    }
+  };
+
   useEffect(() => {
     callApi();
   }, []);
@@ -68,8 +84,20 @@ function TeacherMain() {
       <br />
       <h2>학생 리스트</h2>
       {student && <div className='card-list'>{student}</div>}
+      {modalOpen && (
+        <div
+          ref={modalRef}
+          onClick={(e) => modalOutSideClick(e)}
+          className='modalback'
+        >
+          <StudentQuizModal
+            setModalOpen={setModalOpen}
+            wrongIndexList={studentWrongIndexList}
+            modalOpen={modalOpen}
+          />
+        </div>
+      )}
     </div>
   );
 }
-
 export default TeacherMain;

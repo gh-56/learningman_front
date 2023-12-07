@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
-import axios, { AxiosError } from 'axios';
-import { useAuth } from '../security/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import serverConfig from '../config/serverConfig';
 import './StudentMain.css';
 
