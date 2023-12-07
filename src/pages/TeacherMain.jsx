@@ -6,6 +6,7 @@ import basicImg from '../baseImg/basicImg.jpg';
 import './TeacherMain.css';
 import './ModalBack.css';
 import StudentQuizModal from '../components/StudentQuizModal';
+import serverConfig from '../config/serverConfig';
 
 function TeacherMain() {
   const [student, setStudent] = useState(null);
