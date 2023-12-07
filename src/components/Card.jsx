@@ -82,7 +82,8 @@ function Card() {
       {role === 'TEACHER' ? (
         <TeacherMain />
       ) : (
-        <div>
+        <div className='studentmain-div'>
+          <h1>이번 과제 중 틀린 문제</h1>
           <StudentMain />
         </div>
       )}

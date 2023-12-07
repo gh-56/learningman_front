@@ -33,7 +33,7 @@ function StudentMain() {
     <div className='wrong-container'>
       {wrongQuizList &&
         wrongQuizList.map((value) => (
-          <div className='viewport'>
+          <div>
             <div className='flip-card'>
               <div className='card-front'>{value[0]}</div>
               <div className='card-back'>{value[1]}</div>
@@ -45,9 +45,3 @@ function StudentMain() {
 }
 
 export default StudentMain;
-
-// (
-//   <div className='wrong-container'>
-//     {/* <h1>이번 과제에서 틀린 문제</h1> */}
-//     {wrongQuizList}
-//   </div>

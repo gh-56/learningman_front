@@ -130,6 +130,7 @@ function QuizTest() {
           <button onClick={onClickSubmit} className='quiztest-submit-btn'>
             제출
           </button>
+          {correct}
           <h4 className='quiz-count'>
             {count}/{allPoint}
           </h4>
