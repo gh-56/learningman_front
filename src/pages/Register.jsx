@@ -57,17 +57,18 @@ function Register() {
           role: role,
         })
         .then((res) => {
+          alert('가입이 완료됐습니다!');
           console.log(res.data);
+          console.log('test after api');
+          navigate('/login');
         })
         .catch((err) => {
           console.log(err);
           console.log(err.response.status);
           if (err.response.status === 400) {
-            alert('이미 가입한 회원입니다');
+            alert('다시 작성해주세요.');
           }
         });
-      console.log('test after api');
-      navigate('/login');
     }
   };
 
@@ -135,15 +136,6 @@ function Register() {
             onChange={handleClickRadioButton}
           />
           선생님
-        </div>
-        <div className='select-register-radio'>
-          <input
-            type='radio'
-            value='ADMIN'
-            checked={role === 'ADMIN'}
-            onChange={handleClickRadioButton}
-          />
-          관리자
         </div>
 
         <button type='submit' className='register-button'>
