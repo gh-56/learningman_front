@@ -18,12 +18,14 @@ function StudentMain() {
         },
       });
       console.log("/quiz/test에서 받은 데이터: ", response.data);
-      setWrongQuizList(response.data.map((value) => (
-        <div>
+      setWrongQuizList(
+        response.data.map((value) => (
+          <div>
             <div>{value[0]}</div>
             <div>{value[1]}</div>
-        </div>
-      )));
+          </div>
+        ))
+      );
     } catch (error) {
       console.error("details error : ", error);
     }
@@ -35,8 +37,12 @@ function StudentMain() {
 
   return (
     <div>
-      <h1>이번 과제에서 틀린 문제</h1>
-      {wrongQuizList && <div>{wrongQuizList}</div>}
+      {wrongQuizList && (
+        <div>
+          <h1>이번 과제에서 틀린 문제</h1>
+          {wrongQuizList}
+        </div>
+      )}
     </div>
   );
 }
