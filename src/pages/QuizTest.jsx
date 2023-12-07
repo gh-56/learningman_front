@@ -24,7 +24,7 @@ function QuizTest() {
   const { memberScore } = useAuth();
   const { setIsDone } = useAuth();
   const { setMemberScore } = useAuth();
-  const [wrongIndexList, setWrondIndexList] = useState([]);
+  const [wrongIndexList, setWrongIndexList] = useState([]);
   const navigate = useNavigate();
   const baseUrl = serverConfig.serverUrl + ':8080';
 
@@ -51,7 +51,7 @@ function QuizTest() {
     if (answer === correct) {
       setTrueFalse(true);
     } else {
-      setWrondIndexList([...wrongIndexList, index]);
+      setWrongIndexList([...wrongIndexList, index]);
       setTrueFalse(false);
     }
     if (count === allPoint) {
@@ -86,7 +86,7 @@ function QuizTest() {
         baseUrl + '/quiz/end',
         {
           score: score,
-          wrondIndexList: wrongIndexList,
+          wrongIndexList: wrongIndexList,
         },
         {
           headers: {

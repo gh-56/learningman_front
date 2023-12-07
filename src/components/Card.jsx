@@ -15,6 +15,7 @@ function Card() {
   const [baseImg, setBaseImg] = useState(null);
   const { role, setRole } = useAuth();
   const [memberDto, setMemberDto] = useState(null);
+  const [done, setDone] = useState(false);
 
   const callApi = async () => {
     // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
@@ -29,6 +30,7 @@ function Card() {
     console.log(response);
     setRole(response.data.role);
     setMemberDto(response.data);
+    setDone(response.data.done);
   };
 
   const baseProfileImg = async () => {
@@ -51,6 +53,7 @@ function Card() {
     callApi();
   }, []);
 
+  console.log(memberDto);
   return (
     <div>
       <div className='cards'>
@@ -79,14 +82,7 @@ function Card() {
           </div>
         </div>
       </div>
-      {role === 'TEACHER' ? (
-        <TeacherMain />
-      ) : (
-        <div className='studentmain-div'>
-          <h1>이번 과제 중 틀린 문제</h1>
-          <StudentMain />
-        </div>
-      )}
+      {role === 'TEACHER' ? <TeacherMain /> : done ? <StudentMain /> : null}
     </div>
   );
 }

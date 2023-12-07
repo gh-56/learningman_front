@@ -27,16 +27,19 @@ function StudentMain() {
   }, []);
 
   return (
-    <div className='wrong-container'>
-      {wrongQuizList &&
-        wrongQuizList.map((value) => (
-          <div>
-            <div className='flip-card'>
-              <div className='card-front'>{value[0]}</div>
-              <div className='card-back'>{value[1]}</div>
+    <div className='studentmain-div'>
+      <h1>이번 과제 중 틀린 문제</h1>
+      <div className='wrong-container'>
+        {wrongQuizList &&
+          wrongQuizList.map((value) => (
+            <div>
+              <div className='flip-card'>
+                <div className='card-front'>{value[0]}</div>
+                <div className='card-back'>{value[1]}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
     </div>
   );
 }
