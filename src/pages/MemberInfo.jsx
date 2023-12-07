@@ -167,7 +167,7 @@ function MemberInfo() {
               />
             ) : baseImg !== null ? (
               <img
-                src={serverConfig.serverUrl + `111:8080${baseImg}`}
+                src={serverConfig.serverUrl + `:8080${baseImg}`}
                 className='card-img-top'
                 alt='현재 프로필 이미지 없음'
               />
@@ -252,7 +252,7 @@ function MemberInfo() {
                     완료
                   </button>
                   <button
-                    className='submit-button'
+                    className='submit-cancle-button'
                     onClick={cancelClickHandler}
                   >
                     취소
