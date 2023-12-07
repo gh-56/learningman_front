@@ -20,6 +20,8 @@ function QuizTest() {
   const [allPoint, setAllPoint] = useState(0);
   const [endTest, setEndTest] = useState(false);
   const [score, setScore] = useState(0);
+  const [eng, setEng] = useState(1);
+  const [kor, setKor] = useState(0);
   const { isDone } = useAuth();
   const { memberScore } = useAuth();
   const { setIsDone } = useAuth();
@@ -27,6 +29,11 @@ function QuizTest() {
 
   const navigate = useNavigate();
   const baseUrl = serverConfig.serverUrl + ':8080';
+
+  const isEnglishString = (str) => {
+    const englishRegex = /(?=.*[a-z])(?=.*[A-Z])/;
+    return englishRegex.test(str);
+  };
 
   const quizInfo = async () => {
     console.log(isDone);
@@ -39,8 +46,16 @@ function QuizTest() {
       });
       console.log('/quiz/test에서 받은 데이터: ', response.data);
       setQuizList(response.data);
-      setQuiz(response.data[0][1]);
-      setCorrect(response.data[0][0]);
+      if (isEnglishString(response.data[0][0])) {
+        setKor(1);
+        setEng(0);
+      } else {
+        setKor(0);
+        setEng(1);
+      }
+      setQuiz(response.data[0][kor]);
+      setCorrect(response.data[0][eng]);
+
       setAllPoint(response.data.length);
     } catch (error) {
       console.error('details error : ', error);
@@ -72,8 +87,8 @@ function QuizTest() {
     if (trueFalse) {
       setPointCount(pointCount + 1);
     }
-    setQuiz(quizList[index][1]);
-    setCorrect(quizList[index][0]);
+    setQuiz(quizList[index][kor]);
+    setCorrect(quizList[index][eng]);
     setAnswer(null);
     setOnTest(true);
   };
