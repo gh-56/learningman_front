@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
 import axios, { AxiosError } from 'axios';
@@ -122,6 +122,19 @@ function QuizTest() {
     quizInfo();
   }, []);
 
+  const inputRefCur = useRef(null);
+  useEffect(() => {
+    if (inputRefCur.current) {
+      inputRefCur.current.focus();
+    }
+  }, [inputRefCur]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onClickSubmit();
+    }
+  };
+
   return (
     <div className='quizTest'>
       <h1>현재 과제</h1>
@@ -137,6 +150,7 @@ function QuizTest() {
             문제{count}: {quiz}
           </h3>
           <input
+            ref={inputRefCur}
             type='text'
             value={answer}
             onChange={onChangeAnswer}
@@ -151,7 +165,9 @@ function QuizTest() {
             <div
               class='progress-bar'
               style={{ width: `${progress}%`, backgroundColor: '#86e01e' }}
-            ></div>
+            >
+              {progress}%
+            </div>
           </div>
           <h4 className='quiz-count'>
             {count}/{allPoint}
