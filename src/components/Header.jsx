@@ -78,6 +78,15 @@ function Header() {
                   게시판
                 </Link>
               </li>
+              <li className='nav-item'>
+                <Link
+                  className='nav-link active'
+                  aria-current='page'
+                  to='/words'
+                >
+                  예문 만들기
+                </Link>
+              </li>
               {role === 'TEACHER' ? (
                 <li className='nav-item'>
                   <Link

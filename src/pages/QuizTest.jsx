@@ -20,6 +20,9 @@ function QuizTest() {
   const [allPoint, setAllPoint] = useState(0);
   const [endTest, setEndTest] = useState(false);
   const [score, setScore] = useState(0);
+  const [eng, setEng] = useState(1);
+  const [kor, setKor] = useState(0);
+  const [progress, setProgress] = useState(0);
   const { isDone } = useAuth();
   const { memberScore } = useAuth();
   const { setIsDone } = useAuth();
@@ -27,6 +30,11 @@ function QuizTest() {
   const [wrongIndexList, setWrongIndexList] = useState([]);
   const navigate = useNavigate();
   const baseUrl = serverConfig.serverUrl + ':8080';
+
+  const isEnglishString = (str) => {
+    const englishRegex = /(?=.*[a-z])(?=.*[A-Z])/;
+    return englishRegex.test(str);
+  };
 
   const quizInfo = async () => {
     console.log(isDone);
@@ -39,8 +47,16 @@ function QuizTest() {
       });
       console.log('/quiz/test에서 받은 데이터: ', response.data);
       setQuizList(response.data);
-      setQuiz(response.data[0][1]);
-      setCorrect(response.data[0][0]);
+      if (isEnglishString(response.data[0][0])) {
+        setKor(1);
+        setEng(0);
+      } else {
+        setKor(0);
+        setEng(1);
+      }
+      setQuiz(response.data[0][kor]);
+      setCorrect(response.data[0][eng]);
+
       setAllPoint(response.data.length);
     } catch (error) {
       console.error('details error : ', error);
@@ -59,6 +75,7 @@ function QuizTest() {
       setScore(Math.round((pointCount / allPoint) * 100));
       setOnTest(false);
     } else {
+      setProgress(Math.round((count / allPoint) * 100));
       setCount(count + 1);
       setIndex(index + 1);
       setOnTest(false);
@@ -74,8 +91,8 @@ function QuizTest() {
     if (trueFalse) {
       setPointCount(pointCount + 1);
     }
-    setQuiz(quizList[index][1]);
-    setCorrect(quizList[index][0]);
+    setQuiz(quizList[index][kor]);
+    setCorrect(quizList[index][eng]);
     setAnswer(null);
     setOnTest(true);
   };
@@ -130,7 +147,12 @@ function QuizTest() {
           <button onClick={onClickSubmit} className='quiztest-submit-btn'>
             제출
           </button>
-          {correct}
+          <div class='progress'>
+            <div
+              class='progress-bar'
+              style={{ width: `${progress}%`, backgroundColor: '#86e01e' }}
+            ></div>
+          </div>
           <h4 className='quiz-count'>
             {count}/{allPoint}
           </h4>
