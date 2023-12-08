@@ -17,7 +17,7 @@ function CommentShow() {
       });
       try {
         const response = await apiClient.get(`/api/articles/${id}/comments`);
-        console.log('commentList', response.data);
+        console.log('commentList = ', response.data);
         setCommentList(response.data);
       } catch (error) {
         console.error('show error : ', error);
@@ -25,11 +25,12 @@ function CommentShow() {
     };
     show();
   }, [id]);
+
   return (
     <div id='comments-list'>
       {commentList.map((list) => (
         <div className='card m-2' key={list.id}>
-          <div className='card-header'>작성자: {list.nickname}</div>
+          <div className='card-header'>작성자: {list.member.memberName}</div>
           <div className='card-body'>{list.body}</div>
         </div>
       ))}

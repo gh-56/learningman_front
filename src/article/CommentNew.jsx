@@ -5,8 +5,8 @@ import { getCookie } from '../cookies/CookieFunction';
 
 function CommentNew() {
   const { id } = useParams();
-  const [nickname, setNickName] = useState('');
   const [body, setBody] = useState('');
+
   const formSubmit = async (e) => {
     apiClient.interceptors.request.use((config) => {
       console.log('인터셉터하여 헤더에 토큰 정보 추가');
@@ -16,7 +16,6 @@ function CommentNew() {
     e.preventDefault();
     apiClient
       .post(`/api/articles/${id}/comments`, {
-        nickname: nickname,
         body: body,
         articleId: id,
       })
@@ -27,9 +26,7 @@ function CommentNew() {
         console.log(error);
       });
   };
-  const onChangeHandlerNickname = (e) => {
-    setNickName(e.target.value);
-  };
+
   const onChangeHandlerBody = (e) => {
     setBody(e.target.value);
   };
@@ -38,18 +35,6 @@ function CommentNew() {
       <div className='card-body'>
         {/* 댓글 작성 폼 */}
         <form onSubmit={formSubmit}>
-          {/* 닉네임 입력 */}
-          <div className='mb-3'>
-            <label className='form-label'>닉네임</label>
-            <input
-              name='nickname'
-              type='text'
-              value={nickname}
-              className='form-control'
-              id='new-comment-nickname'
-              onChange={onChangeHandlerNickname}
-            />
-          </div>
           {/* 댓글 본문 입력 */}
           <div className='mb-3'>
             <label className='form-label'>댓글 내용</label>
