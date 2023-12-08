@@ -1,4 +1,4 @@
 const serverConfig = {
-  serverUrl: 'http://15.164.103.221',
+  serverUrl: 'http://localhost',
 };
 export default serverConfig;
