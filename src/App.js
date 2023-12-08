@@ -18,7 +18,13 @@ import QuizTest from './pages/QuizTest';
 import WordsRegister from './words/WordsRegister';
 import WordsShow from './words/WordsShow';
 import WordsDetail from './words/WordsDetail';
+import { useState } from 'react';
 function App() {
+  const [editState, setEditState] = useState(false);
+  const [editTitle, setEditTitle] = useState(null);
+  const [editContent, setEditContent] = useState(null);
+  const [editArticleId, setEditArticleId] = useState(null);
+
   return (
     <div>
       <AuthProvider>
@@ -38,10 +44,27 @@ function App() {
                 path='/articles'
                 element={
                   <div>
-                    <h2>문제 직접 등록</h2>
-                    <ArticleRegister />
-
-                    <ArticleShow />
+                    <h2>자유 게시판</h2>
+                    <ArticleRegister
+                      setEditState={setEditState}
+                      editState={editState}
+                      setEditTitle={setEditTitle}
+                      editTitle={editTitle}
+                      setEditContent={setEditContent}
+                      editContent={editContent}
+                      setEditArticleId={setEditArticleId}
+                      editArticleId={editArticleId}
+                    />
+                    <ArticleShow
+                      setEditState={setEditState}
+                      editState={editState}
+                      setEditTitle={setEditTitle}
+                      editTitle={editTitle}
+                      setEditContent={setEditContent}
+                      editContent={editContent}
+                      setEditArticleId={setEditArticleId}
+                      editArticleId={editArticleId}
+                    />
                   </div>
                 }
               />

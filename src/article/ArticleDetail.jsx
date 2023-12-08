@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import CommentNew from './CommentNew';
-import { apiClient } from '../api/ApiClient';
-import CommentShow from './CommentShow';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import CommentNew from "./CommentNew";
+import { apiClient } from "../api/ApiClient";
+import CommentShow from "./CommentShow";
 
 function ArticleDetail() {
   const { id } = useParams();
-  const [quizData, setQuizData] = useState('');
+  const [quizData, setQuizData] = useState("");
 
   const details = async () => {
     try {
       const response = await apiClient.get(`/api/articles/${id}`);
-      console.log('quizData : ', response.data);
+      console.log("quizData : ", response.data);
       setQuizData(response.data);
     } catch (error) {
-      console.error('details error : ', error);
+      console.error("details error : ", error);
     }
   };
   useEffect(() => {
@@ -22,21 +22,13 @@ function ArticleDetail() {
   }, []);
   return (
     <div>
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>단어(한국어)</th>
-            <th>단어(영어)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>{quizData.id}</th>
-            <td>{quizData.title}</td>
-            <td>{quizData.content}</td>
-          </tr>
-        </tbody>
+      <table className="table">
+        <div>
+          <h2>{quizData.title}</h2>
+        </div>
+        <div>
+          <div>{quizData.content}</div>
+        </div>
       </table>
       <CommentShow />
       <CommentNew />
