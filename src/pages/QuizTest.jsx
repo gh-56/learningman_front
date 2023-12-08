@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
 import axios, { AxiosError } from 'axios';
@@ -20,14 +20,16 @@ function QuizTest() {
   const [allPoint, setAllPoint] = useState(0);
   const [endTest, setEndTest] = useState(false);
   const [score, setScore] = useState(0);
+
   const [eng, setEng] = useState(1);
   const [kor, setKor] = useState(0);
   const [progress, setProgress] = useState(0);
+
   const { isDone } = useAuth();
   const { memberScore } = useAuth();
   const { setIsDone } = useAuth();
   const { setMemberScore } = useAuth();
-  const [wrongIndexList, setWrongIndexList] = useState([]);
+
   const navigate = useNavigate();
   const baseUrl = serverConfig.serverUrl + ':8080';
 
@@ -56,7 +58,6 @@ function QuizTest() {
       }
       setQuiz(response.data[0][kor]);
       setCorrect(response.data[0][eng]);
-
       setAllPoint(response.data.length);
     } catch (error) {
       console.error('details error : ', error);
@@ -67,7 +68,6 @@ function QuizTest() {
     if (answer === correct) {
       setTrueFalse(true);
     } else {
-      setWrongIndexList([...wrongIndexList, index]);
       setTrueFalse(false);
     }
     if (count === allPoint) {
@@ -87,7 +87,6 @@ function QuizTest() {
   };
 
   const nextQuizHandler = () => {
-    console.log(wrongIndexList);
     if (trueFalse) {
       setPointCount(pointCount + 1);
     }
@@ -103,7 +102,6 @@ function QuizTest() {
         baseUrl + '/quiz/end',
         {
           score: score,
-          wrongIndexList: wrongIndexList,
         },
         {
           headers: {
@@ -122,6 +120,19 @@ function QuizTest() {
     quizInfo();
   }, []);
 
+  const inputRefCur = useRef(null);
+  useEffect(() => {
+    if (inputRefCur.current) {
+      inputRefCur.current.focus();
+    }
+  }, [inputRefCur]);
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onClickSubmit();
+    }
+  };
+
   return (
     <div className='quizTest'>
       <h1>현재 과제</h1>
@@ -137,11 +148,13 @@ function QuizTest() {
             문제{count}: {quiz}
           </h3>
           <input
+            ref={inputRefCur}
             type='text'
             value={answer}
             onChange={onChangeAnswer}
             placeholder='정답 입력'
             className='quiztest-input'
+            onKeyDown={handleKeyDown}
           />
           <br />
           <button onClick={onClickSubmit} className='quiztest-submit-btn'>
@@ -151,7 +164,9 @@ function QuizTest() {
             <div
               class='progress-bar'
               style={{ width: `${progress}%`, backgroundColor: '#86e01e' }}
-            ></div>
+            >
+              {progress}%
+            </div>
           </div>
           <h4 className='quiz-count'>
             {count}/{allPoint}
