@@ -22,6 +22,7 @@ function QuizTest() {
   const [score, setScore] = useState(0);
   const [eng, setEng] = useState(1);
   const [kor, setKor] = useState(0);
+  const [progress, setProgress] = useState(0);
   const { isDone } = useAuth();
   const { memberScore } = useAuth();
   const { setIsDone } = useAuth();
@@ -73,6 +74,7 @@ function QuizTest() {
       setScore(Math.round((pointCount / allPoint) * 100));
       setOnTest(false);
     } else {
+      setProgress(Math.round((count / allPoint) * 100));
       setCount(count + 1);
       setIndex(index + 1);
       setOnTest(false);
@@ -142,6 +144,12 @@ function QuizTest() {
           <button onClick={onClickSubmit} className='quiztest-submit-btn'>
             제출
           </button>
+          <div class='progress'>
+            <div
+              class='progress-bar'
+              style={{ width: `${progress}%`, backgroundColor: '#86e01e' }}
+            ></div>
+          </div>
           <h4 className='quiz-count'>
             {count}/{allPoint}
           </h4>
