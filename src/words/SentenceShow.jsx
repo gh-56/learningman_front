@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCookie } from '../cookies/CookieFunction';
-import { apiClient } from '../api/ApiClient';
+import { apiClient, myPageApi } from '../api/ApiClient';
 
 function SentenceShow() {
   const [sentenceList, setSentenceList] = useState([]);
@@ -29,7 +29,7 @@ function SentenceShow() {
     <div id='comments-list'>
       {sentenceList.map((list) => (
         <div className='card m-2' key={list.id}>
-          <div className='card-header'>작성자: {list.nickname}</div>
+          <div className='card-header'>작성자: {list.memberId}</div>
           <div className='card-body'>{list.body}</div>
         </div>
       ))}
