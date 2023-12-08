@@ -16,6 +16,8 @@ import ArticleShow from './article/ArticleShow';
 import ArticleDetail from './article/ArticleDetail';
 import QuizTest from './pages/QuizTest';
 import WordsRegister from './words/WordsRegister';
+import WordsShow from './words/WordsShow';
+import WordsDetail from './words/WordsDetail';
 function App() {
   return (
     <div>
@@ -44,7 +46,16 @@ function App() {
                 }
               />
               <Route path='/articles/:id' element={<ArticleDetail />} />
-              <Route path='/words' element={<WordsRegister />} />
+              <Route
+                path='/words'
+                element={
+                  <div>
+                    <WordsRegister />
+                    <WordsShow />
+                  </div>
+                }
+              />
+              <Route path='/words/:id' element={<WordsDetail />} />
             </Routes>
           </div>
         </Router>
