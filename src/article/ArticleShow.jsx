@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { apiClient, myPageApi } from "../api/ApiClient";
-import { getCookie } from "../cookies/CookieFunction";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { apiClient, myPageApi } from '../api/ApiClient';
+import { getCookie } from '../cookies/CookieFunction';
 
 function ArticleShow({
   editState,
@@ -14,22 +14,22 @@ function ArticleShow({
   editArticleId,
 }) {
   const [quizList, setQuizList] = useState([]);
-  const [myInfoData, setMyInfoData] = useState(null);
+  const [myInfoData, setMyInfoData] = useState('');
 
   const show = async () => {
     try {
-      const response = await apiClient.get("/api/articles");
-      console.log("quizList : ", response.data);
+      const response = await apiClient.get('/api/articles');
+      console.log('quizList : ', response.data);
       setQuizList(response.data);
     } catch (error) {
-      console.error("show error : ", error);
+      console.error('show error : ', error);
     }
   };
 
   const myInfo = async () => {
-    const infoResponse = await apiClient.get("/members/info", {
+    const infoResponse = await apiClient.get('/members/info', {
       headers: {
-        Authorization: getCookie("tokenKey"),
+        Authorization: getCookie('tokenKey'),
       },
     });
     console.log(infoResponse.data);
@@ -45,13 +45,13 @@ function ArticleShow({
 
   const deleteApi = async () => {
     const response = await apiClient.post(
-      "/api/deletearticles",
+      '/api/deletearticles',
       {
         id: editArticleId,
       },
       {
         headers: {
-          Authorization: getCookie("tokenKey"),
+          Authorization: getCookie('tokenKey'),
         },
       }
         .then((res) => {
@@ -65,16 +65,16 @@ function ArticleShow({
   };
 
   const deleteArticle = async (list) => {
-    if (window.confirm("정말로 삭제하시겠습니까?")) {
+    if (window.confirm('정말로 삭제하시겠습니까?')) {
       const response = await apiClient
         .post(
-          "/api/deletearticles",
+          '/api/deletearticles',
           {
             id: list.id,
           },
           {
             headers: {
-              Authorization: getCookie("tokenKey"),
+              Authorization: getCookie('tokenKey'),
             },
           }
         )
@@ -85,7 +85,7 @@ function ArticleShow({
         .catch((err) => {
           console.log(err);
         });
-      alert("삭제되었습니다");
+      alert('삭제되었습니다');
     }
   };
 
@@ -97,7 +97,7 @@ function ArticleShow({
   return (
     <div>
       <h2>문제 확인</h2>
-      <table className="table">
+      <table className='table'>
         <thead>
           <tr>
             {/* <th>번호</th> */}
@@ -115,11 +115,13 @@ function ArticleShow({
               <td>{list.content}</td>
               <td>{list.member.memberName}</td>
               {list.member.memberId === myInfoData.memberId ? (
-                <div>
+                <td>
                   <button onClick={() => editArticle(list)}>수정</button>
                   <button onClick={() => deleteArticle(list)}>삭제</button>
-                </div>
-              ) : null}
+                </td>
+              ) : (
+                <td>123456</td>
+              )}
             </tr>
           ))}
         </tbody>

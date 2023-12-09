@@ -5,6 +5,7 @@ import { apiClient, myPageApi } from '../api/ApiClient';
 
 function SentenceShow() {
   const [sentenceList, setSentenceList] = useState([]);
+  const [memberInfo, setMemberInfo] = useState('');
   const params = useParams();
   const id = params.id;
 
@@ -23,13 +24,23 @@ function SentenceShow() {
         console.error('show error : ', error);
       }
     };
+    const myInfo = async () => {
+      try {
+        const response = await myPageApi();
+        console.log('myInfo ', response.data);
+        setMemberInfo(response.data);
+      } catch (error) {
+        console.error('myInfo error', error);
+      }
+    };
     show();
+    myInfo();
   }, [id]);
   return (
     <div id='comments-list'>
       {sentenceList.map((list) => (
         <div className='card m-2' key={list.id}>
-          <div className='card-header'>작성자: {list.memberId}</div>
+          <div className='card-header'>작성자: {memberInfo.memberName}</div>
           <div className='card-body'>{list.body}</div>
         </div>
       ))}
