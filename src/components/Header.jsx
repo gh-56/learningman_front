@@ -152,7 +152,7 @@ const Header = () => {
                 to='/login'
                 onClick={() => handleTabClick(1)}
               >
-                <i className='fas fa-tachometer-alt'></i>로그인
+                <i class='fa-solid fa-arrow-right-to-bracket'></i>로그인
               </Link>
             </li>
             <li className={`nav-item ${activeTab === 2 ? 'active' : ''}`}>
@@ -161,7 +161,7 @@ const Header = () => {
                 to='/register'
                 onClick={() => handleTabClick(2)}
               >
-                <i className='far fa-address-book'></i>회원가입
+                <i class='fa-solid fa-user-plus'></i>회원가입
               </Link>
             </li>
           </ul>
@@ -186,7 +186,7 @@ const Header = () => {
                 to='/articles'
                 onClick={() => handleTabClick(2)}
               >
-                <i className='far fa-address-book'></i>게시판
+                <i class='fa-solid fa-newspaper'></i>게시판
               </Link>
             </li>
             <li className={`nav-item ${activeTab === 3 ? 'active' : ''}`}>
