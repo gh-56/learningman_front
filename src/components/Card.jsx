@@ -55,8 +55,9 @@ function Card() {
 
   console.log(memberDto);
   return (
-    <div>
-      <div className='cards'>
+    <div className='cards'>
+      <div className='cards-item'>
+        <h2>나의 프로필</h2>
         <div className='card'>
           {baseImg !== null ? (
             <img
@@ -82,7 +83,9 @@ function Card() {
           </div>
         </div>
       </div>
-      {role === 'TEACHER' ? <TeacherMain /> : done ? <StudentMain /> : null}
+      <div className='cards-item'>
+        {role === 'TEACHER' ? <TeacherMain /> : done ? <StudentMain /> : null}
+      </div>
     </div>
   );
 }

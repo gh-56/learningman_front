@@ -82,7 +82,6 @@ function TeacherMain() {
 
   return (
     <div>
-      <br />
       <h2>학생 리스트</h2>
       {student && <div className='card-list'>{student}</div>}
       {modalOpen && (

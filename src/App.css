@@ -1,8 +1,7 @@
 .app-container {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   margin-top: 40px;
-  min-width: 1000px;
 }
 
 body {

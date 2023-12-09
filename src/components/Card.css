@@ -3,18 +3,27 @@
 div.cards {
   place-items: center;
   display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 5%;
+}
+.cards-item {
+  background-color: white;
+  padding: 5%;
+  border-radius: 15px 15px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+  overflow-y: scroll;
 }
 
 div.card {
   background-color: #ffffff;
-  margin: 8px;
-  min-width: 300px;
+  margin: 0px;
+  /* min-width: 300px; */
   text-align: left;
   width: 300px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
 
   .card-img-top {
-    max-width: 300px;
+    width: 100%;
   }
   .card-h2 {
     font-size: 24px;
@@ -23,14 +32,4 @@ div.card {
     margin: 0;
     padding: 0;
   }
-}
-
-.studentmain-div {
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  border: 1px solid rgb(219, 216, 216);
-  background-color: white;
-  border-radius: 15px 15px;
 }
