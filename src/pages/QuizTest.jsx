@@ -19,6 +19,7 @@ function QuizTest() {
   const [count, setCount] = useState(1);
   const [allPoint, setAllPoint] = useState(0);
   const [endTest, setEndTest] = useState(false);
+  const [wrongIndexList, setWrongIndexList] = useState([]);
   const [score, setScore] = useState(0);
 
   const [eng, setEng] = useState(1);
@@ -68,6 +69,7 @@ function QuizTest() {
     if (answer === correct) {
       setTrueFalse(true);
     } else {
+      setWrongIndexList([...wrongIndexList, index]);
       setTrueFalse(false);
     }
     if (count === allPoint) {
@@ -102,6 +104,7 @@ function QuizTest() {
         baseUrl + '/quiz/end',
         {
           score: score,
+          wrongIndexList: wrongIndexList,
         },
         {
           headers: {
