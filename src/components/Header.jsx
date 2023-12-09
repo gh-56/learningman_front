@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import { useAuth } from '../security/AuthContext';
 import { getCookie } from '../cookies/CookieFunction';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -135,7 +137,7 @@ const Header = () => {
         aria-label='Toggle navigation'
         onClick={handleNavbarToggle}
       >
-        <i className='fas fa-bars text-white'></i>
+        <i class='fas fa-bars text-white'></i>
       </button>
       <div className='collapse navbar-collapse' id='navbarSupportedContent'>
         {getCookie('tokenKey') == null ? (

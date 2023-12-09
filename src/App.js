@@ -19,6 +19,8 @@ import WordsRegister from './words/WordsRegister';
 import WordsShow from './words/WordsShow';
 import WordsDetail from './words/WordsDetail';
 import { useState } from 'react';
+import '@fortawesome/fontawesome-free/css/all.css';
+
 function App() {
   const [editState, setEditState] = useState(false);
   const [editTitle, setEditTitle] = useState(null);
