@@ -57,7 +57,7 @@ function Card() {
   return (
     <div className='cards'>
       <div className='cards-item'>
-        <h2>나의 프로필</h2>
+        <h2 className='title-cards'>나의 프로필</h2>
         <div className='card'>
           {baseImg !== null ? (
             <img
@@ -83,7 +83,7 @@ function Card() {
           </div>
         </div>
       </div>
-      <div className='cards-item'>
+      <div className='cards-item2'>
         {role === 'TEACHER' ? <TeacherMain /> : done ? <StudentMain /> : null}
       </div>
     </div>

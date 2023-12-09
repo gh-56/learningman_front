@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { apiClient } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
+import './CommentNew.css';
 
 function CommentNew() {
   const { id } = useParams();
@@ -31,8 +32,8 @@ function CommentNew() {
     setBody(e.target.value);
   };
   return (
-    <div className='card m-2' id='comments-new'>
-      <div className='card-body'>
+    <div className='comment-new'>
+      <div className='comment-new-body'>
         {/* 댓글 작성 폼 */}
         <form onSubmit={formSubmit}>
           {/* 댓글 본문 입력 */}

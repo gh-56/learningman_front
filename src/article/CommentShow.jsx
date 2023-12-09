@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { useParams } from 'react-router-dom';
 import { getCookie } from '../cookies/CookieFunction';
+import './CommentShow.css';
 
 function CommentShow() {
   const [commentList, setCommentList] = useState([]);

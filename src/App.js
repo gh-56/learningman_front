@@ -28,7 +28,7 @@ function App() {
   const [editArticleId, setEditArticleId] = useState(null);
 
   return (
-    <div>
+    <div className='container'>
       <AuthProvider>
         <Router>
           <Header />
@@ -45,9 +45,8 @@ function App() {
               <Route
                 path='/articles'
                 element={
-                  <div>
-                    <h2>자유 게시판</h2>
-                    <ArticleRegister
+                  <div className='article-container'>
+                    <ArticleShow
                       setEditState={setEditState}
                       editState={editState}
                       setEditTitle={setEditTitle}
@@ -57,7 +56,7 @@ function App() {
                       setEditArticleId={setEditArticleId}
                       editArticleId={editArticleId}
                     />
-                    <ArticleShow
+                    <ArticleRegister
                       setEditState={setEditState}
                       editState={editState}
                       setEditTitle={setEditTitle}

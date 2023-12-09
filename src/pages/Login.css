@@ -1,40 +1,54 @@
+.title-login {
+  margin-top: 5%;
+  color: #5161ce;
+  margin-bottom: 5%;
+}
+
 .login {
   background-color: #ffffff;
-  border: 2px solid #a3a1a1;
-  padding: 30px;
-  width: 500px;
+  border-bottom: 0.4rem solid #5161ce;
+  /* padding: 2rem; */
+  width: 40%;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
 .login-input {
-  border: 2px solid;
-  margin: 25px;
-  width: 400px;
-  height: 50px;
+  border: 1px solid;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 80%;
+  height: 3rem;
 }
 
 .login-input::placeholder {
-  padding-left: 13px;
+  padding-left: 0.8rem;
 }
 
 .login-btn {
-  width: 400px;
-  height: 50px;
+  width: 80%;
+  height: 3rem;
   margin-top: 15px;
-  border-radius: 5%;
-  background-color: #000000;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem 1rem;
+  border: 1px solid #5161ce;
+  background-color: #5161ce;
   color: #ffffff;
 }
 
 .login-register {
-  float: right;
-  margin-right: 30px;
   margin-top: 8px;
 }
 
 .message {
   color: #3d3c3c;
   text-decoration: none;
+}
+.message:hover {
+  color: #5161ce;
+}
+
+@media (max-width: 991px) {
+  .login {
+    width: 80%;
+  }
 }

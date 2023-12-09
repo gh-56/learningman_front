@@ -41,7 +41,7 @@ function StudentQuizModal({ setModalOpen, wrongIndexList, modalOpen }) {
 
   return (
     <div>
-      <div className='container'>
+      <div className='quizModal-container'>
         {wrongIndexList === null ? null : ( // <div>아직 과제를 하지 않았습니다</div>
           <div className='modal-container'>
             <h2 className='listSize'>틀린 문제 개수 : {listSize}</h2>

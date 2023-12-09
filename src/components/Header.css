@@ -148,6 +148,9 @@ i {
 }
 
 @media (max-width: 991px) {
+  .navbar-expand-custom {
+    width: 100%;
+  }
   #navbarSupportedContent ul li a {
     padding: 12px 30px;
   }

@@ -84,58 +84,61 @@ function Register() {
 
   return (
     <div className='register'>
-      <h2>Sign Up</h2>
+      <h2 className='title-signup'>Sign Up</h2>
       <form onSubmit={formSubmit}>
-        <label className='register-label'>이름</label>
-        <input
-          name='name'
-          type='text'
-          value={memberName}
-          onChange={onChangeHandlerName}
-          className='register-input'
-          placeholder='name'
-        />
-        {nameError === null ? null : <p>{nameError}</p>}
-
-        <label className='register-label'>이메일</label>
-        <input
-          name='email'
-          type='text'
-          value={memberEmail}
-          onChange={onChangeHandlerEmail}
-          className='register-input'
-          placeholder='email'
-        />
-        {emailError === null ? null : <p>{emailError}</p>}
-
-        <label className='register-label'>비밀번호</label>
-        <input
-          name='password'
-          type='password'
-          value={memberPassword}
-          onChange={onChangeHandlerPassword}
-          className='register-input'
-          placeholder='password'
-        />
-        {passwordError === null ? null : <p>{passwordError}</p>}
-
-        <div className='select-register-radio'>
+        <div className='register-lie'>
+          <label className='register-label'>이름</label>
           <input
-            type='radio'
-            value='STUDENT'
-            checked={role === 'STUDENT'}
-            onChange={handleClickRadioButton}
+            name='name'
+            type='text'
+            value={memberName}
+            onChange={onChangeHandlerName}
+            className='register-input'
+            placeholder='name'
           />
-          학생
+          {nameError === null ? null : <p className='errormsg'>{nameError}</p>}
+          <label className='register-label'>이메일</label>
+          <input
+            name='email'
+            type='text'
+            value={memberEmail}
+            onChange={onChangeHandlerEmail}
+            className='register-input'
+            placeholder='email'
+          />
+          {emailError === null ? null : (
+            <p className='errormsg'>{emailError}</p>
+          )}
+          <label className='register-label'>비밀번호</label>
+          <input
+            name='password'
+            type='password'
+            value={memberPassword}
+            onChange={onChangeHandlerPassword}
+            className='register-input'
+            placeholder='password'
+          />
+          {passwordError === null ? null : (
+            <p className='errormsg'>{passwordError}</p>
+          )}
         </div>
         <div className='select-register-radio'>
           <input
             type='radio'
+            id='select-register-radio1'
+            value='STUDENT'
+            checked={role === 'STUDENT'}
+            onChange={handleClickRadioButton}
+          />
+          <label for='select-register-radio1'>학생</label>
+          <input
+            type='radio'
+            id='select-register-radio2'
             value='TEACHER'
             checked={role === 'TEACHER'}
             onChange={handleClickRadioButton}
           />
-          선생님
+          <label for='select-register-radio2'>선생님</label>
         </div>
 
         <button type='submit' className='register-button'>

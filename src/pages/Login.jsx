@@ -24,7 +24,7 @@ function Login() {
 
   return (
     <div className='login'>
-      <h2>Login</h2>
+      <h2 className='title-login'>LOG IN</h2>
       <form method='post' onSubmit={formSubmit}>
         <input
           name='email'
@@ -43,11 +43,11 @@ function Login() {
           className='login-input'
         />
         <button type='submit' className='login-btn'>
-          Login
+          로그인
         </button>
         <p className='login-register'>
           <Link className='message' to='/register'>
-            회원가입 하기
+            아직 회원이 아니신가요?
           </Link>
         </p>
       </form>

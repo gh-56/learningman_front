@@ -39,31 +39,38 @@ function TeacherMain() {
     setStudent(
       response.data.map((value) => (
         <div className='card-element' onClick={() => showModal(value)}>
-          {value.memberProfileImg !== 'null' ? (
-            <img
-              src={
-                serverConfig.serverUrl + `:8080${value.memberProfileImg.imgUrl}`
-              }
-              className='card-img-top'
-              alt='현재 프로필 이미지 없음'
-            />
-          ) : (
-            <img
-              src={basicImg}
-              className='card-img-top'
-              alt='기본 프로필 이미지 없음'
-            />
-          )}
-          <h2 className='card-h2-list'>{value.memberName}</h2>
-          <div className='card-email-list'>{value.memberEmail}</div>
-          {value.homework === null ? null : value.done === false ? (
-            <div className='resultF'>F</div>
-          ) : (
-            <div>
-              <div className='resultP'>P</div>
-              <h3 className='score'>점수 : {value.quizScore}점</h3>
-            </div>
-          )}
+          <div className='card-wrap'>
+            {value.memberProfileImg !== 'null' ? (
+              <div className='card-img-wrap'>
+                <img
+                  src={
+                    serverConfig.serverUrl +
+                    `:8080${value.memberProfileImg.imgUrl}`
+                  }
+                  className='card-img-top'
+                  alt='현재 프로필 이미지 없음'
+                />
+              </div>
+            ) : (
+              <div className='card-img-wrap'>
+                <img
+                  src={basicImg}
+                  className='card-img-top'
+                  alt='기본 프로필 이미지 없음'
+                />
+              </div>
+            )}
+            <h2 className='card-h2-list'>{value.memberName}</h2>
+            <div className='card-email-list'>{value.memberEmail}</div>
+            {value.homework === null ? null : value.done === false ? (
+              <div className='resultF'>F</div>
+            ) : (
+              <div>
+                <div className='resultP'>P</div>
+                <h3 className='score'>점수 : {value.quizScore}점</h3>
+              </div>
+            )}
+          </div>
         </div>
       ))
     );
@@ -82,7 +89,7 @@ function TeacherMain() {
 
   return (
     <div>
-      <h2>학생 리스트</h2>
+      <h2 className='title-stuList'>학생 리스트</h2>
       {student && <div className='card-list'>{student}</div>}
       {modalOpen && (
         <div

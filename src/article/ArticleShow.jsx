@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient, myPageApi } from '../api/ApiClient';
 import { getCookie } from '../cookies/CookieFunction';
-
+import './ArticleShow.css';
 function ArticleShow({
   editState,
   setEditState,
@@ -95,9 +95,9 @@ function ArticleShow({
   }, []);
 
   return (
-    <div>
-      <h2>문제 확인</h2>
-      <table className='table'>
+    <div className='article-item1'>
+      <h2>게시글 목록</h2>
+      <table className='article-table'>
         <thead>
           <tr>
             {/* <th>번호</th> */}
@@ -112,7 +112,7 @@ function ArticleShow({
               <td>
                 <Link to={`/articles/${list.id}`}>{list.title} </Link>
               </td>
-              <td>{list.content}</td>
+              <td className='article-content'>{list.content}</td>
               <td>{list.member.memberName}</td>
               {list.member.memberId === myInfoData.memberId ? (
                 <td>

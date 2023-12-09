@@ -1,0 +1,11 @@
+.article-table {
+  width: 100px;
+}
+.article-item1 {
+}
+.article-table {
+  width: 100%;
+  .article-content {
+    overflow-x: scroll;
+  }
+}

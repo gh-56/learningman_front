@@ -1,58 +1,78 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300,600,700,900);
 .card-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 1000px;
+  grid-template-columns: repeat(3, 30%);
+  column-gap: 5%;
+  row-gap: 5%;
+}
+.title-stuList {
+  font-weight: bold;
+  margin-bottom: 4%;
 }
 
 .card-element {
   background-color: #ffffff;
-  width: 18rem;
-  margin: 20px;
-  padding: 20px;
+  width: 100%;
+  padding: 1.25rem;
   border: 2px solid rgba(182, 180, 180, 0.5);
-  border-radius: 10%;
+  border-radius: 1.2rem 1.2rem;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
 
+  .card-wrap {
+    padding: 10%;
+    width: 100%;
+  }
+  .card-img-wrap {
+    width: 100%;
+    text-align: center;
+  }
   .card-img-top {
-    width: 150px;
-    height: 150px;
-    max-width: 300px;
-    max-height: 300px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    bottom: 50%;
-    opacity: 1;
     box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
     border: 2px solid rgba(0, 0, 0, 0.3);
-    /* -webkit-transform: translate(50%, 0%); */
-    transform: translate(30%, 0%);
+    /* transform: translate(30%, 0%); */
   }
   .card-h2-list {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     text-align: center;
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: bold;
   }
   .card-email-list {
     text-align: center;
   }
   .resultF {
     background-color: rgba(255, 0, 0, 0.89);
-    border-radius: 15px 15px;
+    border-radius: 1rem 1rem;
     color: rgba(255, 0, 0, 0.89);
   }
   .resultP {
     background-color: green;
-    border-radius: 15px 15px;
+    border-radius: 1rem 1rem;
 
     color: green;
   }
 
   .score {
     text-align: center;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 1.1rem;
+    font-weight: bold;
     letter-spacing: -0.05em;
-    margin-top: 10px;
+    margin-top: 0.65rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .card-list {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    column-gap: 3%;
+    row-gap: 3%;
+  }
+  .card-wrap {
+    padding: 0px;
   }
 }

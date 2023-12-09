@@ -3,11 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 import { useAuth } from '../security/AuthContext';
 import { getCookie } from '../cookies/CookieFunction';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Header = () => {
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
   const location = useLocation();
   const selectorRef = useRef(null);
   const updateSelectorTimeoutRef = useRef(null);
@@ -220,11 +218,7 @@ const Header = () => {
               </li>
             )}
             <li className={`nav-item ${activeTab === 5 ? 'active' : ''}`}>
-              <Link
-                className='nav-link'
-                // to='/articles'
-                onClick={() => handleTabClick(5)}
-              >
+              <Link className='nav-link' onClick={() => handleTabClick(5)}>
                 <i className='far fa-address-book'></i>로그아웃
               </Link>
             </li>
