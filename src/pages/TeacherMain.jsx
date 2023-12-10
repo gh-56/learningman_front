@@ -65,10 +65,10 @@ function TeacherMain() {
             <h2 className='card-h2-list'>{value.memberName}</h2>
             <div className='card-email-list'>{value.memberEmail}</div>
             {value.homework === null ? null : value.done === false ? (
-              <div className='resultF'>F</div>
+              <div className='resultF'></div>
             ) : (
               <div>
-                <div className='resultP'>P</div>
+                <div className='resultP'></div>
                 <h3 className='score'>점수 : {value.quizScore}점</h3>
               </div>
             )}

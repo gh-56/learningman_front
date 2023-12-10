@@ -23,14 +23,13 @@ function ArticleDetail() {
   }, []);
   return (
     <div className='comment-container'>
-      <table className='table'>
-        <div>
-          <h2>{quizData.title}</h2>
-        </div>
-        <div>
-          <div>{quizData.content}</div>
-        </div>
-      </table>
+      <div className='detail-article-title'>
+        <h2 className='title-articlelist'>제목 : {quizData.title}</h2>
+        {quizData && <p>작성자 : {quizData.member.memberName}</p>}
+      </div>
+      <div className='detail-article-content'>
+        <div>{quizData.content}</div>
+      </div>
       <CommentShow />
       <CommentNew />
     </div>

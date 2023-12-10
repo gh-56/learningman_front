@@ -37,13 +37,13 @@ function CommentNew() {
         {/* 댓글 작성 폼 */}
         <form onSubmit={formSubmit}>
           {/* 댓글 본문 입력 */}
-          <div className='mb-3'>
-            <label className='form-label'>댓글 내용</label>
+          <div className='comment-new-div'>
             <textarea
               name='body'
               type='text'
               value={body}
-              className='form-control'
+              className='comment-new-textarea'
+              placeholder='댓글을 입력해 주세요'
               rows='3'
               id='new-comment-body'
               onChange={onChangeHandlerBody}
@@ -51,7 +51,7 @@ function CommentNew() {
           </div>
           <button
             type='submit'
-            className='btn btn-primary'
+            className='comment-create-btn'
             id='comment-create-btn'
           >
             댓글 작성

@@ -45,11 +45,13 @@
     text-align: center;
   }
   .resultF {
+    height: 1rem;
     background-color: rgba(255, 0, 0, 0.89);
     border-radius: 1rem 1rem;
     color: rgba(255, 0, 0, 0.89);
   }
   .resultP {
+    height: 1rem;
     background-color: green;
     border-radius: 1rem 1rem;
     cursor: pointer;

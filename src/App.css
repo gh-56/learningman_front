@@ -9,6 +9,7 @@
   width: 100%;
   place-items: center;
   margin-top: 2rem;
+  margin-bottom: 10%;
 }
 
 body {
@@ -17,5 +18,13 @@ body {
 
 .article-container {
   display: grid;
-  grid-template-columns: 5fr 1fr;
+  grid-template-columns: 5fr 2fr;
+  place-items: center;
+}
+
+@media (max-width: 991px) {
+  .article-container {
+    grid-template-columns: 100%;
+    row-gap: 3%;
+  }
 }

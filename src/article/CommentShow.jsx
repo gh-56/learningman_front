@@ -29,12 +29,21 @@ function CommentShow() {
 
   return (
     <div id='comments-list'>
-      {commentList.map((list) => (
-        <div className='card m-2' key={list.id}>
-          <div className='card-header'>작성자: {list.member.memberName}</div>
-          <div className='card-body'>{list.body}</div>
+      <div className='detail-hr'>
+        댓글 {commentList && commentList.length}개
+      </div>
+      {commentList.length === 0 ? (
+        <div>댓글이 없습니다.</div>
+      ) : (
+        <div>
+          {commentList.map((list) => (
+            <div className='commentshow-list' key={list.id}>
+              <div className='commentshow-writer'>{list.member.memberName}</div>
+              <div className='commentshow-body'>{list.body}</div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }

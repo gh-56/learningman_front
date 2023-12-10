@@ -1,0 +1,30 @@
+.comment-create-btn {
+  float: right;
+  width: 20%;
+  height: 50px;
+  margin-top: 15px;
+  border-radius: 10px 10px;
+  border: 1px solid #070c26;
+  background-color: #f2f2f2;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+  color: #070c26;
+}
+.comment-create-btn:hover {
+  background-color: #5161ce;
+  color: #f2f2f2;
+}
+
+.comment-new-textarea {
+  margin-top: 5%;
+  width: 100%;
+  border: 1px solid;
+}
+.comment-new-textarea::placeholder {
+  padding: 2%;
+}
+
+@media (max-width: 991px) {
+  .comment-create-btn {
+    width: 40%;
+  }
+}

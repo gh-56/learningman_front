@@ -1,4 +1,36 @@
 .comment-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-row: 1 / 3;
+  width: 60%;
+}
+
+.detail-article-title {
+  width: 100%;
+  padding: 3%;
+  padding-bottom: 1%;
+  background-color: white;
+  /* border: 5px solid #a5a7b6; */
+  border-radius: 1rem 1rem;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+}
+
+.detail-article-content {
+  margin-bottom: 8%;
+  padding: 5%;
+  width: 100%;
+  background-color: white;
+  border-radius: 1rem 1rem;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 991px) {
+  .comment-container {
+    width: 85%;
+  }
+}
+
+@media (max-width: 600px) {
+  .comment-container {
+    width: 95%;
+  }
 }

@@ -96,12 +96,12 @@ function ArticleShow({
 
   return (
     <div className='article-item1'>
-      <h2>게시글 목록</h2>
+      <h2 className='title-articlelist'>게시글 목록</h2>
       <table className='article-table'>
         <thead>
           <tr>
-            {/* <th>번호</th> */}
-            <th>재목</th>
+            <th>번호</th>
+            <th>제목</th>
             <th>내용</th>
             <th>작성자</th>
           </tr>
@@ -109,6 +109,7 @@ function ArticleShow({
         <tbody>
           {quizList.map((list) => (
             <tr key={list.id}>
+              <td>{list.id}</td>
               <td>
                 <Link to={`/articles/${list.id}`}>{list.title} </Link>
               </td>
@@ -116,12 +117,20 @@ function ArticleShow({
               <td>{list.member.memberName}</td>
               {list.member.memberId === myInfoData.memberId ? (
                 <td>
-                  <button onClick={() => editArticle(list)}>수정</button>
-                  <button onClick={() => deleteArticle(list)}>삭제</button>
+                  <button
+                    onClick={() => editArticle(list)}
+                    className='article-button'
+                  >
+                    <i className='fa-solid fa-pen-to-square'></i>
+                  </button>
+                  <button
+                    onClick={() => deleteArticle(list)}
+                    className='article-button'
+                  >
+                    <i className='fa-solid fa-trash'></i>
+                  </button>
                 </td>
-              ) : (
-                <td>123456</td>
-              )}
+              ) : null}
             </tr>
           ))}
         </tbody>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { setCookie, getCookie, removeCookie } from '../cookies/CookieFunction';
+import './ArticleRegister.css';
 
 function ArticleRegister({
   editState,
@@ -79,7 +80,7 @@ function ArticleRegister({
 
   return (
     <div className='article-item2'>
-      <h2>자유 게시판</h2>
+      <h2>글 쓰기</h2>
       {editState ? (
         <form onSubmit={formEdit}>
           <div className='mb-3'>
@@ -103,7 +104,7 @@ function ArticleRegister({
               onChange={onChangeHandlerEditContent}
             ></textarea>
           </div>
-          <button type='submit' className='btn btn-primary'>
+          <button type='submit' className='article-register-button'>
             수정하기
           </button>
         </form>
@@ -130,7 +131,7 @@ function ArticleRegister({
               onChange={onChangeHandlerContent}
             ></textarea>
           </div>
-          <button type='submit' className='btn btn-primary'>
+          <button type='submit' className='article-register-button'>
             등록하기
           </button>
         </form>

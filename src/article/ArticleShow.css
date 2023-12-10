@@ -1,11 +1,62 @@
-.article-table {
-  width: 100px;
+.title-articlelist {
+  font-weight: bold;
+  margin-bottom: 4%;
 }
-.article-item1 {
+.article-item1,
+.article-item2 {
+  align-self: start;
+  background-color: white;
+  padding: 5%;
+  border: 1px solid gray;
+  border-radius: 1rem 1rem;
 }
 .article-table {
   width: 100%;
-  .article-content {
-    overflow-x: scroll;
+}
+.article-table > thead > tr > th {
+  width: 10rem;
+  height: 2rem;
+  border-bottom: 5px solid #5161ce;
+  /* border: 1px solid; */
+}
+
+.article-table > tbody > tr > td {
+  width: 10rem;
+  height: 2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 12rem;
+}
+
+.article-button {
+  border: none;
+  background-color: white;
+  font-size: 0.8rem;
+  padding: 0;
+}
+
+@media (max-width: 991px) {
+  .article-item1 {
+    width: 95%;
+  }
+  .article-item2 {
+    width: 95%;
+  }
+}
+
+@media (max-width: 440px) {
+  .article-item1 {
+    width: 95%;
+  }
+  .article-table {
+    width: 100%;
+  }
+
+  .article-table > tbody > tr > td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 5rem;
   }
 }
