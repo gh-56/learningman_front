@@ -56,10 +56,7 @@ function SenteceNew() {
         {/* 댓글 작성 폼 */}
         <form onSubmit={formSubmit}>
           {/* 닉네임 입력 */}
-          <div className='mb-3'>
-            <label className='form-label'>닉네임</label>
-            {memberInfo.memberName}
-          </div>
+          <div className='mb-3'></div>
           {/* 댓글 본문 입력 */}
           <div className='mb-3'>
             <label className='form-label'>댓글 내용</label>
@@ -75,7 +72,7 @@ function SenteceNew() {
           </div>
           <button
             type='submit'
-            className='btn btn-primary'
+            className='word-submit-button'
             id='comment-create-btn'
           >
             댓글 작성

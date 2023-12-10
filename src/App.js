@@ -73,9 +73,9 @@ function App() {
               <Route
                 path='/words'
                 element={
-                  <div>
-                    <WordsRegister />
+                  <div className='word-container'>
                     <WordsShow />
+                    <WordsRegister />
                   </div>
                 }
               />

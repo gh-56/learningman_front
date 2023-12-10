@@ -21,10 +21,39 @@ body {
   grid-template-columns: 5fr 2fr;
   place-items: center;
 }
+.word-container {
+  width: 60%;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  column-gap: 5%;
+  place-items: center;
+}
 
 @media (max-width: 991px) {
   .article-container {
     grid-template-columns: 100%;
     row-gap: 3%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .word-container {
+    width: 80%;
+    grid-template-columns: 5fr 2fr;
+  }
+}
+
+@media (max-width: 1000px) {
+  .word-container {
+    width: 90%;
+    grid-template-columns: 3fr 1fr;
+  }
+}
+
+@media (max-width: 780px) {
+  .word-container {
+    width: 90%;
+    grid-template-columns: 1fr;
+    row-gap: 5%;
   }
 }

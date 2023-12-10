@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { apiClient } from '../api/ApiClient';
 import { Link } from 'react-router-dom';
+import './WordsShow.css';
 
 function WordsShow() {
   const [wordList, setWordList] = useState([]);
@@ -18,27 +19,18 @@ function WordsShow() {
     show();
   }, []);
   return (
-    <div>
-      <h2>문제 확인</h2>
-      <table className='table'>
-        <thead>
-          <tr>
-            {/* <th>번호</th> */}
-            <th>단어(한국어)</th>
-            <th>단어(영어)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {wordList.map((list) => (
-            <tr key={list.id}>
-              <td>
-                <Link to={`/words/${list.id}`}>{list.kword} </Link>
-              </td>
-              <td>{list.eword}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className='word-item1'>
+      <h2>예문 만들기</h2>
+      <div className='wordList-container'>
+        {wordList.map((list) => (
+          <Link to={`/words/${list.id}`}>
+            <div className='wordList' key={list.id}>
+              <div>{list.kword}</div>
+              <div>{list.eword}</div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
