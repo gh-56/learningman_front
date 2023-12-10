@@ -1,17 +1,34 @@
 /* 모달창을 화면 중앙. 최상단에 노출 */
 .quizModal-container {
   /* 모달창 크기 */
-  width: 350px;
-  height: 320px;
-  overflow-y: auto;
-
+  width: 25rem;
+  height: 30%;
+  overflow-y: scroll;
+  background-color: #ffffff;
+  padding: 1rem;
   /* 최상단 위치 */
   z-index: 999;
 
-  position: absolute;
   top: 20%;
   left: 75%;
-  position: fixed;
+  border-top: 5px double #5161ce;
+  border-bottom: 5px double #5161ce;
+}
+
+/* 아래의 모든 코드는 영역::코드로 사용 */
+.quizModal-container::-webkit-scrollbar {
+  width: 1rem; /* 스크롤바의 너비 */
+}
+
+.quizModal-container::-webkit-scrollbar-thumb {
+  height: 40%; /* 스크롤바의 길이 */
+  background: #5161ce; /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
+
+.quizModal-container::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
 }
 
 /* 모달창 내부 X버튼 */
@@ -28,6 +45,8 @@
 }
 .listSize {
   grid-column: 1 / 4;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .modal-item {
@@ -80,10 +99,9 @@
   .modal-front,
   .modal-back {
     border: 1px solid rgb(189, 189, 189);
-    /* border-radius: 15px 15px; */
-    /* box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2); */
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px 15px;
     padding: 30px 0;
-    /* text-align: center; */
   }
 
   .modal-front {

@@ -52,10 +52,9 @@
   .resultP {
     background-color: green;
     border-radius: 1rem 1rem;
-
+    cursor: pointer;
     color: green;
   }
-
   .score {
     text-align: center;
     font-size: 1.1rem;

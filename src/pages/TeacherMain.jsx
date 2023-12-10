@@ -16,8 +16,10 @@ function TeacherMain() {
 
   // 모달창 노출
   const showModal = (info) => {
-    setStudentWrongIndexList(info.wrongIndexList);
-    setModalOpen(true);
+    if (info.wrongIndexList !== null) {
+      setStudentWrongIndexList(info.wrongIndexList);
+      setModalOpen(true);
+    }
   };
 
   const callApi = async () => {

@@ -43,7 +43,7 @@ function StudentQuizModal({ setModalOpen, wrongIndexList, modalOpen }) {
     <div className='quizModal-container'>
       {wrongIndexList === null ? null : ( // <div>아직 과제를 하지 않았습니다</div>
         <div className='modal-container'>
-          <h2 className='listSize'>틀린 문제 개수 : {listSize}</h2>
+          <h2 className='listSize'>틀린 문제 총 {listSize}개</h2>
           {wrongQuizList &&
             wrongQuizList.map((value) => (
               <div className='modal-item'>
