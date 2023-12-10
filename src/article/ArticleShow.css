@@ -32,8 +32,15 @@
 .article-button {
   border: none;
   background-color: white;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   padding: 0;
+}
+
+.fa-solid {
+  color: rgb(164, 162, 162);
+}
+.fa-solid:hover {
+  color: #5161ce;
 }
 
 @media (max-width: 991px) {

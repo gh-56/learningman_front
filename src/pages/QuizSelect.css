@@ -39,7 +39,7 @@
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
   border-radius: 1rem 1rem;
   padding: 1.95rem;
-  /* margin: 1rem; */
+  margin: 1rem;
 }
 
 .select-date-radio {

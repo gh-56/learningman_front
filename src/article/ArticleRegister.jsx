@@ -80,7 +80,7 @@ function ArticleRegister({
 
   return (
     <div className='article-item2'>
-      <h2>글 쓰기</h2>
+      <h2 className='title-add-article'>글 쓰기</h2>
       {editState ? (
         <form onSubmit={formEdit}>
           <div className='mb-3'>

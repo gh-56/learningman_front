@@ -1,3 +1,8 @@
+.title-memberinfo {
+  margin-bottom: 4%;
+  font-weight: bold;
+}
+
 .memberinfo-container {
   display: grid;
   align-items: center;

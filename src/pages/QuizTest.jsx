@@ -138,15 +138,14 @@ function QuizTest() {
 
   return (
     <div className='quizTest'>
-      <h1>현재 과제</h1>
-      <hr />
+      <h2 className='title-quizTest'>현재 과제</h2>
       {isDone === true ? (
-        <div>
+        <div className='quizTest-content'>
           <h3>당신의 점수는 {memberScore}점 입니다</h3>
           <button onClick={toHomeHandler}>홈으로</button>
         </div>
       ) : onTest === true ? (
-        <div>
+        <div className='quizTest-content'>
           <h3>
             문제{count}: {quiz}
           </h3>
@@ -163,21 +162,11 @@ function QuizTest() {
           <button onClick={onClickSubmit} className='quiztest-submit-btn'>
             제출
           </button>
-          <div class='progress'>
-            <div
-              class='progress-bar'
-              style={{ width: `${progress}%`, backgroundColor: '#86e01e' }}
-            >
-              {progress}%
-            </div>
-          </div>
-          <h4 className='quiz-count'>
-            {count}/{allPoint}
-          </h4>
+
           {/* <p>{correct}</p> */}
         </div>
       ) : trueFalse === true ? (
-        <div>
+        <div className='quizTest-content'>
           <h2>정답입니다</h2>
           <h3>문제 : {quiz}</h3>
           <h3>정답 : {correct}</h3>
@@ -195,7 +184,7 @@ function QuizTest() {
           )}
         </div>
       ) : (
-        <div>
+        <div className='quizTest-content'>
           <h2>오답입니다</h2>
           <h3>문제 : {quiz}</h3>
           <h3>내 정답 : {answer}</h3>
@@ -203,17 +192,27 @@ function QuizTest() {
           {endTest ? (
             <div>
               <div>총 점수는 {score} 입니다</div>
+              <h4 className='quiz-count'>남은 문제 : 0</h4>
               <button className='quiztest-submit-btn' onClick={toHomeHandler}>
                 홈으로
               </button>
             </div>
           ) : (
-            <button className='quiztest-submit-btn' onClick={nextQuizHandler}>
-              다음 문제
-            </button>
+            <div>
+              <button className='quiztest-submit-btn' onClick={nextQuizHandler}>
+                다음 문제
+              </button>
+              <h4 className='quiz-count'>남은 문제 : {allPoint - count + 1}</h4>
+            </div>
           )}
         </div>
       )}
+      <div className='progress-text'>진행도</div>
+      <div className='progress'>
+        <div className='progress-bar' style={{ width: `${progress}%` }}>
+          {progress}%
+        </div>
+      </div>
     </div>
   );
 }

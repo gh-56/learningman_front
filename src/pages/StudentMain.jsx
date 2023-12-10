@@ -28,7 +28,7 @@ function StudentMain() {
 
   return (
     <div className='studentmain-div'>
-      <h1 className='title-wrong'>이번 과제 중 틀린 문제</h1>
+      <h2 className='title-wrong'>이번 과제 중 틀린 문제</h2>
       <div className='wrong-container'>
         {wrongQuizList &&
           wrongQuizList.map((value) => (

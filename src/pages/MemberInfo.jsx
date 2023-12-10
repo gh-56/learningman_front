@@ -225,7 +225,7 @@ function MemberInfo() {
       {memberDto && (
         <div className='memberinfo-container'>
           <div className='memberinfo-item1' style={{ width: '19rem' }}>
-            <h3>프로필 이미지 변경</h3>
+            <h3 className='title-memberinfo'>프로필 이미지 변경</h3>
             <hr />
             {img !== null ? (
               <img
@@ -261,7 +261,7 @@ function MemberInfo() {
           </div>
 
           <div className='memberinfo-item2'>
-            <h3>내 정보 수정</h3>
+            <h3 className='title-memberinfo'>내 정보 수정</h3>
             <h5>(이메일과 비밀번호 수정은 다시 로그인이 필요합니다)</h5>
             <hr />
 
