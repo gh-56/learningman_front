@@ -6,8 +6,8 @@
 .flip-card {
   position: relative;
   z-index: 1000;
-  width: 100px;
-  height: 150px;
+  /* width: 100px; */
+  height: 9.5rem;
 
   .card-front,
   .card-back {
@@ -42,12 +42,10 @@
 /*** Just for show... ***/
 
 .flip-card {
+  width: 100%;
   font-weight: bold;
-  /* margin: 5px; */
   text-align: center;
   text-transform: lowercase;
-  min-width: 200px;
-  max-width: 400px;
 
   .card-front,
   .card-back {
@@ -66,5 +64,15 @@
   .card-back {
     color: #ffffff;
     background-color: #000000;
+  }
+}
+@media (max-width: 1550px) {
+  .wrong-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 991px) {
+  .wrong-container {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }

@@ -50,6 +50,11 @@ div.card {
     padding: 0;
   }
 }
+@media (max-width: 1550px) {
+  .cards-item2 {
+    height: 40%;
+  }
+}
 
 @media (max-width: 991px) {
   div.cards {
@@ -63,7 +68,7 @@ div.card {
     width: 100%;
   }
   .cards-item2 {
-    height: 50%;
+    height: 30%;
     overflow-y: scroll;
     padding-bottom: 20%;
   }
@@ -82,7 +87,7 @@ div.card {
   }
 
   .cards-item2 {
-    height: 70%;
+    height: 30%;
     overflow-y: scroll;
   }
 }

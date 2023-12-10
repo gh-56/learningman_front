@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { myPageApi } from "../api/ApiClient";
-import { setCookie, getCookie, removeCookie } from "../cookies/CookieFunction";
-import { apiClient, infoChange } from "../api/ApiClient";
-import axios from "axios";
-import basicImg from "../baseImg/basicImg.jpg";
-import { memberProfileBaseImg, memberProfileChange } from "../api/ApiClient";
-import { useNavigate } from "react-router-dom";
-import "./MemberInfo.css";
-import serverConfig from "../config/serverConfig";
+import { useEffect, useState } from 'react';
+import { myPageApi } from '../api/ApiClient';
+import { setCookie, getCookie, removeCookie } from '../cookies/CookieFunction';
+import { apiClient, infoChange } from '../api/ApiClient';
+import axios from 'axios';
+import basicImg from '../baseImg/basicImg.jpg';
+import { memberProfileBaseImg, memberProfileChange } from '../api/ApiClient';
+import { useNavigate } from 'react-router-dom';
+import './MemberInfo.css';
+import serverConfig from '../config/serverConfig';
 
 function MemberInfo() {
-  const baseUrl = serverConfig.serverUrl + ":8080";
+  const baseUrl = serverConfig.serverUrl + ':8080';
   const [memberDto, setMemberDto] = useState(null);
   const [file, setFile] = useState(null);
   const [img, setImg] = useState(null);
@@ -18,16 +18,16 @@ function MemberInfo() {
   const [nameUpdateState, setNameUpdateState] = useState(false);
   const [emailUpdateState, setEmailUpdateState] = useState(false);
   const [passwordUpdateState, setPasswordUpdateState] = useState(false);
-  const [memberName, setMemberName] = useState("");
-  const [memberEmail, setMemberEmail] = useState("");
-  const [memberPassword, setMemberPassword] = useState("");
+  const [memberName, setMemberName] = useState('');
+  const [memberEmail, setMemberEmail] = useState('');
+  const [memberPassword, setMemberPassword] = useState('');
   const navigate = useNavigate();
 
   const callApi = async () => {
     // axios 인터셉터 설정 등록 : 모든 API요청에 사용된다.
     apiClient.interceptors.request.use((config) => {
-      console.log("인터셉터하여 헤더에 토큰 정보 추가");
-      config.headers.Authorization = getCookie("tokenKey");
+      console.log('인터셉터하여 헤더에 토큰 정보 추가');
+      config.headers.Authorization = getCookie('tokenKey');
       return config;
     });
     const response = await myPageApi();
@@ -37,8 +37,8 @@ function MemberInfo() {
 
   const baseProfileImg = async () => {
     apiClient.interceptors.request.use((config) => {
-      console.log("인터셉터하여 헤더에 토큰 정보 추가");
-      config.headers.Authorization = getCookie("tokenKey");
+      console.log('인터셉터하여 헤더에 토큰 정보 추가');
+      config.headers.Authorization = getCookie('tokenKey');
       return config;
     });
 
@@ -46,7 +46,7 @@ function MemberInfo() {
       const response = await memberProfileBaseImg();
       setBaseImg(response.data);
     } catch (error) {
-      console.error("baseProfileImg: ", error);
+      console.error('baseProfileImg: ', error);
     }
   };
 
@@ -58,21 +58,21 @@ function MemberInfo() {
   const handleImgSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
     try {
       const response = await axios.post(
-        baseUrl + "/members/profile/img",
+        baseUrl + '/members/profile/img',
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: getCookie("tokenKey"),
+            'Content-Type': 'multipart/form-data',
+            Authorization: getCookie('tokenKey'),
           },
         }
       );
       setImg(response.data);
     } catch (error) {
-      console.error("handleSubmit_error:", error);
+      console.error('handleSubmit_error:', error);
     }
   };
 
@@ -118,24 +118,24 @@ function MemberInfo() {
 
   const handleNameUpdateSubmit = async (event) => {
     event.preventDefault();
-    if (memberName === null || memberName === "") {
-      return alert("정보를 입력해주십시오");
+    if (memberName === null || memberName === '') {
+      return alert('정보를 입력해주십시오');
     } else {
       await axios
         .post(
-          baseUrl + "/members/update",
+          baseUrl + '/members/update',
           {
             memberName: memberName,
           },
           {
             headers: {
-              Authorization: getCookie("tokenKey"),
+              Authorization: getCookie('tokenKey'),
             },
           }
         )
         .then((res) => {
           console.log(res.data);
-          alert("이름이 변경되었습니다");
+          alert('이름이 변경되었습니다');
           window.location.reload();
         })
         .catch((err) => {
@@ -147,35 +147,35 @@ function MemberInfo() {
 
   const handleEmailUpdateSubmit = async (event) => {
     event.preventDefault();
-    if (memberEmail === null || memberEmail === "") {
-      return alert("정보를 입력해주십시오");
-    } else if (memberEmail.includes("@") === false) {
-      return alert("이메일 형식으로 입력해주십시오");
+    if (memberEmail === null || memberEmail === '') {
+      return alert('정보를 입력해주십시오');
+    } else if (memberEmail.includes('@') === false) {
+      return alert('이메일 형식으로 입력해주십시오');
     } else {
       await axios
         .post(
-          baseUrl + "/members/update",
+          baseUrl + '/members/update',
           {
             memberEmail: memberEmail,
           },
           {
             headers: {
-              Authorization: getCookie("tokenKey"),
+              Authorization: getCookie('tokenKey'),
             },
           }
         )
         .then((res) => {
           console.log(res.data);
-          alert("이메일이 변경되었습니다 다시 로그인이 필요합니다");
-          removeCookie("tokenKey");
-          navigate("/login");
+          alert('이메일이 변경되었습니다 다시 로그인이 필요합니다');
+          removeCookie('tokenKey');
+          navigate('/login');
           window.location.reload();
         })
         .catch((err) => {
           console.log(err);
           console.log(err.response.status);
           if (err.response.status === 500) {
-            alert("중복된 이메일입니다");
+            alert('중복된 이메일입니다');
           }
         });
     }
@@ -183,33 +183,33 @@ function MemberInfo() {
 
   const handlePasswordUpdateSubmit = async (event) => {
     event.preventDefault();
-    if (memberPassword === null || memberPassword === "") {
-      return alert("정보를 입력해주십시오");
+    if (memberPassword === null || memberPassword === '') {
+      return alert('정보를 입력해주십시오');
     } else {
       await axios
         .post(
-          baseUrl + "/members/update",
+          baseUrl + '/members/update',
           {
             memberPassword: memberPassword,
           },
           {
             headers: {
-              Authorization: getCookie("tokenKey"),
+              Authorization: getCookie('tokenKey'),
             },
           }
         )
         .then((res) => {
           console.log(res.data);
-          alert("비밀번호가 변경되었습니다 다시 로그인이 필요합니다");
-          removeCookie("tokenKey");
-          navigate("/login");
+          alert('비밀번호가 변경되었습니다 다시 로그인이 필요합니다');
+          removeCookie('tokenKey');
+          navigate('/login');
           window.location.reload();
         })
         .catch((err) => {
           console.log(err);
           console.log(err.response.status);
           if (err.response.status === 500) {
-            alert("오류입니다");
+            alert('오류입니다');
           }
         });
     }
@@ -221,80 +221,80 @@ function MemberInfo() {
   }, []);
 
   return (
-    <div className="memberinfo">
+    <div className='memberinfo'>
       {memberDto && (
-        <div className="memberinfo-container">
-          <div className="memberinfo-item" style={{ width: "19rem" }}>
+        <div className='memberinfo-container'>
+          <div className='memberinfo-item1' style={{ width: '19rem' }}>
             <h3>프로필 이미지 변경</h3>
             <hr />
             {img !== null ? (
               <img
                 src={serverConfig.serverUrl + `:8080${img}`}
-                className="card-img-top"
-                alt="현재 프로필 이미지 없음"
+                className='card-img-top'
+                alt='현재 프로필 이미지 없음'
               />
             ) : baseImg !== null ? (
               <img
                 src={serverConfig.serverUrl + `:8080${baseImg}`}
-                className="card-img-top"
-                alt="현재 프로필 이미지 없음"
+                className='card-img-top'
+                alt='현재 프로필 이미지 없음'
               />
             ) : (
               <img
                 src={basicImg}
-                className="card-img-top"
-                alt="기본 프로필 이미지 없음"
+                className='card-img-top'
+                alt='기본 프로필 이미지 없음'
               />
             )}
             <form onSubmit={handleImgSubmit}>
-              <div className="file-select">
+              <div className='file-select'>
                 <input
-                  className="file-select-button"
-                  type="file"
+                  className='file-select-button'
+                  type='file'
                   onChange={handleFileChange}
                 />
-                <button className="submit-button" type="submit">
+                <button className='submit-button' type='submit'>
                   변경
                 </button>
               </div>
             </form>
           </div>
 
-          <div className="memberinfo-item">
+          <div className='memberinfo-item2'>
             <h3>내 정보 수정</h3>
             <h5>(이메일과 비밀번호 수정은 다시 로그인이 필요합니다)</h5>
             <hr />
 
             <form onSubmit={handleNameUpdateSubmit}>
               {nameUpdateState === false ? (
-                <div>
-                  <div className="memberinfo-edit">
+                <div className='memberinfo-form-div'>
+                  <div className='memberinfo-edit'>
                     이름 : {memberDto.memberName}
                   </div>
                   <button
-                    className="submit-button"
+                    className='submit-button'
                     onClick={updateNameClickHandler}
                   >
                     수정하기
                   </button>
                 </div>
               ) : (
-                <div>
-                  <div className="memberinfo-div">
-                    <label className="memberinfo-label">이름</label>
+                <div className='memberinfo-form-div'>
+                  <div className='memberinfo-div'>
+                    <label className='memberinfo-label'>이름</label>
                     <input
-                      name="name"
-                      type="text"
+                      name='name'
+                      type='text'
                       value={memberName}
                       placeholder={memberDto.memberName}
                       onChange={onChangeHandlerName}
-                      className="memberinfo-edit-input"
+                      className='memberinfo-edit-input'
                     />
-                    <button className="submit-button" type="submit">
+                    <button className='submit-button' type='submit'>
                       완료
                     </button>
                     <button
-                      className="submit-cancle-button"
+                      className='submit-cancle-button'
                       onClick={nameUpdateCancelClickHandler}
                     >
                       취소
@@ -306,33 +306,33 @@ function MemberInfo() {
 
             <form onSubmit={handleEmailUpdateSubmit}>
               {emailUpdateState === false ? (
-                <div>
-                  <div className="memberinfo-edit">
+                <div className='memberinfo-form-div'>
+                  <div className='memberinfo-edit'>
                     이메일 : {memberDto.memberEmail}
                   </div>
                   <button
-                    className="submit-button"
+                    className='submit-button'
                     onClick={updateEmailClickHandler}
                   >
                     수정하기
                   </button>
                 </div>
               ) : (
-                <div>
-                  <label className="memberinfo-label">이메일 </label>
+                <div className='memberinfo-form-div'>
+                  <label className='memberinfo-label'>이메일 </label>
                   <input
-                    name="email"
-                    type="text"
+                    name='email'
+                    type='text'
                     value={memberEmail}
                     placeholder={memberDto.memberEmail}
                     onChange={onChangeHandlerEmail}
-                    className="memberinfo-edit-input"
+                    className='memberinfo-edit-input'
                   />
-                  <button className="submit-button" type="submit">
+                  <button className='submit-button' type='submit'>
                     완료
                   </button>
                   <button
-                    className="submit-cancle-button"
+                    className='submit-cancle-button'
                     onClick={emailUpdateCancelClickHandler}
                   >
                     취소
@@ -343,37 +343,35 @@ function MemberInfo() {
 
             <form onSubmit={handlePasswordUpdateSubmit}>
               {passwordUpdateState === false ? (
-                <div>
-                  <div className="memberinfo-edit">비밀번호 : ***** </div>
+                <div className='memberinfo-form-div'>
+                  <div className='memberinfo-edit'>비밀번호 : ***** </div>
                   <button
-                    className="submit-button"
+                    className='submit-button'
                     onClick={updatePasswordClickHandler}
                   >
                     수정하기
                   </button>
                 </div>
               ) : (
-                <div>
-                  <div>
-                    <label className="memberinfo-label">비밀번호</label>
-                    <input
-                      name="password"
-                      type="password"
-                      value={memberPassword}
-                      placeholder="*****"
-                      onChange={onChangeHandlerPassword}
-                      className="memberinfo-edit-input"
-                    />
-                    <button className="submit-button" type="submit">
-                      완료
-                    </button>
-                    <button
-                      className="submit-cancle-button"
-                      onClick={passwordUpdateCancelClickHandler}
-                    >
-                      취소
-                    </button>
-                  </div>
+                <div className='memberinfo-form-div'>
+                  <label className='memberinfo-label'>비밀번호</label>
+                  <input
+                    name='password'
+                    type='password'
+                    value={memberPassword}
+                    placeholder='*****'
+                    onChange={onChangeHandlerPassword}
+                    className='memberinfo-edit-input'
+                  />
+                  <button className='submit-button' type='submit'>
+                    완료
+                  </button>
+                  <button
+                    className='submit-cancle-button'
+                    onClick={passwordUpdateCancelClickHandler}
+                  >
+                    취소
+                  </button>
                 </div>
               )}
             </form>
