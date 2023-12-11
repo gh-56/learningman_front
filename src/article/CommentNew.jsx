@@ -18,7 +18,6 @@ function CommentNew() {
       config.headers.Authorization = getCookie('tokenKey');
       return config;
     });
-    e.preventDefault();
     apiClient
       .post(`/api/articles/${id}/comments`, {
         body: body,

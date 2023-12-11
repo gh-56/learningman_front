@@ -45,6 +45,10 @@ export const AuthProvider = ({ children }) => {
 
         const info = await myPageApi();
         setRole(info.data.role);
+        setCookie('role', info.data.role, {
+          path: '/',
+          maxAge: 3000,
+        });
         setIsDone(info.data.done);
         console.log(info.data.done);
         setMemberScore(info.data.quizScore);
@@ -66,6 +70,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     console.log('로그아웃 되었습니다.');
     removeCookie('tokenKey');
+    removeCookie('role')
     setIsAuthenticated(false);
     setToken(null);
     axios.interceptors.request.clear();
