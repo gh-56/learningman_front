@@ -22,6 +22,7 @@ function CommentNew() {
       })
       .then((response) => {
         console.log('comment : ', response.data);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
