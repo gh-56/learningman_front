@@ -10,7 +10,7 @@ function CommentNew() {
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    if(body === null){
+    if(body === null || body ===" "){
       alert("댓글을 작성해 주십시오")
     } else{
     apiClient.interceptors.request.use((config) => {
