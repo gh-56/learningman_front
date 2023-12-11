@@ -196,7 +196,7 @@ const Header = () => {
                 <i className='far fa-address-book'></i>예문 만들기
               </Link>
             </li>
-            {role === 'TEACHER' ? (
+            {getCookie('role') === 'TEACHER' ? (
               <li className={`nav-item ${activeTab === 4 ? 'active' : ''}`}>
                 <Link
                   className='nav-link'
