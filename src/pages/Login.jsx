@@ -24,7 +24,7 @@ function Login() {
 
   return (
     <div className='login'>
-      <h2 className='title-login'>LOG IN</h2>
+      <h2 className='title-login'>LOGIN</h2>
       <form method='post' onSubmit={formSubmit}>
         <input
           name='email'
