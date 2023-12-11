@@ -55,27 +55,32 @@ function CommentShow() {
     }
   };
 
-  const onClickEditCommentDone = async () => {
-    const response = await apiClient
-      .post(
-        "/api/editcomment",
-        {
-          id: editCommentId,
-          body: editCommentContent,
-        },
-        {
-          headers: {
-            Authorization: getCookie("tokenKey"),
+  const onClickEditCommentDone = async (e) => {
+    e.preventDefault();
+    if (editCommentContent === null || editCommentContent === " ") {
+      alert("댓글을 작성해주십시오");
+    } else {
+      const response = await apiClient
+        .post(
+          "/api/editcomment",
+          {
+            id: editCommentId,
+            body: editCommentContent,
           },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          {
+            headers: {
+              Authorization: getCookie("tokenKey"),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const onClickEditCommentCancel = () => {

@@ -21,6 +21,7 @@ function QuizTest() {
   const [endTest, setEndTest] = useState(false);
   const [wrongIndexList, setWrongIndexList] = useState([]);
   const [score, setScore] = useState(0);
+  const [startTest, setStartTest] = useState(true);
 
   const [eng, setEng] = useState(1);
   const [kor, setKor] = useState(0);
@@ -43,6 +44,8 @@ function QuizTest() {
     const response = await myPageApi();
     console.log(response);
     if (response.data.done === true) {
+      setStartTest(false);
+      setProgress(100);
       setIsDone(response.data.done)
       setMemberScore(response.data.quizScore);
     }
@@ -121,6 +124,7 @@ function QuizTest() {
           },
         }
       );
+      setStartTest(false);
       setIsDone(true);
       setMemberScore(score);
       console.log(response);

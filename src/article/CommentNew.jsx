@@ -6,9 +6,13 @@ import './CommentNew.css';
 
 function CommentNew() {
   const { id } = useParams();
-  const [body, setBody] = useState('');
+  const [body, setBody] = useState(null);
 
   const formSubmit = async (e) => {
+    e.preventDefault();
+    if(body === null){
+      alert("댓글을 작성해 주십시오")
+    } else{
     apiClient.interceptors.request.use((config) => {
       console.log('인터셉터하여 헤더에 토큰 정보 추가');
       config.headers.Authorization = getCookie('tokenKey');
@@ -27,6 +31,7 @@ function CommentNew() {
       .catch((error) => {
         console.log(error);
       });
+    }
   };
 
   const onChangeHandlerBody = (e) => {
