@@ -13,56 +13,68 @@ function ArticleRegister({
   editArticleId,
   setEditArticleId,
 }) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState(null);
+  const [content, setContent] = useState(null);
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    await apiClient
-      .post(
-        '/api/articles',
-        {
-          title: title,
-          content: content,
-        },
-        {
-          headers: {
-            Authorization: getCookie('tokenKey'),
+    if (title === null || title === '') {
+      alert('제목을 입력해주십시오');
+    } else if (content === null || content === ' ') {
+      alert('내용을 입력해주십시오');
+    } else {
+      await apiClient
+        .post(
+          '/api/articles',
+          {
+            title: title,
+            content: content,
           },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          {
+            headers: {
+              Authorization: getCookie('tokenKey'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const formEdit = async (e) => {
     e.preventDefault();
-    await apiClient
-      .post(
-        '/api/editarticles',
-        {
-          id: editArticleId,
-          title: editTitle,
-          content: editContent,
-        },
-        {
-          headers: {
-            Authorization: getCookie('tokenKey'),
+    if (editTitle === null || editTitle === ' ') {
+      alert('제목을 입력해주십시오');
+    } else if (editContent === null || editContent === ' ') {
+      alert('내용을 입력해주십시오');
+    } else {
+      await apiClient
+        .post(
+          '/api/editarticles',
+          {
+            id: editArticleId,
+            title: editTitle,
+            content: editContent,
           },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          {
+            headers: {
+              Authorization: getCookie('tokenKey'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const onChangeHandlerTitle = (e) => {

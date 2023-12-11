@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { apiClient, myPageApi } from "../api/ApiClient";
-import { Await, useParams } from "react-router-dom";
-import { getCookie } from "../cookies/CookieFunction";
-import "./CommentShow.css";
+import React, { useEffect, useState } from 'react';
+import { apiClient, myPageApi } from '../api/ApiClient';
+import { Await, useParams } from 'react-router-dom';
+import { getCookie } from '../cookies/CookieFunction';
+import './CommentShow.css';
 
 function CommentShow() {
   const [editCommentId, setEditCommentId] = useState(null);
@@ -31,16 +31,16 @@ function CommentShow() {
 
   const onClickDeleteComment = async (list) => {
     console.log(list.id);
-    if (window.confirm("정말로 삭제하시겠습니까?")) {
+    if (window.confirm('정말로 삭제하시겠습니까?')) {
       const response = await apiClient
         .post(
-          "/api/deletecomment",
+          '/api/deletecomment',
           {
             id: list.id,
           },
           {
             headers: {
-              Authorization: getCookie("tokenKey"),
+              Authorization: getCookie('tokenKey'),
             },
           }
         )
@@ -51,31 +51,36 @@ function CommentShow() {
         .catch((err) => {
           console.log(err);
         });
-      alert("삭제되었습니다");
+      alert('삭제되었습니다');
     }
   };
 
-  const onClickEditCommentDone = async () => {
-    const response = await apiClient
-      .post(
-        "/api/editcomment",
-        {
-          id: editCommentId,
-          body: editCommentContent,
-        },
-        {
-          headers: {
-            Authorization: getCookie("tokenKey"),
+  const onClickEditCommentDone = async (e) => {
+    // e.preventDefault();
+    if (editCommentContent === null || editCommentContent.trim() === '') {
+      alert('댓글을 작성해주십시오');
+    } else {
+      const response = await apiClient
+        .post(
+          '/api/editcomment',
+          {
+            id: editCommentId,
+            body: editCommentContent,
           },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          {
+            headers: {
+              Authorization: getCookie('tokenKey'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const onClickEditCommentCancel = () => {
@@ -85,16 +90,16 @@ function CommentShow() {
   useEffect(() => {
     const show = async () => {
       apiClient.interceptors.request.use((config) => {
-        console.log("인터셉터하여 헤더에 토큰 정보 추가");
-        config.headers.Authorization = getCookie("tokenKey");
+        console.log('인터셉터하여 헤더에 토큰 정보 추가');
+        config.headers.Authorization = getCookie('tokenKey');
         return config;
       });
       try {
         const response = await apiClient.get(`/api/articles/${id}/comments`);
-        console.log("commentList = ", response.data);
+        console.log('commentList = ', response.data);
         setCommentList(response.data);
       } catch (error) {
-        console.error("show error : ", error);
+        console.error('show error : ', error);
       }
     };
     show();
@@ -102,8 +107,8 @@ function CommentShow() {
   }, [id]);
 
   return (
-    <div id="comments-list">
-      <div className="detail-hr">
+    <div id='comments-list'>
+      <div className='detail-hr'>
         댓글 {commentList && commentList.length}개
       </div>
       {commentList.length === 0 ? (
@@ -111,16 +116,16 @@ function CommentShow() {
       ) : (
         <div>
           {commentList.map((list) => (
-            <div className="commentshow-list" key={list.id}>
-              <div className="commentshow-writer">{list.member.memberName}</div>
+            <div className='commentshow-list' key={list.id}>
+              <div className='commentshow-writer'>{list.member.memberName}</div>
               {editCommentState && editCommentId === list.id ? (
                 <input
-                  type="text"
+                  type='text'
                   value={editCommentContent}
                   onChange={onChangeEditComment}
                 />
               ) : (
-                <div className="commentshow-body">{list.body}</div>
+                <div className='commentshow-body'>{list.body}</div>
               )}
               {list.member.memberId === myId ? (
                 editCommentState ? (
