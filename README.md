@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# 학습도우미
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## :pushpin: 프로젝트 소개
 
-## Available Scripts
+**`학습도우미`** 는 영어 학습 성과를 확인 하고 싶은 **`선생님`** 과 **`학생`** 을 위한 **`학습 도움 웹사이트`** 입니다. <br />
 
-In the project directory, you can run:
+학습도우미를 통해 **학생의 과제 수행 여부를 쉽게 확인** 할 수 있습니다.
 
-### `npm start`
+## :busts_in_silhouette: 팀 소개
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **이건호** (팀장) <br/>
+  **`역할`** : 백엔드/프론트엔드/PM
+  **`이메일`** : dinggul56@gmail.com
+  <br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **송원석** <br/>
+  **`역할`** : 백엔드/프론트엔드
+  **`이메일`** : songwon199943@gmail.com
+  <br/>
 
-### `npm test`
+- **유희웅** <br/>
+  **`역할`** : 백엔드/프론트엔드
+  **`이메일`** : heewoong7843@gmail.com
+  <br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **이상엽** <br/>
+  **`역할`** : 백엔드/프론트엔드
+  **`이메일`** : porcelainheart945@gmail.com
 
-### `npm run build`
+## :calendar: 개발 기간
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+2023.11.07 ~ 2023.12.12 (약 21일)
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# :sparkles: 핵심 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+:one: **`선생님`** 이 학생들에게 **과제를 내주는** 기능
 
-### `npm run eject`
+<img src="../capture_img/capture_과제설정기능.png" alt="과제 설정하기 이미지" />
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+:two: **`선생님`** 이 학생 **과제 수행 여부 파악**하는 기능
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="../capture_img/capture_학생보기기능.gif" alt="선생님 메인페이지 이미지" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 학생이 과제를 수행했다면 **`초록색`**, 수행하지 않았다면 **`빨간색`** 으로 표현됩니다.
+- 수행한 학생의 **`점수`** 를 확인할 수 있습니다.
+- 모달(modal)을 이용해 학생의 **`틀린 문제`** 가 무엇인지 볼 수 있습니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+:three: **`학생`** 이 **과제 수행** 하는 기능
 
-## Learn More
+<img src="../capture_img/capture_과제수행기능.gif" alt="과제 수행하기 이미지" />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+:four: **틀린 단어 목록 보기** 기능
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="../capture_img/capture_틀린문제기능.gif" alt="틀린 단어 flip효과 이미지" />
 
-### Code Splitting
+## :star: 부가 기능
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. 게시판 및 댓글
+   <img src="../capture_img/capture_게시판기능.gif" alt="게시판 이미지" />
+   <img src="../capture_img/capture_댓글기능.gif" alt="댓글 이미지" />
 
-### Analyzing the Bundle Size
+2. 예문 만들기 + 단어 추가
+   <img src="../capture_img/capture_예문만들기기능.png" alt="예문만들기 이미지" />
+   <img src="../capture_img/capture_예문만들기기능2.png" alt="예문만들기 이미지" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. 회원정보 수정
+   <img src="../capture_img/capture_회원정보수정기능.gif" alt="회원정보수정 이미지" />
 
-### Making a Progressive Web App
+4. 로그인/ 회원가입
+   <img src="../capture_img/capture_로그인기능.png" alt="로그인 이미지" />
+   <img src="../capture_img/capture_회원가입기능.gif" alt="회원가입 이미지" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+5. 반응형 웹사이트
 
-### Advanced Configuration
+   <img style="height: 30rem" src="../capture_img/capture_회원가입_반응형.jpg" alt="회원가입_반응형 이미지" /> <img style="height: 30rem" src="../capture_img/capture_회원정보_반응형.jpg" alt="회원정보_반응형 이미지" /> <img style="height: 30rem" src="../capture_img/capture_과제설정_반응형.jpg" alt="과제설정_반응형 이미지" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# :pencil2: 기획
 
-### Deployment
+## :page_facing_up: ERD
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<img src="../capture_img/capture_erd.png" alt="erd 이미지" />
 
-### `npm run build` fails to minify
+## :sparkler: Oven
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="../capture_img/capture_oven.png" alt="erd 이미지" />
+
+## 🔧 기술 스택 & 개발 환경
+
+<img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"> <img src="https://img.shields.io/badge/Springboot-6DB33F?style=for-the-badge&logo=Springboot&logoColor=white"> <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"> <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white"> <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white"> <img src="https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=white"> <img src="https://img.shields.io/badge/intellijidea-000000?style=for-the-badge&logo=intellijidea IDE&logoColor=white"> <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white"> <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white"> <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+
+## 리액트 라이브러리
+
+- axios
+- react-router-dom
+- react-cookie
+- react-modal
+- react-fontawesome
