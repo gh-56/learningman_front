@@ -114,7 +114,7 @@ function ArticleShow({
                 <Link to={`/articles/${list.id}`}>{list.title} </Link>
               </td>
               <td className='article-content'>{list.content}</td>
-              <td>{list.member.memberName && list.member.memberName}</td>
+              <td>{list.member.memberName}</td>
               {list.member.memberId === myInfoData.memberId ? (
                 <td>
                   <button

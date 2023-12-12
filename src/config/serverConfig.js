@@ -1,5 +1,5 @@
 const serverConfig = {
-  // serverUrl: 'http://ec2-43-200-163-249.ap-northeast-2.compute.amazonaws.com',
+  // serverUrl: 'http://13.124.204.80',
   serverUrl: 'http://localhost',
 };
 export default serverConfig;
