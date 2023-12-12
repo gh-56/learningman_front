@@ -37,11 +37,11 @@
 
 :one: **`선생님`** 이 학생들에게 **과제를 내주는** 기능
 
-<img src="../capture_img/capture_과제설정기능.png" alt="과제 설정하기 이미지" />
+<img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EA%B3%BC%EC%A0%9C%EC%84%A4%EC%A0%95%EA%B8%B0%EB%8A%A5.png" alt="과제 설정하기 이미지" />
 
 :two: **`선생님`** 이 학생 **과제 수행 여부 파악**하는 기능
 
-<img src="../capture_img/capture_학생보기기능.gif" alt="선생님 메인페이지 이미지" />
+<img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%ED%95%99%EC%83%9D%EB%B3%B4%EA%B8%B0%EA%B8%B0%EB%8A%A5.gif" alt="선생님 메인페이지 이미지" />
 
 - 학생이 과제를 수행했다면 **`초록색`**, 수행하지 않았다면 **`빨간색`** 으로 표현됩니다.
 - 수행한 학생의 **`점수`** 를 확인할 수 있습니다.
@@ -49,16 +49,16 @@
 
 :three: **`학생`** 이 **과제 수행** 하는 기능
 
-<img src="../capture_img/capture_과제수행기능.gif" alt="과제 수행하기 이미지" />
+<img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EA%B3%BC%EC%A0%9C%EC%88%98%ED%96%89%EA%B8%B0%EB%8A%A5.gif" alt="과제 수행하기 이미지" />
 
 :four: **틀린 단어 목록 보기** 기능
 
-<img src="../capture_img/capture_틀린문제기능.gif" alt="틀린 단어 flip효과 이미지" />
+<img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%ED%8B%80%EB%A6%B0%EB%AC%B8%EC%A0%9C%EA%B8%B0%EB%8A%A5.gif" alt="틀린 단어 flip효과 이미지" />
 
 ## :star: 부가 기능
 
 1. 게시판 및 댓글
-   <img src="../capture_img/capture_게시판기능.gif" alt="게시판 이미지" />
+   <img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EA%B2%8C%EC%8B%9C%ED%8C%90%EA%B8%B0%EB%8A%A5.gif" alt="게시판 이미지" />
    <img src="../capture_img/capture_댓글기능.gif" alt="댓글 이미지" />
 
 2. 예문 만들기 + 단어 추가
