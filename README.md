@@ -59,32 +59,32 @@
 
 1. 게시판 및 댓글
    <img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EA%B2%8C%EC%8B%9C%ED%8C%90%EA%B8%B0%EB%8A%A5.gif" alt="게시판 이미지" />
-   <img src="../capture_img/capture_댓글기능.gif" alt="댓글 이미지" />
+   <img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EB%8C%93%EA%B8%80%EA%B8%B0%EB%8A%A5.gif" alt="댓글 이미지" />
 
 2. 예문 만들기 + 단어 추가
-   <img src="../capture_img/capture_예문만들기기능.png" alt="예문만들기 이미지" />
-   <img src="../capture_img/capture_예문만들기기능2.png" alt="예문만들기 이미지" />
+   <img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EC%98%88%EB%AC%B8%EB%A7%8C%EB%93%A4%EA%B8%B0%EA%B8%B0%EB%8A%A5.png" alt="예문만들기 이미지" />
+   <img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EC%98%88%EB%AC%B8%EB%A7%8C%EB%93%A4%EA%B8%B0%EA%B8%B0%EB%8A%A52.png" alt="예문만들기 이미지" />
 
 3. 회원정보 수정
-   <img src="../capture_img/capture_회원정보수정기능.gif" alt="회원정보수정 이미지" />
+   <img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4%EC%88%98%EC%A0%95%EA%B8%B0%EB%8A%A5.gif" alt="회원정보수정 이미지" />
 
 4. 로그인/ 회원가입
-   <img src="../capture_img/capture_로그인기능.png" alt="로그인 이미지" />
-   <img src="../capture_img/capture_회원가입기능.gif" alt="회원가입 이미지" />
+   <img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EB%A1%9C%EA%B7%B8%EC%9D%B8%EA%B8%B0%EB%8A%A5.png" alt="로그인 이미지" />
+   <img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%EA%B8%B0%EB%8A%A5.gif" alt="회원가입 이미지" />
 
 5. 반응형 웹사이트
 
-   <img style="height: 30rem" src="../capture_img/capture_회원가입_반응형.jpg" alt="회원가입_반응형 이미지" /> <img style="height: 30rem" src="../capture_img/capture_회원정보_반응형.jpg" alt="회원정보_반응형 이미지" /> <img style="height: 30rem" src="../capture_img/capture_과제설정_반응형.jpg" alt="과제설정_반응형 이미지" />
+   <img style="height: 30rem" src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85_%EB%B0%98%EC%9D%91%ED%98%95.jpg" alt="회원가입_반응형 이미지" /> <img style="height: 30rem" src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%ED%9A%8C%EC%9B%90%EC%A0%95%EB%B3%B4_%EB%B0%98%EC%9D%91%ED%98%95.jpg" alt="회원정보_반응형 이미지" /> <img style="height: 30rem" src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_%EA%B3%BC%EC%A0%9C%EC%84%A4%EC%A0%95_%EB%B0%98%EC%9D%91%ED%98%95.jpg" alt="과제설정_반응형 이미지" />
 
 # :pencil2: 기획
 
 ## :page_facing_up: ERD
 
-<img src="../capture_img/capture_erd.png" alt="erd 이미지" />
+<img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_erd.png" alt="erd 이미지" />
 
 ## :sparkler: Oven
 
-<img src="../capture_img/capture_oven.png" alt="erd 이미지" />
+<img src="https://github.com/gh-56/learningman/raw/release/gh/capture_img/capture_oven.png" alt="erd 이미지" />
 
 ## 🔧 기술 스택 & 개발 환경
 
